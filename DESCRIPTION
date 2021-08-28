@@ -1,0 +1,33 @@
+Package: rinja
+Title: Templating Engine Inspired by Jinja
+Version: 0.0.0.9000
+Authors@R: 
+    c(person(given = "David",
+             family = "Hall",
+             role = c("aut", "cre", "cph"),
+             email = "david.hall.physics@gmail.com",
+             comment = c(ORCID = "0000-0002-2193-0480")),
+      person(given = "Lars",
+             family = "Berscheid",
+             role = "cph",
+             comment = "author of bundled inja"),
+      person(given = "Niels",
+             family = "Lohmann",
+             role = "cph",
+             comment = "author of bundled json"))
+Description: Templating engine inspired by the 'jinja' Python package and
+    powered by the 'inja' C++ library. The template syntax supports
+    features such as variables, loops and conditions.
+License: MIT + file LICENSE
+Imports:
+    jsonlite
+Suggests: 
+    testthat (>= 3.0.0)
+LinkingTo: 
+    cpp11
+Config/testthat/edition: 3
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+SystemRequirements: C++11
