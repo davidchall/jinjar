@@ -10,7 +10,7 @@ render <- function(template, data) {
     stop("`template` must be a string.")
   }
 
-  json <- jsonlite::toJSON(data, auto_unbox = TRUE)
+  data_json <- jsonlite::toJSON(data, auto_unbox = TRUE, na = "string")
 
-  c_render(template, json)
+  c_render(template, data_json)
 }

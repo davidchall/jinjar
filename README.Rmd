@@ -20,15 +20,36 @@ knitr::opts_chunk$set(
 [![CRAN status](https://www.r-pkg.org/badges/version/rinja)](https://CRAN.R-project.org/package=rinja)
 <!-- badges: end -->
 
-The goal of rinja is to ...
+rinja is a templating engine for R, powered by the [inja](https://github.com/pantor/inja) C++ library and inspired by the [jinja](https://jinja.palletsprojects.com/) Python package.
 
 ## Installation
 
-You can install the released version of rinja from [CRAN](https://CRAN.R-project.org) with:
+You can install the development version from GitHub:
 
 ``` r
-install.packages("rinja")
+# install.packages("remotes")
+remotes::install_github("davidchall/rinja")
 ```
 
-## Example
+## Usage
+
+```{r}
+library(rinja)
+
+render("Hello {{ name }}!", list(name = "world"))
+```
+
+Here's a more advanced example, using loops and conditional statements:
+
+```{r}
+template <- '
+{% for person in people -%}
+{%- if person.species == "Human" and "A New Hope" in person.films -%}
+  * {{ person.name }} ({{ person.homeworld }})
+{%- endif -%}
+{%- endfor %}
+'
+
+cat(render(template, list(people = dplyr::starwars)))
+```
 

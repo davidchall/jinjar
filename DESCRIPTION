@@ -15,9 +15,11 @@ Authors@R:
              family = "Lohmann",
              role = "cph",
              comment = "author of bundled json"))
-Description: Templating engine inspired by the 'jinja' Python package and
-    powered by the 'inja' C++ library. The template syntax supports
-    features such as variables, loops and conditions.
+Description: Templating engine powered by the 'inja' C++ library. Users
+    write a template document, using syntax inspired by the 'jinja' Python
+    package, and then render the final document by passing data from R.
+    The template syntax supports features such as variables, loops and
+    conditions.
 License: MIT + file LICENSE
 Imports:
     jsonlite
