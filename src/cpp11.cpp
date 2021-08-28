@@ -4,7 +4,7 @@
 
 #include "cpp11/declarations.hpp"
 
-// code.cpp
+// render.cpp
 cpp11::strings c_render(const cpp11::strings& input, const cpp11::strings& data_json);
 extern "C" SEXP _rinja_c_render(SEXP input, SEXP data_json) {
   BEGIN_CPP11

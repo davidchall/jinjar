@@ -426,15 +426,6 @@ using std::operator<<;
 
 // Clang, GNUC, MSVC warning suppression macros:
 
-#if defined(__clang__)
-#pragma clang diagnostic ignored "-Wreserved-user-defined-literal"
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wuser-defined-literals"
-#elif defined(__GNUC__)
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wliteral-suffix"
-#endif // __clang__
-
 #if nssv_COMPILER_MSVC_VERSION >= 140
 #define nssv_SUPPRESS_MSGSL_WARNING(expr) [[gsl::suppress(expr)]]
 #define nssv_SUPPRESS_MSVC_WARNING(code, descr) __pragma(warning(suppress : code))
