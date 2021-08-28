@@ -18,6 +18,8 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![CRAN status](https://www.r-pkg.org/badges/version/rinja)](https://CRAN.R-project.org/package=rinja)
+[![Codecov test coverage](https://codecov.io/gh/davidchall/rinja/branch/master/graph/badge.svg)](https://codecov.io/gh/davidchall/rinja?branch=master)
+[![R-CMD-check](https://github.com/davidchall/rinja/workflows/R-CMD-check/badge.svg)](https://github.com/davidchall/rinja/actions)
 <!-- badges: end -->
 
 rinja is a templating engine for R, powered by the [inja](https://github.com/pantor/inja) C++ library and inspired by the [jinja](https://jinja.palletsprojects.com/) Python package.
