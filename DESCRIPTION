@@ -10,11 +10,11 @@ Authors@R:
       person(given = "Lars",
              family = "Berscheid",
              role = "cph",
-             comment = "author of bundled inja"),
+             comment = "Author of bundled inja"),
       person(given = "Niels",
              family = "Lohmann",
              role = "cph",
-             comment = "author of bundled json"))
+             comment = "Author of bundled json"))
 Description: Templating engine powered by the 'inja' C++ library. Users
     write a template document, using syntax inspired by the 'jinja' Python
     package, and then render the final document by passing data from R.
