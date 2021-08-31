@@ -41,13 +41,14 @@ Here’s a more advanced example, using loops and conditional statements:
 ``` r
 template <- '
 {% for person in people -%}
-{%- if person.species == "Human" and "A New Hope" in person.films -%}
+{%- if "A New Hope" in person.films and default(person.species, "Unknown") == "Human" -%}
   * {{ person.name }} ({{ person.homeworld }})
 {%- endif -%}
 {%- endfor %}
 '
 
-cat(render(template, list(people = dplyr::starwars)))
+text <- render(template, list(people = dplyr::starwars))
+writeLines(text)
 #> 
 #> * Luke Skywalker (Tatooine)
 #> * Darth Vader (Tatooine)
