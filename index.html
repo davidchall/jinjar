@@ -96,13 +96,14 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">template</span> <span class="op">&lt;-</span> <span class="st">'
 {% for person in people -%}
-{%- if person.species == "Human" and "A New Hope" in person.films -%}
+{%- if "A New Hope" in person.films and default(person.species, "Unknown") == "Human" -%}
   * {{ person.name }} ({{ person.homeworld }})
 {%- endif -%}
 {%- endfor %}
 '</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="fu"><a href="reference/render.html">render</a></span><span class="op">(</span><span class="va">template</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>people <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="va">starwars</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/render.html">render</a></span><span class="op">(</span><span class="va">template</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>people <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="va">starwars</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; * Luke Skywalker (Tatooine)</span>
 <span class="co">#&gt; * Darth Vader (Tatooine)</span>
