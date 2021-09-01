@@ -5,19 +5,19 @@
 #include "cpp11/declarations.hpp"
 
 // render.cpp
-cpp11::strings c_render(const cpp11::strings& input, const cpp11::strings& data_json);
-extern "C" SEXP _rinja_c_render(SEXP input, SEXP data_json) {
+cpp11::strings c_render(const cpp11::strings& input, const cpp11::strings& data_json, const cpp11::list& config);
+extern "C" SEXP _rinja_c_render(SEXP input, SEXP data_json, SEXP config) {
   BEGIN_CPP11
-    return cpp11::as_sexp(c_render(cpp11::as_cpp<cpp11::decay_t<const cpp11::strings&>>(input), cpp11::as_cpp<cpp11::decay_t<const cpp11::strings&>>(data_json)));
+    return cpp11::as_sexp(c_render(cpp11::as_cpp<cpp11::decay_t<const cpp11::strings&>>(input), cpp11::as_cpp<cpp11::decay_t<const cpp11::strings&>>(data_json), cpp11::as_cpp<cpp11::decay_t<const cpp11::list&>>(config)));
   END_CPP11
 }
 
 extern "C" {
 /* .Call calls */
-extern SEXP _rinja_c_render(SEXP, SEXP);
+extern SEXP _rinja_c_render(SEXP, SEXP, SEXP);
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_rinja_c_render", (DL_FUNC) &_rinja_c_render, 2},
+    {"_rinja_c_render", (DL_FUNC) &_rinja_c_render, 3},
     {NULL, NULL, 0}
 };
 }

@@ -4,12 +4,14 @@
 \alias{render}
 \title{Render template}
 \usage{
-render(template, data)
+render(template, data, config = engine_config())
 }
 \arguments{
 \item{template}{A string}
 
 \item{data}{A named list passed to template.}
+
+\item{config}{The engine configuration (see \code{\link[=engine_config]{engine_config()}}).}
 }
 \description{
 Data is passed to a template to render the final document.
