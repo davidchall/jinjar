@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Render template — render • rinja</title>
+<title>Configure the templating engine — engine_config • rinja</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,12 @@
 
 
 
-<meta property="og:title" content="Render template — render" />
-<meta property="og:description" content="Data is passed to a template to render the final document." />
+<meta property="og:title" content="Configure the templating engine — engine_config" />
+<meta property="og:description" content="Create an object that configures how the templating engine behaves (e.g.
+customize the syntax delimiters). The default values have been chosen to
+match the Jinja defaults.
+The equivalent Jinja class is Environment, but this term has significance
+in R." />
 
 
 
@@ -108,35 +112,92 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Render template</h1>
-    <small class="dont-index">Source: <a href='https://github.com/davidchall/rinja/blob/master/R/render.R'><code>R/render.R</code></a></small>
-    <div class="hidden name"><code>render.Rd</code></div>
+    <h1>Configure the templating engine</h1>
+    <small class="dont-index">Source: <a href='https://github.com/davidchall/rinja/blob/master/R/config.R'><code>R/config.R</code></a></small>
+    <div class="hidden name"><code>engine_config.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Data is passed to a template to render the final document.</p>
+    <p>Create an object that configures how the templating engine behaves (e.g.
+customize the syntax delimiters). The default values have been chosen to
+match the Jinja defaults.</p>
+<p>The equivalent Jinja class is <code>Environment</code>, but this term has significance
+in R.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>render</span><span class='op'>(</span><span class='va'>template</span>, <span class='va'>data</span>, config <span class='op'>=</span> <span class='fu'><a href='engine_config.html'>engine_config</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>engine_config</span><span class='op'>(</span>
+  search_path <span class='op'>=</span> <span class='cn'>NULL</span>,
+  statement_open <span class='op'>=</span> <span class='st'>"{%"</span>,
+  statement_close <span class='op'>=</span> <span class='st'>"%}"</span>,
+  line_statement <span class='op'>=</span> <span class='st'>"##"</span>,
+  expression_open <span class='op'>=</span> <span class='st'>"{{"</span>,
+  expression_close <span class='op'>=</span> <span class='st'>"}}"</span>,
+  comment_open <span class='op'>=</span> <span class='st'>"{#"</span>,
+  comment_close <span class='op'>=</span> <span class='st'>"#}"</span>,
+  trim_blocks <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  lstrip_blocks <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span>
+
+<span class='fu'>is_engine_config</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>template</th>
-      <td><p>A string</p></td>
+      <th>search_path</th>
+      <td><p>Path to search for template files. If <code>NULL</code> (the default),
+searching the file system is disabled.</p></td>
     </tr>
     <tr>
-      <th>data</th>
-      <td><p>A named list passed to template.</p></td>
+      <th>statement_open, statement_close</th>
+      <td><p>The opening and closing delimiters
+for statements (i.e. control structures).
+Default: <code>"{%"</code> and <code>"%}"</code>.</p></td>
     </tr>
     <tr>
-      <th>config</th>
-      <td><p>The engine configuration (see <code><a href='engine_config.html'>engine_config()</a></code>).</p></td>
+      <th>line_statement</th>
+      <td><p>The opening delimiter for an inline statement.
+Default: <code>"##"</code></p></td>
+    </tr>
+    <tr>
+      <th>expression_open, expression_close</th>
+      <td><p>The opening and closing delimiters
+for expressions (i.e. printed in rendered output).
+Default: <code>"{{"</code> and <code>"}}"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>comment_open, comment_close</th>
+      <td><p>The opening and closing delimiters
+for comments (i.e. removed from rendered output).
+Default: <code>"{#"</code> and <code>"#}"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>trim_blocks</th>
+      <td><p>Remove first newline after a block. Default: <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>lstrip_blocks</th>
+      <td><p>Remove inline whitespace before a block. Default: <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>x</th>
+      <td><p>An object</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    
+<ul>
+<li><p><code>engine_config()</code> returns a <code>"rinja_engine_config"</code> object.</p></li>
+<li><p><code>is_engine_config()</code> returns a logical scalar.</p></li>
+</ul>
+
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>engine_config</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; File search: disabled
+#&gt; Syntax: {% statement %} {{ expression }} {# comment #}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
