@@ -7,12 +7,26 @@ inja::Environment init_environment(const cpp11::list& config) {
     cpp11::stop("Found invalid engine config.");
   }
 
-  bool disable_search = Rf_isNull(config["search_path"]);
-  std::string search_path = disable_search ? "" : cpp11::as_cpp<std::string>(config["search_path"]);
+  bool disable_search = true;
+  std::string search_path = "";
+  if (!Rf_isNull(config["loader"]) && Rf_inherits(config["loader"], "path_loader")) {
+    const cpp11::list loader = config["loader"];
+    disable_search = false;
+    search_path = cpp11::as_cpp<std::string>(loader["path"]);
+  }
 
   inja::Environment env(search_path);
   if (disable_search) {
     env.set_search_included_templates_in_files(false);
+  }
+
+  if (!Rf_isNull(config["loader"]) && Rf_inherits(config["loader"], "list_loader")) {
+    const cpp11::list loader = config["loader"];
+    const cpp11::strings names = loader.names();
+    for (auto it=names.begin(); it!=names.end(); ++it) {
+      inja::Template tmp = env.parse(cpp11::as_cpp<std::string>(loader[*it]));
+      env.include_template(*it, tmp);
+    }
   }
 
   env.set_statement(

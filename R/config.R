@@ -6,8 +6,10 @@
 #' @note The equivalent Jinja class is `Environment`, but this term has special
 #' significance in R (see [environment()]).
 #'
-#' @param search_path Path to search for template files. If `NULL` (the default),
-#'   searching the file system is disabled.
+#' @param loader How the engine discovers templates. Choices:
+#'   * `NULL` (default), disables search for templates.
+#'   * Path to template directory
+#'   * A [`loader`] object
 #' @param block_open,block_close The opening and closing delimiters
 #'   for control blocks. Default: \verb{"\{\%"} and \verb{"\%\}"}.
 #' @param variable_open,variable_close The opening and closing delimiters
@@ -24,7 +26,7 @@
 #' engine_config()
 #' @importFrom checkmate qassert
 #' @export
-engine_config <- function(search_path = NULL,
+engine_config <- function(loader = NULL,
                           block_open = "{%",
                           block_close = "%}",
                           variable_open = "{{",
@@ -35,9 +37,13 @@ engine_config <- function(search_path = NULL,
                           trim_blocks = FALSE,
                           lstrip_blocks = FALSE) {
 
-  qassert(search_path, c("0", "S1"))
-  if (is.character(search_path)) {
-    checkmate::assert_directory_exists(search_path)
+  checkmate::assert(
+    checkmate::check_null(loader),
+    checkmate::check_directory_exists(loader),
+    checkmate::check_class(loader, "rinja_loader")
+  )
+  if (is.character(loader)) {
+    loader <- path_loader(loader)
   }
 
   qassert(block_open, "S1")
@@ -65,7 +71,7 @@ engine_config <- function(search_path = NULL,
   }
 
   structure(list(
-    search_path = search_path,
+    loader = loader,
     variable_open = variable_open,
     variable_close = variable_close,
     block_open = block_open,
@@ -80,14 +86,14 @@ engine_config <- function(search_path = NULL,
 
 #' @export
 print.rinja_engine_config <- function(x, ...) {
-  if (is.null(x$search_path)) {
-    cat("File search: disabled")
+  if (is.null(x$loader)) {
+    cat("Loader: disabled")
   } else {
-    cat("File search:", x$search_path)
+    print(x$loader)
   }
 
   cat(
-    "\nSyntax:",
+    "Syntax:",
     x$block_open, "block", x$block_close,
     x$variable_open, "variable", x$variable_close,
     x$comment_open, "comment", x$comment_close
