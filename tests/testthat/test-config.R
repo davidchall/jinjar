@@ -7,5 +7,4 @@ test_that("input validation works", {
 
 test_that("construction works", {
   expect_s3_class(engine_config(), "rinja_engine_config")
-  expect_true(is_engine_config(engine_config()))
 })

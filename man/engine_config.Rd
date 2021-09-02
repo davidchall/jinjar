@@ -2,7 +2,6 @@
 % Please edit documentation in R/config.R
 \name{engine_config}
 \alias{engine_config}
-\alias{is_engine_config}
 \title{Configure the templating engine}
 \usage{
 engine_config(
@@ -17,8 +16,6 @@ engine_config(
   trim_blocks = FALSE,
   lstrip_blocks = FALSE
 )
-
-is_engine_config(x)
 }
 \arguments{
 \item{search_path}{Path to search for template files. If \code{NULL} (the default),
@@ -40,13 +37,9 @@ default), inline statements are disabled.}
 
 \item{lstrip_blocks}{Remove inline whitespace before a block. Default: \code{FALSE}.}
 
-\item{x}{An object to test.}
 }
 \value{
-\itemize{
-\item \code{engine_config()} returns a \code{"rinja_engine_config"} object.
-\item \code{is_engine_config()} returns a logical scalar.
-}
+A \code{"rinja_engine_config"} object.
 }
 \description{
 Create an object to configure the templating engine behavior (e.g. customize

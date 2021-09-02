@@ -2,7 +2,6 @@
 
 S3method(print,rinja_engine_config)
 export(engine_config)
-export(is_engine_config)
 export(render)
 importFrom(checkmate,qassert)
 useDynLib(rinja, .registration = TRUE)

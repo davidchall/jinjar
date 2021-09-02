@@ -18,9 +18,7 @@
 #'   default), inline statements are disabled.
 #' @param trim_blocks Remove first newline after a block. Default: `FALSE`.
 #' @param lstrip_blocks Remove inline whitespace before a block. Default: `FALSE`.
-#' @return
-#'   * `engine_config()` returns a `"rinja_engine_config"` object.
-#'   * `is_engine_config()` returns a logical scalar.
+#' @return A `"rinja_engine_config"` object.
 #'
 #' @examples
 #' engine_config()
@@ -78,13 +76,6 @@ engine_config <- function(search_path = NULL,
     trim_blocks = trim_blocks,
     lstrip_blocks = lstrip_blocks
   ), class = "rinja_engine_config")
-}
-
-#' @param x An object to test.
-#' @rdname engine_config
-#' @export
-is_engine_config <- function(x) {
-  inherits(x, "rinja_engine_config")
 }
 
 #' @export
