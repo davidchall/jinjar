@@ -130,9 +130,7 @@ the syntax). The default values have been chosen to match the Jinja defaults.</p
   line_statement <span class='op'>=</span> <span class='cn'>NULL</span>,
   trim_blocks <span class='op'>=</span> <span class='cn'>FALSE</span>,
   lstrip_blocks <span class='op'>=</span> <span class='cn'>FALSE</span>
-<span class='op'>)</span>
-
-<span class='fu'>is_engine_config</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -170,20 +168,11 @@ default), inline statements are disabled.</p></td>
       <th>lstrip_blocks</th>
       <td><p>Remove inline whitespace before a block. Default: <code>FALSE</code>.</p></td>
     </tr>
-    <tr>
-      <th>x</th>
-      <td><p>An object to test.</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    
-<ul>
-<li><p><code>engine_config()</code> returns a <code>"rinja_engine_config"</code> object.</p></li>
-<li><p><code>is_engine_config()</code> returns a logical scalar.</p></li>
-</ul>
-
+    <p>A <code>"rinja_engine_config"</code> object.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>The equivalent Jinja class is <code>Environment</code>, but this term has special
