@@ -40,11 +40,8 @@
 
 
 <meta property="og:title" content="Configure the templating engine — engine_config" />
-<meta property="og:description" content="Create an object that configures how the templating engine behaves (e.g.
-customize the syntax delimiters). The default values have been chosen to
-match the Jinja defaults.
-The equivalent Jinja class is Environment, but this term has significance
-in R." />
+<meta property="og:description" content="Create an object to configure the templating engine behavior (e.g. customize
+the syntax). The default values have been chosen to match the Jinja defaults." />
 
 
 
@@ -118,22 +115,19 @@ in R." />
     </div>
 
     <div class="ref-description">
-    <p>Create an object that configures how the templating engine behaves (e.g.
-customize the syntax delimiters). The default values have been chosen to
-match the Jinja defaults.</p>
-<p>The equivalent Jinja class is <code>Environment</code>, but this term has significance
-in R.</p>
+    <p>Create an object to configure the templating engine behavior (e.g. customize
+the syntax). The default values have been chosen to match the Jinja defaults.</p>
     </div>
 
     <pre class="usage"><span class='fu'>engine_config</span><span class='op'>(</span>
   search_path <span class='op'>=</span> <span class='cn'>NULL</span>,
-  statement_open <span class='op'>=</span> <span class='st'>"{%"</span>,
-  statement_close <span class='op'>=</span> <span class='st'>"%}"</span>,
-  line_statement <span class='op'>=</span> <span class='st'>"##"</span>,
-  expression_open <span class='op'>=</span> <span class='st'>"{{"</span>,
-  expression_close <span class='op'>=</span> <span class='st'>"}}"</span>,
+  block_open <span class='op'>=</span> <span class='st'>"{%"</span>,
+  block_close <span class='op'>=</span> <span class='st'>"%}"</span>,
+  variable_open <span class='op'>=</span> <span class='st'>"{{"</span>,
+  variable_close <span class='op'>=</span> <span class='st'>"}}"</span>,
   comment_open <span class='op'>=</span> <span class='st'>"{#"</span>,
   comment_close <span class='op'>=</span> <span class='st'>"#}"</span>,
+  line_statement <span class='op'>=</span> <span class='cn'>NULL</span>,
   trim_blocks <span class='op'>=</span> <span class='cn'>FALSE</span>,
   lstrip_blocks <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span>
@@ -149,27 +143,24 @@ in R.</p>
 searching the file system is disabled.</p></td>
     </tr>
     <tr>
-      <th>statement_open, statement_close</th>
+      <th>block_open, block_close</th>
       <td><p>The opening and closing delimiters
-for statements (i.e. control structures).
-Default: <code>"{%"</code> and <code>"%}"</code>.</p></td>
+for control blocks. Default: <code>"{%"</code> and <code>"%}"</code>.</p></td>
     </tr>
     <tr>
-      <th>line_statement</th>
-      <td><p>The opening delimiter for an inline statement.
-Default: <code>"##"</code></p></td>
-    </tr>
-    <tr>
-      <th>expression_open, expression_close</th>
+      <th>variable_open, variable_close</th>
       <td><p>The opening and closing delimiters
-for expressions (i.e. printed in rendered output).
-Default: <code>"{{"</code> and <code>"}}"</code>.</p></td>
+for print statements. Default: <code>"{{"</code> and <code>"}}"</code>.</p></td>
     </tr>
     <tr>
       <th>comment_open, comment_close</th>
       <td><p>The opening and closing delimiters
-for comments (i.e. removed from rendered output).
-Default: <code>"{#"</code> and <code>"#}"</code>.</p></td>
+for comments. Default: <code>"{#"</code> and <code>"#}"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>line_statement</th>
+      <td><p>The prefix for an inline statement. If <code>NULL</code> (the
+default), inline statements are disabled.</p></td>
     </tr>
     <tr>
       <th>trim_blocks</th>
@@ -181,7 +172,7 @@ Default: <code>"{#"</code> and <code>"#}"</code>.</p></td>
     </tr>
     <tr>
       <th>x</th>
-      <td><p>An object</p></td>
+      <td><p>An object to test.</p></td>
     </tr>
     </table>
 
@@ -193,11 +184,15 @@ Default: <code>"{#"</code> and <code>"#}"</code>.</p></td>
 <li><p><code>is_engine_config()</code> returns a logical scalar.</p></li>
 </ul>
 
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>The equivalent Jinja class is <code>Environment</code>, but this term has special
+significance in R (see <code><a href='https://rdrr.io/r/base/environment.html'>environment()</a></code>).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>engine_config</span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; File search: disabled
-#&gt; Syntax: {% statement %} {{ expression }} {# comment #}</div></pre>
+#&gt; Syntax: {% block %} {{ variable }} {# comment #}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
