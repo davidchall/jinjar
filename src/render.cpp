@@ -16,15 +16,15 @@ inja::Environment init_environment(const cpp11::list& config) {
   }
 
   env.set_statement(
-    cpp11::as_cpp<std::string>(config["statement_open"]),
-    cpp11::as_cpp<std::string>(config["statement_close"])
+    cpp11::as_cpp<std::string>(config["block_open"]),
+    cpp11::as_cpp<std::string>(config["block_close"])
   );
   env.set_line_statement(
     cpp11::as_cpp<std::string>(config["line_statement"])
   );
   env.set_expression(
-    cpp11::as_cpp<std::string>(config["expression_open"]),
-    cpp11::as_cpp<std::string>(config["expression_close"])
+    cpp11::as_cpp<std::string>(config["variable_open"]),
+    cpp11::as_cpp<std::string>(config["variable_close"])
   );
   env.set_comment(
     cpp11::as_cpp<std::string>(config["comment_open"]),

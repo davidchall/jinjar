@@ -1,26 +1,21 @@
 #' Configure the templating engine
 #'
-#' @description
-#' Create an object that configures how the templating engine behaves (e.g.
-#' customize the syntax delimiters). The default values have been chosen to
-#' match the Jinja defaults.
+#' Create an object to configure the templating engine behavior (e.g. customize
+#' the syntax). The default values have been chosen to match the Jinja defaults.
 #'
-#' The equivalent Jinja class is `Environment`, but this term has significance
-#' in R.
+#' @note The equivalent Jinja class is `Environment`, but this term has special
+#' significance in R (see [environment()]).
 #'
 #' @param search_path Path to search for template files. If `NULL` (the default),
 #'   searching the file system is disabled.
-#' @param statement_open,statement_close The opening and closing delimiters
-#'   for statements (i.e. control structures).
-#'   Default: \verb{"\{\%"} and \verb{"\%\}"}.
-#' @param line_statement The opening delimiter for an inline statement.
-#'   Default: `"##"`
-#' @param expression_open,expression_close The opening and closing delimiters
-#'   for expressions (i.e. printed in rendered output).
-#'   Default: `"{{"` and `"}}"`.
+#' @param block_open,block_close The opening and closing delimiters
+#'   for control blocks. Default: \verb{"\{\%"} and \verb{"\%\}"}.
+#' @param variable_open,variable_close The opening and closing delimiters
+#'   for print statements. Default: `"{{"` and `"}}"`.
 #' @param comment_open,comment_close The opening and closing delimiters
-#'   for comments (i.e. removed from rendered output).
-#'   Default: `"{#"` and `"#}"`.
+#'   for comments. Default: `"{#"` and `"#}"`.
+#' @param line_statement The prefix for an inline statement. If `NULL` (the
+#'   default), inline statements are disabled.
 #' @param trim_blocks Remove first newline after a block. Default: `FALSE`.
 #' @param lstrip_blocks Remove inline whitespace before a block. Default: `FALSE`.
 #' @return
@@ -29,44 +24,54 @@
 #'
 #' @examples
 #' engine_config()
+#' @importFrom checkmate qassert
 #' @export
 engine_config <- function(search_path = NULL,
-                          statement_open = "{%",
-                          statement_close = "%}",
-                          line_statement = "##",
-                          expression_open = "{{",
-                          expression_close = "}}",
+                          block_open = "{%",
+                          block_close = "%}",
+                          variable_open = "{{",
+                          variable_close = "}}",
                           comment_open = "{#",
                           comment_close = "#}",
+                          line_statement = NULL,
                           trim_blocks = FALSE,
                           lstrip_blocks = FALSE) {
 
-  if (!is.null(search_path)) assert_string(search_path)
-  assert_string(statement_open)
-  assert_string(statement_close)
-  assert_string(line_statement)
-  assert_string(expression_open)
-  assert_string(expression_close)
-  assert_string(comment_open)
-  assert_string(comment_close)
-  assert_bool(trim_blocks)
-  assert_bool(lstrip_blocks)
+  qassert(search_path, c("0", "S1"))
+  if (is.character(search_path)) {
+    checkmate::assert_directory_exists(search_path)
+  }
+
+  qassert(block_open, "S1")
+  qassert(block_close, "S1")
+  qassert(variable_open, "S1")
+  qassert(variable_close, "S1")
+  qassert(comment_open, "S1")
+  qassert(comment_close, "S1")
+  qassert(line_statement, c("0", "S1"))
+  qassert(trim_blocks, "B1")
+  qassert(lstrip_blocks, "B1")
 
   delimiters <- c(
-    statement_open, statement_close, line_statement,
-    expression_open, expression_close,
-    comment_open, comment_close
+    block_open, block_close,
+    variable_open, variable_close,
+    comment_open, comment_close,
+    line_statement
   )
   if (anyDuplicated(delimiters)) {
     stop("Found conflicting delimiters.")
   }
 
+  if (is.null(line_statement)) {
+    line_statement <- ""
+  }
+
   structure(list(
     search_path = search_path,
-    expression_open = expression_open,
-    expression_close = expression_close,
-    statement_open = statement_open,
-    statement_close = statement_close,
+    variable_open = variable_open,
+    variable_close = variable_close,
+    block_open = block_open,
+    block_close = block_close,
     line_statement = line_statement,
     comment_open = comment_open,
     comment_close = comment_close,
@@ -75,15 +80,7 @@ engine_config <- function(search_path = NULL,
   ), class = "rinja_engine_config")
 }
 
-assert_string <- function(x) {
-  stopifnot(is.character(x), length(x) == 1, !is.na(x))
-}
-
-assert_bool <- function(x) {
-  stopifnot(is.logical(x), length(x) == 1, !is.na(x))
-}
-
-#' @param x An object
+#' @param x An object to test.
 #' @rdname engine_config
 #' @export
 is_engine_config <- function(x) {
@@ -100,8 +97,8 @@ print.rinja_engine_config <- function(x, ...) {
 
   cat(
     "\nSyntax:",
-    x$statement_open, "statement", x$statement_close,
-    x$expression_open, "expression", x$expression_close,
+    x$block_open, "block", x$block_close,
+    x$variable_open, "variable", x$variable_close,
     x$comment_open, "comment", x$comment_close
   )
 

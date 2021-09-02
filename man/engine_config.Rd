@@ -7,13 +7,13 @@
 \usage{
 engine_config(
   search_path = NULL,
-  statement_open = "{\%",
-  statement_close = "\%}",
-  line_statement = "##",
-  expression_open = "{{",
-  expression_close = "}}",
+  block_open = "{\%",
+  block_close = "\%}",
+  variable_open = "{{",
+  variable_close = "}}",
   comment_open = "{#",
   comment_close = "#}",
+  line_statement = NULL,
   trim_blocks = FALSE,
   lstrip_blocks = FALSE
 )
@@ -24,26 +24,23 @@ is_engine_config(x)
 \item{search_path}{Path to search for template files. If \code{NULL} (the default),
 searching the file system is disabled.}
 
-\item{statement_open, statement_close}{The opening and closing delimiters
-for statements (i.e. control structures).
-Default: \verb{"\{\%"} and \verb{"\%\}"}.}
+\item{block_open, block_close}{The opening and closing delimiters
+for control blocks. Default: \verb{"\{\%"} and \verb{"\%\}"}.}
 
-\item{line_statement}{The opening delimiter for an inline statement.
-Default: \code{"##"}}
-
-\item{expression_open, expression_close}{The opening and closing delimiters
-for expressions (i.e. printed in rendered output).
-Default: \code{"{{"} and \code{"}}"}.}
+\item{variable_open, variable_close}{The opening and closing delimiters
+for print statements. Default: \code{"{{"} and \code{"}}"}.}
 
 \item{comment_open, comment_close}{The opening and closing delimiters
-for comments (i.e. removed from rendered output).
-Default: \code{"{#"} and \code{"#}"}.}
+for comments. Default: \code{"{#"} and \code{"#}"}.}
+
+\item{line_statement}{The prefix for an inline statement. If \code{NULL} (the
+default), inline statements are disabled.}
 
 \item{trim_blocks}{Remove first newline after a block. Default: \code{FALSE}.}
 
 \item{lstrip_blocks}{Remove inline whitespace before a block. Default: \code{FALSE}.}
 
-\item{x}{An object}
+\item{x}{An object to test.}
 }
 \value{
 \itemize{
@@ -52,12 +49,12 @@ Default: \code{"{#"} and \code{"#}"}.}
 }
 }
 \description{
-Create an object that configures how the templating engine behaves (e.g.
-customize the syntax delimiters). The default values have been chosen to
-match the Jinja defaults.
-
-The equivalent Jinja class is \code{Environment}, but this term has significance
-in R.
+Create an object to configure the templating engine behavior (e.g. customize
+the syntax). The default values have been chosen to match the Jinja defaults.
+}
+\note{
+The equivalent Jinja class is \code{Environment}, but this term has special
+significance in R (see \code{\link[=environment]{environment()}}).
 }
 \examples{
 engine_config()

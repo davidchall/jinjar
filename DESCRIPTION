@@ -21,7 +21,11 @@ Description: Templating engine powered by the 'inja' C++ library. Users
     The template syntax supports features such as variables, loops and
     conditions.
 License: MIT + file LICENSE
+URL: https://davidchall.github.io/rinja,
+    https://github.com/davidchall/rinja
+BugReports: https://github.com/davidchall/rinja/issues
 Imports:
+    checkmate,
     jsonlite
 Suggests: 
     testthat (>= 3.0.0)
@@ -33,5 +37,3 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 SystemRequirements: C++11
-URL: https://davidchall.github.io/rinja, https://github.com/davidchall/rinja
-BugReports: https://github.com/davidchall/rinja/issues
