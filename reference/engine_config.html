@@ -120,7 +120,7 @@ the syntax). The default values have been chosen to match the Jinja defaults.</p
     </div>
 
     <pre class="usage"><span class='fu'>engine_config</span><span class='op'>(</span>
-  search_path <span class='op'>=</span> <span class='cn'>NULL</span>,
+  loader <span class='op'>=</span> <span class='cn'>NULL</span>,
   block_open <span class='op'>=</span> <span class='st'>"{%"</span>,
   block_close <span class='op'>=</span> <span class='st'>"%}"</span>,
   variable_open <span class='op'>=</span> <span class='st'>"{{"</span>,
@@ -136,9 +136,12 @@ the syntax). The default values have been chosen to match the Jinja defaults.</p
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>search_path</th>
-      <td><p>Path to search for template files. If <code>NULL</code> (the default),
-searching the file system is disabled.</p></td>
+      <th>loader</th>
+      <td><p>How the engine discovers templates. Choices:</p><ul>
+<li><p><code>NULL</code> (default), disables search for templates.</p></li>
+<li><p>Path to template directory.</p></li>
+<li><p>A <code><a href='loader.html'>loader</a></code> object.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>block_open, block_close</th>
@@ -180,7 +183,7 @@ significance in R (see <code><a href='https://rdrr.io/r/base/environment.html'>e
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>engine_config</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; File search: disabled
+</div><div class='output co'>#&gt; Loader: disabled
 #&gt; Syntax: {% block %} {{ variable }} {# comment #}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
