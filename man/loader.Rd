@@ -5,7 +5,7 @@
 \alias{path_loader}
 \alias{package_loader}
 \alias{list_loader}
-\title{Loaders}
+\title{Template loaders}
 \usage{
 path_loader(...)
 
@@ -31,4 +31,17 @@ Loaders are responsible for exposing templates to the templating engine.
 \code{package_loader()} loads templates from a directory in an R package.
 
 \code{list_loader()} loads templates from a named list.
+}
+\examples{
+path_loader(R.home())
+
+package_loader("base", "demo")
+
+list_loader(list(
+  header = "Title: {{ title }}",
+  content = "Hello {{ person }}!"
+))
+}
+\seealso{
+The loader is an argument to \code{engine_config()}.
 }

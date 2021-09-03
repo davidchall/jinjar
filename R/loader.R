@@ -1,8 +1,18 @@
-#' Loaders
+#' Template loaders
 #'
 #' Loaders are responsible for exposing templates to the templating engine.
 #'
 #' @return A `"rinja_loader"` object.
+#' @seealso The loader is an argument to `engine_config()`.
+#' @examples
+#' path_loader(R.home())
+#'
+#' package_loader("base", "demo")
+#'
+#' list_loader(list(
+#'   header = "Title: {{ title }}",
+#'   content = "Hello {{ person }}!"
+#' ))
 #' @name loader
 NULL
 

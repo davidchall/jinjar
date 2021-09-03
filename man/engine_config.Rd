@@ -21,8 +21,8 @@ engine_config(
 \item{loader}{How the engine discovers templates. Choices:
 \itemize{
 \item \code{NULL} (default), disables search for templates.
-\item Path to template directory
-\item A \code{\link{loader}} object
+\item Path to template directory.
+\item A \code{\link{loader}} object.
 }}
 
 \item{block_open, block_close}{The opening and closing delimiters

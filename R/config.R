@@ -8,8 +8,8 @@
 #'
 #' @param loader How the engine discovers templates. Choices:
 #'   * `NULL` (default), disables search for templates.
-#'   * Path to template directory
-#'   * A [`loader`] object
+#'   * Path to template directory.
+#'   * A [`loader`] object.
 #' @param block_open,block_close The opening and closing delimiters
 #'   for control blocks. Default: \verb{"\{\%"} and \verb{"\%\}"}.
 #' @param variable_open,variable_close The opening and closing delimiters
@@ -87,7 +87,7 @@ engine_config <- function(loader = NULL,
 #' @export
 print.rinja_engine_config <- function(x, ...) {
   if (is.null(x$loader)) {
-    cat("Loader: disabled")
+    cat("Loader: disabled\n")
   } else {
     print(x$loader)
   }
