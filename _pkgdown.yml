@@ -1,1 +1,10 @@
 url: https://davidchall.github.io/rinja
+
+reference:
+  - title: Rendering templates
+  - contents:
+    - render
+  - title: Configuration
+  - contents:
+    - engine_config
+    - loader

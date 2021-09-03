@@ -5,7 +5,7 @@
 \title{Configure the templating engine}
 \usage{
 engine_config(
-  search_path = NULL,
+  loader = NULL,
   block_open = "{\%",
   block_close = "\%}",
   variable_open = "{{",
@@ -18,8 +18,12 @@ engine_config(
 )
 }
 \arguments{
-\item{search_path}{Path to search for template files. If \code{NULL} (the default),
-searching the file system is disabled.}
+\item{loader}{How the engine discovers templates. Choices:
+\itemize{
+\item \code{NULL} (default), disables search for templates.
+\item Path to template directory.
+\item A \code{\link{loader}} object.
+}}
 
 \item{block_open, block_close}{The opening and closing delimiters
 for control blocks. Default: \verb{"\{\%"} and \verb{"\%\}"}.}
@@ -36,7 +40,6 @@ default), inline statements are disabled.}
 \item{trim_blocks}{Remove first newline after a block. Default: \code{FALSE}.}
 
 \item{lstrip_blocks}{Remove inline whitespace before a block. Default: \code{FALSE}.}
-
 }
 \value{
 A \code{"rinja_engine_config"} object.

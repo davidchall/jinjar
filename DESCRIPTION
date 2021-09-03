@@ -26,6 +26,7 @@ URL: https://davidchall.github.io/rinja,
 BugReports: https://github.com/davidchall/rinja/issues
 Imports:
     checkmate,
+    fs,
     jsonlite
 Suggests: 
     testthat (>= 3.0.0)
