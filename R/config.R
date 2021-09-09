@@ -24,7 +24,6 @@
 #'
 #' @examples
 #' engine_config()
-#' @importFrom checkmate qassert
 #' @export
 engine_config <- function(loader = NULL,
                           block_open = "{%",
@@ -36,7 +35,6 @@ engine_config <- function(loader = NULL,
                           line_statement = NULL,
                           trim_blocks = FALSE,
                           lstrip_blocks = FALSE) {
-
   checkmate::assert(
     checkmate::check_null(loader),
     checkmate::check_directory_exists(loader),
@@ -46,42 +44,42 @@ engine_config <- function(loader = NULL,
     loader <- path_loader(loader)
   }
 
-  qassert(block_open, "S1")
-  qassert(block_close, "S1")
-  qassert(variable_open, "S1")
-  qassert(variable_close, "S1")
-  qassert(comment_open, "S1")
-  qassert(comment_close, "S1")
-  qassert(line_statement, c("0", "S1"))
-  qassert(trim_blocks, "B1")
-  qassert(lstrip_blocks, "B1")
-
-  delimiters <- c(
-    block_open, block_close,
-    variable_open, variable_close,
-    comment_open, comment_close,
-    line_statement
-  )
-  if (anyDuplicated(delimiters)) {
-    stop("Found conflicting delimiters.")
-  }
+  checkmate::assert_string(block_open, min.chars = 1)
+  checkmate::assert_string(block_close, min.chars = 1)
+  checkmate::assert_string(variable_open, min.chars = 1)
+  checkmate::assert_string(variable_close, min.chars = 1)
+  checkmate::assert_string(comment_open, min.chars = 1)
+  checkmate::assert_string(comment_close, min.chars = 1)
+  checkmate::assert_string(line_statement, min.chars = 1, null.ok = TRUE)
+  checkmate::assert_flag(trim_blocks)
+  checkmate::assert_flag(lstrip_blocks)
 
   if (is.null(line_statement)) {
     line_statement <- ""
   }
 
-  structure(list(
-    loader = loader,
+  delimiters <- c(
     variable_open = variable_open,
     variable_close = variable_close,
     block_open = block_open,
     block_close = block_close,
     line_statement = line_statement,
     comment_open = comment_open,
-    comment_close = comment_close,
+    comment_close = comment_close
+  )
+  if (anyDuplicated(delimiters)) {
+    conflicts <- delimiters[duplicated(delimiters) | duplicated(delimiters, fromLast = TRUE)]
+    stop(
+      paste("Conflicting delimiters:", paste(names(conflicts), collapse = ", ")),
+      call. = FALSE
+    )
+  }
+
+  structure(c(as.list(delimiters), list(
+    loader = loader,
     trim_blocks = trim_blocks,
     lstrip_blocks = lstrip_blocks
-  ), class = "rinja_engine_config")
+  )), class = "rinja_engine_config")
 }
 
 #' @export
