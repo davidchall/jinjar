@@ -32,7 +32,7 @@ remotes::install_github("davidchall/rinja")
 ``` r
 library(rinja)
 
-render("Hello {{ name }}!", list(name = "world"))
+render("Hello {{ name }}!", name = "world")
 #> [1] "Hello world!"
 ```
 
@@ -47,7 +47,7 @@ template <- '
 {%- endfor %}
 '
 
-text <- render(template, list(people = dplyr::starwars))
+text <- render(template, people = dplyr::starwars)
 writeLines(text)
 #> 
 #> * Luke Skywalker (Tatooine)

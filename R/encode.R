@@ -1,4 +1,6 @@
-encode <- function(data) {
+encode <- function(...) {
+  data <- list(...)
+
   jsonlite::toJSON(
     data,
     auto_unbox = TRUE, # scalars are not vectors

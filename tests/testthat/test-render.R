@@ -4,7 +4,7 @@ test_that("input validation works", {
 
 test_that("templating features work", {
   expect_equal(
-    render("Hello {{ name }}!", list(name = "world")),
+    render("Hello {{ name }}!", name = "world"),
     "Hello world!"
   )
 })
