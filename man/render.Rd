@@ -7,9 +7,9 @@
 render(.x, ..., .config = engine_config())
 }
 \arguments{
-\item{.x}{The template}
+\item{.x}{The template.}
 
-\item{...}{Data passed to the template.}
+\item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> Data passed to the template.}
 
 \item{.config}{The engine configuration (see \code{\link[=engine_config]{engine_config()}}).}
 }

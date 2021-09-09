@@ -27,7 +27,8 @@ BugReports: https://github.com/davidchall/rinja/issues
 Imports:
     checkmate,
     fs,
-    jsonlite
+    jsonlite,
+    rlang
 Suggests: 
     testthat (>= 3.0.0)
 LinkingTo: 
