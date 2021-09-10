@@ -7,6 +7,6 @@
 
 knit_jinjar <- function(options) {
   code <- paste(options$code, collapse = "\n")
-  out <- jinjar::render(code, !!!options$data)
+  out <- render(code, !!!options$data)
   knitr::engine_output(options, code, out)
 }
