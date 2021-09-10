@@ -14,9 +14,9 @@ coverage](https://codecov.io/gh/davidchall/jinjar/branch/master/graph/badge.svg)
 [![R-CMD-check](https://github.com/davidchall/jinjar/workflows/R-CMD-check/badge.svg)](https://github.com/davidchall/jinjar/actions)
 <!-- badges: end -->
 
-jinjar is a templating engine for R, powered by the
-[inja](https://github.com/pantor/inja) C++ library and inspired by the
-[jinja](https://jinja.palletsprojects.com/) Python package.
+jinjar is a templating engine for R, inspired by the
+[jinja](https://jinja.palletsprojects.com/) Python package and powered
+by the [inja](https://github.com/pantor/inja) C++ library.
 
 ## Installation
 
