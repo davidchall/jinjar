@@ -2,8 +2,8 @@ pandoc: 2.7.3
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles: {}
-last_built: 2021-09-10T02:51Z
+last_built: 2021-09-10T03:13Z
 urls:
-  reference: https://davidchall.github.io/rinja/reference
-  article: https://davidchall.github.io/rinja/articles
+  reference: https://davidchall.github.io/jinjar/reference
+  article: https://davidchall.github.io/jinjar/articles
 

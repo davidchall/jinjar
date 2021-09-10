@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Template loaders — loader • jinjar</title>
+<title>jinjar: Templating Engine Inspired by Jinja — jinjar-package • jinjar</title>
 
 
 <!-- jquery -->
@@ -39,11 +39,12 @@
 
 
 
-<meta property="og:title" content="Template loaders — loader" />
-<meta property="og:description" content="Loaders are responsible for exposing templates to the templating engine.
-path_loader() loads templates from a directory in the file system.
-package_loader() loads templates from a directory in an R package.
-list_loader() loads templates from a named list." />
+<meta property="og:title" content="jinjar: Templating Engine Inspired by Jinja — jinjar-package" />
+<meta property="og:description" content="Templating engine powered by the 'inja' C++ library. Users
+    write a template document, using syntax inspired by the 'jinja' Python
+    package, and then render the final document by passing data from R.
+    The template syntax supports features such as variables, loops and
+    conditions." />
 
 
 
@@ -111,58 +112,40 @@ list_loader() loads templates from a named list." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Template loaders</h1>
-    <small class="dont-index">Source: <a href='https://github.com/davidchall/jinjar/blob/master/R/loader.R'><code>R/loader.R</code></a></small>
-    <div class="hidden name"><code>loader.Rd</code></div>
+    <h1>jinjar: Templating Engine Inspired by Jinja</h1>
+    <small class="dont-index">Source: <a href='https://github.com/davidchall/jinjar/blob/master/R/jinjar-package.R'><code>R/jinjar-package.R</code></a></small>
+    <div class="hidden name"><code>jinjar-package.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Loaders are responsible for exposing templates to the templating engine.</p>
-<p><code>path_loader()</code> loads templates from a directory in the file system.</p>
-<p><code>package_loader()</code> loads templates from a directory in an R package.</p>
-<p><code>list_loader()</code> loads templates from a named list.</p>
+    <p>Templating engine powered by the 'inja' C++ library. Users
+    write a template document, using syntax inspired by the 'jinja' Python
+    package, and then render the final document by passing data from R.
+    The template syntax supports features such as variables, loops and
+    conditions.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>path_loader</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>package_loader</span><span class='op'>(</span><span class='va'>package</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>list_loader</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
-
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>...</th>
-      <td><p>Strings specifying path components.</p></td>
-    </tr>
-    <tr>
-      <th>package</th>
-      <td><p>Name of the package in which to search.</p></td>
-    </tr>
-    <tr>
-      <th>x</th>
-      <td><p>Named list mapping template names to template sources.</p></td>
-    </tr>
-    </table>
-
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A <code>"jinjar_loader"</code> object.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>The loader is an argument to <code><a href='engine_config.html'>engine_config()</a></code>.</p></div>
+    <div class='dont-index'><p>Useful links:</p><ul>
+<li><p><a href='https://davidchall.github.io/jinjar'>https://davidchall.github.io/jinjar</a></p></li>
+<li><p><a href='https://github.com/davidchall/jinjar'>https://github.com/davidchall/jinjar</a></p></li>
+<li><p>Report bugs at <a href='https://github.com/davidchall/jinjar/issues'>https://github.com/davidchall/jinjar/issues</a></p></li>
+</ul>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>path_loader</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Rhome.html'>R.home</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Path loader: <span style='color: #0000BB; font-weight: bold;'>/opt/R/4.1.1/lib/R</span></div><div class='input'>
-<span class='fu'>package_loader</span><span class='op'>(</span><span class='st'>"base"</span>, <span class='st'>"demo"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Path loader: <span style='color: #0000BB; font-weight: bold;'>/opt/R/4.1.1/lib/R/library/base/demo</span></div><div class='input'>
-<span class='fu'>list_loader</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
-  header <span class='op'>=</span> <span class='st'>"Title: {{ title }}"</span>,
-  content <span class='op'>=</span> <span class='st'>"Hello {{ person }}!"</span>
-<span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; List loader: ‘header’, ‘content’</div></pre>
+</div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p><strong>Maintainer</strong>: David Hall <a href='mailto:david.hall.physics@gmail.com'>david.hall.physics@gmail.com</a> (<a href='https://orcid.org/0000-0002-2193-0480'>ORCID</a>) [copyright holder]</p>
+<p>Other contributors:</p><ul>
+<li><p>Lars Berscheid (Author of bundled inja) [copyright holder]</p></li>
+<li><p>Niels Lohmann (Author of bundled json) [copyright holder]</p></li>
+</ul>
+
+
+
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

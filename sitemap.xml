@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://davidchall.github.io/rinja/index.html</loc>
+    <loc>https://davidchall.github.io/jinjar/index.html</loc>
   </url>
   <url>
-    <loc>https://davidchall.github.io/rinja/reference/engine_config.html</loc>
+    <loc>https://davidchall.github.io/jinjar/reference/engine_config.html</loc>
   </url>
   <url>
-    <loc>https://davidchall.github.io/rinja/reference/loader.html</loc>
+    <loc>https://davidchall.github.io/jinjar/reference/jinjar-package.html</loc>
   </url>
   <url>
-    <loc>https://davidchall.github.io/rinja/reference/render.html</loc>
+    <loc>https://davidchall.github.io/jinjar/reference/loader.html</loc>
   </url>
   <url>
-    <loc>https://davidchall.github.io/rinja/reference/rinja-package.html</loc>
+    <loc>https://davidchall.github.io/jinjar/reference/render.html</loc>
   </url>
 </urlset>
