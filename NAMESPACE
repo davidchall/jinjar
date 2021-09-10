@@ -3,6 +3,8 @@
 S3method(print,list_loader)
 S3method(print,path_loader)
 S3method(print,rinja_engine_config)
+S3method(render,character)
+S3method(render,fs_path)
 export(engine_config)
 export(list_loader)
 export(package_loader)

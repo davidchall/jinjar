@@ -2,17 +2,44 @@
 % Please edit documentation in R/render.R
 \name{render}
 \alias{render}
+\alias{render.character}
+\alias{render.fs_path}
 \title{Render template}
 \usage{
-render(.x, ..., .config = engine_config())
+render(.x, ...)
+
+\method{render}{character}(.x, ..., .config = engine_config())
+
+\method{render}{fs_path}(.x, ..., .config = engine_config())
 }
 \arguments{
-\item{.x}{The template.}
+\item{.x}{The template. Choices:
+\itemize{
+\item A template string.
+\item A path to a template file (use \code{\link[fs:path]{fs::path()}}).
+}}
 
 \item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> Data passed to the template.}
 
 \item{.config}{The engine configuration (see \code{\link[=engine_config]{engine_config()}}).}
 }
+\value{
+String containing rendered template.
+}
 \description{
 Data is passed to a template to render the final document.
+}
+\examples{
+# pass data as arguments
+render("Hello {{ name }}!", name = "world")
+
+# pass data as list
+params <- list(name = "world")
+render("Hello {{ name }}!", !!!params)
+
+# render template file
+f <- tempfile(fileext = ".txt")
+cat("Hello {{ name }}!", file = f)
+render(fs::path(f), name = "world")
+unlink(f)
 }
