@@ -31,7 +31,7 @@ render <- function(.x, ...) {
 #' @export
 render.character <- function(.x, ..., .config = engine_config()) {
   checkmate::assert_string(.x, min.chars = 1)
-  checkmate::assert_class(.config, "rinja_engine_config")
+  checkmate::assert_class(.config, "jinjar_engine_config")
 
   c_render(.x, encode(...), .config)
 }
@@ -40,7 +40,7 @@ render.character <- function(.x, ..., .config = engine_config()) {
 #' @export
 render.fs_path <- function(.x, ..., .config = engine_config()) {
   checkmate::assert_string(.x, min.chars = 1)
-  checkmate::assert_class(.config, "rinja_engine_config")
+  checkmate::assert_class(.config, "jinjar_engine_config")
 
   if (inherits(.config$loader, "path_loader")) {
     if (!fs::path_has_parent(.x, .config$loader$path)) {

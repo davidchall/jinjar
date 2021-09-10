@@ -1,4 +1,4 @@
-Package: rinja
+Package: jinjar
 Title: Templating Engine Inspired by Jinja
 Version: 0.0.0.9000
 Authors@R: 
@@ -21,9 +21,9 @@ Description: Templating engine powered by the 'inja' C++ library. Users
     The template syntax supports features such as variables, loops and
     conditions.
 License: MIT + file LICENSE
-URL: https://davidchall.github.io/rinja,
-    https://github.com/davidchall/rinja
-BugReports: https://github.com/davidchall/rinja/issues
+URL: https://davidchall.github.io/jinjar,
+    https://github.com/davidchall/jinjar
+BugReports: https://github.com/davidchall/jinjar/issues
 Imports:
     checkmate,
     fs,

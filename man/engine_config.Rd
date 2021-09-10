@@ -42,7 +42,7 @@ default), inline statements are disabled.}
 \item{lstrip_blocks}{Remove inline whitespace before a block. Default: \code{FALSE}.}
 }
 \value{
-A \code{"rinja_engine_config"} object.
+A \code{"jinjar_engine_config"} object.
 }
 \description{
 Create an object to configure the templating engine behavior (e.g. customize

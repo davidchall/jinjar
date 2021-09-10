@@ -1,5 +1,5 @@
-#ifndef __RINJA_LOADER__
-#define __RINJA_LOADER__
+#ifndef __JINJAR_LOADER__
+#define __JINJAR_LOADER__
 
 #include <string>
 #include <vector>

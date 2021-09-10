@@ -2,7 +2,7 @@
 #'
 #' Loaders are responsible for exposing templates to the templating engine.
 #'
-#' @return A `"rinja_loader"` object.
+#' @return A `"jinjar_loader"` object.
 #' @seealso The loader is an argument to `engine_config()`.
 #' @examples
 #' path_loader(R.home())
@@ -17,7 +17,7 @@
 NULL
 
 new_loader <- function(..., .class = character()) {
-  structure(list(...), class = c(.class, "rinja_loader"))
+  structure(list(...), class = c(.class, "jinjar_loader"))
 }
 
 #' @description `path_loader()` loads templates from a directory in the file system.

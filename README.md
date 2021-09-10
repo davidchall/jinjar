@@ -1,20 +1,20 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# rinja
+# jinjar
 
 <!-- badges: start -->
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![CRAN
-status](https://www.r-pkg.org/badges/version/rinja)](https://CRAN.R-project.org/package=rinja)
+status](https://www.r-pkg.org/badges/version/jinjar)](https://CRAN.R-project.org/package=jinjar)
 [![Codecov test
-coverage](https://codecov.io/gh/davidchall/rinja/branch/master/graph/badge.svg)](https://codecov.io/gh/davidchall/rinja?branch=master)
-[![R-CMD-check](https://github.com/davidchall/rinja/workflows/R-CMD-check/badge.svg)](https://github.com/davidchall/rinja/actions)
+coverage](https://codecov.io/gh/davidchall/jinjar/branch/master/graph/badge.svg)](https://codecov.io/gh/davidchall/jinjar?branch=master)
+[![R-CMD-check](https://github.com/davidchall/jinjar/workflows/R-CMD-check/badge.svg)](https://github.com/davidchall/jinjar/actions)
 <!-- badges: end -->
 
-rinja is a templating engine for R, powered by the
+jinjar is a templating engine for R, powered by the
 [inja](https://github.com/pantor/inja) C++ library and inspired by the
 [jinja](https://jinja.palletsprojects.com/) Python package.
 
@@ -24,13 +24,13 @@ You can install the development version from GitHub:
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("davidchall/rinja")
+remotes::install_github("davidchall/jinjar")
 ```
 
 ## Usage
 
 ``` r
-library(rinja)
+library(jinjar)
 
 render("Hello {{ name }}!", name = "world")
 #> [1] "Hello world!"

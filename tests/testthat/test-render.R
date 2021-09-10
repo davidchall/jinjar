@@ -11,7 +11,7 @@ test_that("templating features work", {
 
 test_that("template files work", {
   with_dir_tree(list("foo" = "Hello {{ name }}!"), {
-    path_config <- engine_config(path_loader(fs::path_wd()))
+    path_config <- engine_config(fs::path_wd())
 
     expect_equal(
       render(fs::path("foo"), name = "world"),

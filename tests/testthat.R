@@ -1,4 +1,4 @@
 library(testthat)
-library(rinja)
+library(jinjar)
 
-test_check("rinja")
+test_check("jinjar")

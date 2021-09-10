@@ -21,7 +21,7 @@ list_loader(x)
 \item{x}{Named list mapping template names to template sources.}
 }
 \value{
-A \code{"rinja_loader"} object.
+A \code{"jinjar_loader"} object.
 }
 \description{
 Loaders are responsible for exposing templates to the templating engine.

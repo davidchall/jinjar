@@ -1,5 +1,5 @@
-#ifndef __RINJA_CONFIG__
-#define __RINJA_CONFIG__
+#ifndef __JINJAR_CONFIG__
+#define __JINJAR_CONFIG__
 
 #include <cpp11/list.hpp>
 namespace inja { class Environment; }

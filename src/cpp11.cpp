@@ -6,7 +6,7 @@
 
 // render.cpp
 cpp11::strings c_render(const cpp11::strings& input, const cpp11::strings& data_json, const cpp11::list& config);
-extern "C" SEXP _rinja_c_render(SEXP input, SEXP data_json, SEXP config) {
+extern "C" SEXP _jinjar_c_render(SEXP input, SEXP data_json, SEXP config) {
   BEGIN_CPP11
     return cpp11::as_sexp(c_render(cpp11::as_cpp<cpp11::decay_t<const cpp11::strings&>>(input), cpp11::as_cpp<cpp11::decay_t<const cpp11::strings&>>(data_json), cpp11::as_cpp<cpp11::decay_t<const cpp11::list&>>(config)));
   END_CPP11
@@ -14,15 +14,15 @@ extern "C" SEXP _rinja_c_render(SEXP input, SEXP data_json, SEXP config) {
 
 extern "C" {
 /* .Call calls */
-extern SEXP _rinja_c_render(SEXP, SEXP, SEXP);
+extern SEXP _jinjar_c_render(SEXP, SEXP, SEXP);
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_rinja_c_render", (DL_FUNC) &_rinja_c_render, 3},
+    {"_jinjar_c_render", (DL_FUNC) &_jinjar_c_render, 3},
     {NULL, NULL, 0}
 };
 }
 
-extern "C" void R_init_rinja(DllInfo* dll){
+extern "C" void R_init_jinjar(DllInfo* dll){
   R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
   R_useDynamicSymbols(dll, FALSE);
   R_forceSymbols(dll, TRUE);
