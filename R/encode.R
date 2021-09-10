@@ -1,5 +1,5 @@
 encode <- function(...) {
-  data <- rlang::dots_list(
+  data <- dots_list(
     ...,
     .named = TRUE,
     .homonyms = "error",

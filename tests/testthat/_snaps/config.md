@@ -2,10 +2,10 @@
 
     Conflicting delimiters: variable_open, block_open
 
-# printing works
+# default works
 
     Code
-      print(engine_config())
+      print(x)
     Output
       Loader: disabled
       Syntax: {% block %} {{ variable }} {# comment #}

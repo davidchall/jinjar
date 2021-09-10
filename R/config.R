@@ -54,16 +54,12 @@ engine_config <- function(loader = NULL,
   checkmate::assert_flag(trim_blocks)
   checkmate::assert_flag(lstrip_blocks)
 
-  if (is.null(line_statement)) {
-    line_statement <- ""
-  }
-
   delimiters <- c(
     variable_open = variable_open,
     variable_close = variable_close,
     block_open = block_open,
     block_close = block_close,
-    line_statement = line_statement,
+    line_statement = line_statement %||% "",
     comment_open = comment_open,
     comment_close = comment_close
   )

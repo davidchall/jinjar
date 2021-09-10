@@ -6,7 +6,7 @@
 
 inja::Environment setup_environment(const cpp11::list& config) {
   if (!Rf_inherits(config, "rinja_engine_config")) {
-    cpp11::stop("Found invalid engine config.");
+    cpp11::stop("Found invalid engine config."); // # nocov
   }
 
   Loader* loader = Loader::make_loader(config);

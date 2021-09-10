@@ -16,7 +16,7 @@ Loader* Loader::make_loader(const cpp11::list& config) {
   } else if (Rf_inherits(loader, "list_loader")) {
     return new ListLoader(loader);
   } else {
-    cpp11::stop("Unrecognized loader object.");
+    cpp11::stop("Unrecognized loader object."); // # nocov
   }
 }
 

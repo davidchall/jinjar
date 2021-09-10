@@ -6,10 +6,16 @@ test_that("input validation works", {
   expect_snapshot_error(engine_config(block_open = "{{", variable_open = "{{"))
 })
 
-test_that("construction works", {
-  expect_s3_class(engine_config(), "rinja_engine_config")
+test_that("default works", {
+  x <- engine_config()
+  expect_s3_class(x, "rinja_engine_config")
+  expect_null(x$loader)
+  expect_snapshot(print(x))
 })
 
-test_that("printing works", {
-  expect_snapshot(print(engine_config()))
+test_that("string loader works", {
+  x <- engine_config(fs::path_home_r())
+  expect_s3_class(x, "rinja_engine_config")
+  expect_equal(x$loader, path_loader(fs::path_home_r()))
+  expect_invisible(expect_output(print(x)))
 })
