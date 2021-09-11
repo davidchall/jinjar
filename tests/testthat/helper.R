@@ -1,3 +1,5 @@
+expect_success <- function(x) expect_error(x, NA)
+
 # copied from fs package
 with_dir_tree <- function(files, code, base = tempfile()) {
   if (is.null(names(files))) {
