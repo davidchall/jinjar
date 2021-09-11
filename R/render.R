@@ -18,10 +18,9 @@
 #' render("Hello {{ name }}!", !!!params)
 #'
 #' # render template file
-#' f <- tempfile(fileext = ".txt")
-#' cat("Hello {{ name }}!", file = f)
-#' render(fs::path(f), name = "world")
-#' unlink(f)
+#' \dontrun{
+#' render(fs::path("template.txt"), name = "world")
+#' }
 #' @export
 render <- function(.x, ...) {
   UseMethod("render")
