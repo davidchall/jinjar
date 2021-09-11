@@ -2,7 +2,7 @@ pandoc: 2.7.3
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles: {}
-last_built: 2021-09-11T00:46Z
+last_built: 2021-09-11T17:01Z
 urls:
   reference: https://davidchall.github.io/jinjar/reference
   article: https://davidchall.github.io/jinjar/articles
