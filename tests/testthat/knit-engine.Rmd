@@ -1,0 +1,34 @@
+---
+title: "knit engine"
+output: html_document
+---
+
+```{r setup}
+library(jinjar)
+```
+
+```{r}
+contents <- list(
+  navigation = data.frame(
+    caption = c("Home", "Blog"),
+    href = c("index.html", "blog.html")
+  ),
+  title = "My Webpage"
+)
+```
+
+```{jinjar, jinjar_lang="html", data=contents}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ title }}</title>
+</head>
+<body>
+    <ul id="navigation">
+    {% for item in navigation -%}
+        <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+    {% endfor -%}
+    </ul>
+</body>
+</html>
+```

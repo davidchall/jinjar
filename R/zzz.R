@@ -4,9 +4,3 @@
     knit_engines$set(jinjar = knit_jinjar)
   }
 }
-
-knit_jinjar <- function(options) {
-  code <- paste(options$code, collapse = "\n")
-  out <- render(code, !!!options$data)
-  knitr::engine_output(options, code, out)
-}

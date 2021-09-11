@@ -30,6 +30,7 @@ Imports:
     jsonlite,
     rlang
 Suggests: 
+    rmarkdown,
     knitr,
     testthat (>= 3.0.0)
 LinkingTo: 
