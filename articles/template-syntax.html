@@ -89,12 +89,61 @@
 
     
     
-<p>This vignette follows the structure of the Jinja <a href="https://jinja.palletsprojects.com/templates/">Template Designer Documentation</a>.</p>
+<p>This vignette describes the template syntax supported by the jinjar R package, following the structure of the Jinja <a href="https://jinja.palletsprojects.com/templates/">Template Designer Documentation</a>. It is designed to act as a reference when writing templates, because there are many subtle differences between the jinjar and Jinja syntaxes. The underlying reason is that jinjar is powered by the fantastic <a href="https://github.com/pantor/inja">inja</a> C++ library.</p>
+<p>Before starting, let’s create a few R objects for rendering example templates.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://davidchall.github.io/jinjar">jinjar</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://davidchall.github.io/jinjar">jinjar</a></span><span class="op">)</span>
+
+<span class="va">navigation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  caption <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Home"</span>, <span class="st">"Blog"</span><span class="op">)</span>,
+  href <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"index.html"</span>, <span class="st">"blog.html"</span><span class="op">)</span>
+<span class="op">)</span>
+<span class="va">title</span> <span class="op">&lt;-</span> <span class="st">"My Webpage"</span></code></pre></div>
 <div id="synopsis" class="section level2">
 <h2 class="hasAnchor">
 <a href="#synopsis" class="anchor"></a>Synopsis</h2>
+<p>A jinjar template is simply a text file, and when rendered the output is also a text file (e.g. HTML, SQL, LaTeX).</p>
+<p>A template contains <strong>variables</strong> and/or <strong>expressions</strong>, which get replaced with values when a template is rendered; and <strong>tags</strong>, which control the logic of the template.</p>
+<p>Below is a minimal template that illustrates a few basics using the default jinjar configuration. We will cover the details later in this document:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">&lt;html</span><span class="ot"> lang=</span><span class="st">"en"</span><span class="kw">&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">&lt;head&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>    <span class="kw">&lt;title&gt;</span>{{ title }}<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="kw">&lt;/head&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="kw">&lt;body&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>    <span class="kw">&lt;ul</span><span class="ot"> id=</span><span class="st">"navigation"</span><span class="kw">&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>    {% for item in navigation -%}</span>
+<span id="cb2-9"><a href="#cb2-9"></a>        <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">"{{ item.href }}"</span><span class="kw">&gt;</span>{{ item.caption }}<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>    {% endfor -%}</span>
+<span id="cb2-11"><a href="#cb2-11"></a>    <span class="kw">&lt;/ul&gt;</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>    {# a comment #}</span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="kw">&lt;/body&gt;</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode html bg-success"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">&lt;html</span><span class="ot"> lang=</span><span class="st">"en"</span><span class="kw">&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="kw">&lt;head&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="kw">&lt;title&gt;</span>My Webpage<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="kw">&lt;/head&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="kw">&lt;body&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>    <span class="kw">&lt;ul</span><span class="ot"> id=</span><span class="st">"navigation"</span><span class="kw">&gt;</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>    <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">"index.html"</span><span class="kw">&gt;</span>Home<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>    <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">"blog.html"</span><span class="kw">&gt;</span>Blog<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>    <span class="kw">&lt;/ul&gt;</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a>    </span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="kw">&lt;/body&gt;</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
+<p>The following example shows the default configuration settings, but you can adjust the syntax configuration as desired using <code><a href="../reference/engine_config.html">engine_config()</a></code>.</p>
+<p>There are a few kinds of delimiters. The default delimiters are configured as follows:</p>
+<ul>
+<li>
+<code>{% ... %}</code> for <a href="#control-structures">Statements</a>
+</li>
+<li>
+<code>{{ ... }}</code> for <a href="#expressions">Expressions</a> to print to the template output</li>
+<li>
+<code>{# ... #}</code> for <a href="#comments">Comments</a> not included in the template output</li>
+</ul>
+<p><a href="#line-statements">Line Statements</a> are also possible, though they don’t have default prefix characters. To use them, set <code>line_statement</code> when creating the <code><a href="../reference/engine_config.html">engine_config()</a></code>.</p>
 </div>
 <div id="variables" class="section level2">
 <h2 class="hasAnchor">
@@ -138,10 +187,16 @@
 <div id="comments" class="section level2">
 <h2 class="hasAnchor">
 <a href="#comments" class="anchor"></a>Comments</h2>
+<p>To comment-out some lines, preventing them from appearing in the rendered document, use the comment syntax (default: <code>{# ... #}</code>). This is useful for debugging or documenting the template.</p>
+<pre><code>{# note: commented-out template because we no longer use this
+    {% for user in users %}
+        ...
+    {% endfor %}
+#}</code></pre>
 </div>
-<div id="whitespace-control" class="section level2">
+<div id="whitespace" class="section level2">
 <h2 class="hasAnchor">
-<a href="#whitespace-control" class="anchor"></a>Whitespace Control</h2>
+<a href="#whitespace" class="anchor"></a>Whitespace Control</h2>
 </div>
 <div id="line-statements" class="section level2">
 <h2 class="hasAnchor">
