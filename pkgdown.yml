@@ -3,7 +3,7 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   template-syntax: template-syntax.html
-last_built: 2021-09-13T15:51Z
+last_built: 2021-09-14T01:49Z
 urls:
   reference: https://davidchall.github.io/jinjar/reference
   article: https://davidchall.github.io/jinjar/articles

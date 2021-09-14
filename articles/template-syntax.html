@@ -94,11 +94,24 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://davidchall.github.io/jinjar">jinjar</a></span><span class="op">)</span>
 
+<span class="co"># length-1 vector</span>
+<span class="va">title</span> <span class="op">&lt;-</span> <span class="st">"My Webpage"</span>
+
+<span class="co"># vector</span>
+<span class="va">users</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"User A"</span>, <span class="st">"User B"</span>, <span class="st">"User C"</span><span class="op">)</span>
+
+<span class="co"># list</span>
+<span class="va">godzilla</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+  Name <span class="op">=</span> <span class="st">"Godzilla"</span>,
+  Born <span class="op">=</span> <span class="fl">1952</span>,
+  Birthplace <span class="op">=</span> <span class="st">"Japan"</span>
+<span class="op">)</span>
+
+<span class="co"># data frame</span>
 <span class="va">navigation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
   caption <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Home"</span>, <span class="st">"Blog"</span><span class="op">)</span>,
   href <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"index.html"</span>, <span class="st">"blog.html"</span><span class="op">)</span>
-<span class="op">)</span>
-<span class="va">title</span> <span class="op">&lt;-</span> <span class="st">"My Webpage"</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
 <div id="synopsis" class="section level2">
 <h2 class="hasAnchor">
 <a href="#synopsis" class="anchor"></a>Synopsis</h2>
@@ -188,34 +201,155 @@
 <h2 class="hasAnchor">
 <a href="#comments" class="anchor"></a>Comments</h2>
 <p>To comment-out some lines, preventing them from appearing in the rendered document, use the comment syntax (default: <code>{# ... #}</code>). This is useful for debugging or documenting the template.</p>
-<pre><code>{# note: commented-out template because we no longer use this
-    {% for user in users %}
-        ...
-    {% endfor %}
-#}</code></pre>
+<pre class="jinjar bg-info"><code>Hello{# TODO: update this #}!</code></pre>
+<pre class="bg-success"><code>Hello!</code></pre>
 </div>
 <div id="whitespace" class="section level2">
 <h2 class="hasAnchor">
 <a href="#whitespace" class="anchor"></a>Whitespace Control</h2>
+<p>In the default configuration, whitespace (e.g. spaces, tabs, newlines) is left unchanged in the rendered output. For example, in the default configuration we get:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">&lt;div&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>    {% if true %}</span>
+<span id="cb6-3"><a href="#cb6-3"></a>        yay</span>
+<span id="cb6-4"><a href="#cb6-4"></a>    {% endif %}</span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode html bg-success"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">&lt;div&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>    </span>
+<span id="cb7-3"><a href="#cb7-3"></a>        yay</span>
+<span id="cb7-4"><a href="#cb7-4"></a>    </span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
+<p>By setting <code>trim_blocks = TRUE</code> when creating the <code><a href="../reference/engine_config.html">engine_config()</a></code>, the first newline after a control block is automatically removed. Setting <code>lstrip_blocks = TRUE</code> removes any whitespace from the beginning of the line until the start of each block. With both options enabled, the above example becomes:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">&lt;div&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>    {% if true %}</span>
+<span id="cb8-3"><a href="#cb8-3"></a>        yay</span>
+<span id="cb8-4"><a href="#cb8-4"></a>    {% endif %}</span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode html bg-success"><code class="sourceCode html"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">&lt;div&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>        yay</span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
+<p>Instead of changing the global configuration, you can manually trim whitespace at a more finegrained level.</p>
+<ul>
+<li>By putting a minus sign (<code><a href="https://rdrr.io/r/base/Arithmetic.html">-</a></code>) after the opening delimiter, this removes any whitespace from the beginning of the line until the start of the block (i.e. the same as the <code>lstrip_blocks</code> feature).</li>
+<li>By putting a minus sign (<code><a href="https://rdrr.io/r/base/Arithmetic.html">-</a></code>) before the closing delimiter, this removes any whitespace (including newlines) until the next non-whitespace character (i.e. slightly different from the <code>trim_blocks</code> feature).</li>
+</ul>
+<p>This can be activated for control blocks, comments, or variable expressions:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">&lt;div&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>    {% if true -%}</span>
+<span id="cb10-3"><a href="#cb10-3"></a>        yay</span>
+<span id="cb10-4"><a href="#cb10-4"></a>    {%- endif -%}</span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode html bg-success"><code class="sourceCode html"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">&lt;div&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>    yay</span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
 </div>
 <div id="line-statements" class="section level2">
 <h2 class="hasAnchor">
 <a href="#line-statements" class="anchor"></a>Line Statements</h2>
+<p>If line statements are enabled (see <code><a href="../reference/engine_config.html">engine_config()</a></code>), it’s possible to mark a line as a statement. For example, if the line statement prefix is configured to <code>#</code>, you can do:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">&lt;ul</span><span class="ot"> id=</span><span class="st">"navigation"</span><span class="kw">&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a># for item in navigation</span>
+<span id="cb12-3"><a href="#cb12-3"></a>    <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">"{{ item.href }}"</span><span class="kw">&gt;</span>{{ item.caption }}<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a># endfor</span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="kw">&lt;/ul&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode html bg-success"><code class="sourceCode html"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">&lt;ul</span><span class="ot"> id=</span><span class="st">"navigation"</span><span class="kw">&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>    <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">"index.html"</span><span class="kw">&gt;</span>Home<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>    <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">"blog.html"</span><span class="kw">&gt;</span>Blog<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="kw">&lt;/ul&gt;</span></span></code></pre></div>
 </div>
 <div id="control-structures" class="section level2">
 <h2 class="hasAnchor">
 <a href="#control-structures" class="anchor"></a>Control Structures</h2>
+<p>A control structure refers to all those things that control the flow of a program. With the default syntax, control structures appear inside <code>{% ... %}</code> blocks.</p>
 <div id="for" class="section level3">
 <h3 class="hasAnchor">
 <a href="#for" class="anchor"></a>For</h3>
+<p>A for-loop allows you to iterate over each element in a vector:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode jinjar markdown bg-info"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1"></a>{% for user in users -%}</span>
+<span id="cb14-2"><a href="#cb14-2"></a>{{ loop.index1 }}. {{ user }}</span>
+<span id="cb14-3"><a href="#cb14-3"></a>{%- endfor -%}</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode markdown bg-success"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1"></a>1. <span class="st">User A</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="st">2. User B</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="st">3. User C</span></span></code></pre></div>
+<p>or loop over key-value pairs in a named list:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">&lt;dl&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>{% for key, value in godzilla %}</span>
+<span id="cb16-3"><a href="#cb16-3"></a>  <span class="kw">&lt;dt&gt;</span>{{ key }}<span class="kw">&lt;/dt&gt;</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a>  <span class="kw">&lt;dd&gt;</span>{{ value }}<span class="kw">&lt;/dd&gt;</span></span>
+<span id="cb16-5"><a href="#cb16-5"></a>{% endfor -%}</span>
+<span id="cb16-6"><a href="#cb16-6"></a><span class="kw">&lt;/dl&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode html bg-success"><code class="sourceCode html"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">&lt;dl&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a></span>
+<span id="cb17-3"><a href="#cb17-3"></a>  <span class="kw">&lt;dt&gt;</span>Birthplace<span class="kw">&lt;/dt&gt;</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a>  <span class="kw">&lt;dd&gt;</span>Japan<span class="kw">&lt;/dd&gt;</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a></span>
+<span id="cb17-6"><a href="#cb17-6"></a>  <span class="kw">&lt;dt&gt;</span>Born<span class="kw">&lt;/dt&gt;</span></span>
+<span id="cb17-7"><a href="#cb17-7"></a>  <span class="kw">&lt;dd&gt;</span>1952<span class="kw">&lt;/dd&gt;</span></span>
+<span id="cb17-8"><a href="#cb17-8"></a></span>
+<span id="cb17-9"><a href="#cb17-9"></a>  <span class="kw">&lt;dt&gt;</span>Name<span class="kw">&lt;/dt&gt;</span></span>
+<span id="cb17-10"><a href="#cb17-10"></a>  <span class="kw">&lt;dd&gt;</span>Godzilla<span class="kw">&lt;/dd&gt;</span></span>
+<span id="cb17-11"><a href="#cb17-11"></a><span class="kw">&lt;/dl&gt;</span></span></code></pre></div>
+<p>As described in <a href="#variables">Variables</a>, a data frame is translated to an array of JSON objects. Therefore a nested combination of the above two loops could theoretically be used. In practice, it is much more common to iterate over rows and access the individual elements like so:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">&lt;ul</span><span class="ot"> id=</span><span class="st">"navigation"</span><span class="kw">&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>{% for item in navigation -%}</span>
+<span id="cb18-3"><a href="#cb18-3"></a>    <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">"{{ item.href }}"</span><span class="kw">&gt;</span>{{ item.caption }}<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a>{% endfor -%}</span>
+<span id="cb18-5"><a href="#cb18-5"></a><span class="kw">&lt;/ul&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode html bg-success"><code class="sourceCode html"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">&lt;ul</span><span class="ot"> id=</span><span class="st">"navigation"</span><span class="kw">&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">"index.html"</span><span class="kw">&gt;</span>Home<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">"blog.html"</span><span class="kw">&gt;</span>Blog<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a><span class="kw">&lt;/ul&gt;</span></span></code></pre></div>
+<p>While inside a for-loop block, you can access some special variables:</p>
+<table class="table">
+<thead><tr class="header">
+<th align="left">Variable</th>
+<th align="left">Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>loop.index</code></td>
+<td align="left">The current iteration (0-based).</td>
+</tr>
+<tr class="even">
+<td align="left"><code>loop.index1</code></td>
+<td align="left">The current iteration (1-based).</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>loop.is_first</code></td>
+<td align="left">True if first iteration.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>loop.is_last</code></td>
+<td align="left">True if last iteration.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>loop.parent</code></td>
+<td align="left">In nested loops, the parent loop variable.</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="if" class="section level3">
 <h3 class="hasAnchor">
 <a href="#if" class="anchor"></a>If</h3>
+<p>Conditional branches are written using <code>if</code>, <code>else if</code> and <code>else</code> statements, which evaluate <a href="#expressions">Expressions</a>.</p>
+<pre class="jinjar bg-info"><code>{% if length(users) &gt; 10 -%}
+{% for user in users -%}
+* {{ user }}
+{% endfor %}
+{% else if length(users) &gt; 0 -%}
+{{ join(users, ", ") }}.
+{% else -%}
+No users found.
+{% endif %}</code></pre>
+<pre class="bg-success"><code>User A, User B, User C.</code></pre>
 </div>
 <div id="assignments" class="section level3">
 <h3 class="hasAnchor">
 <a href="#assignments" class="anchor"></a>Assignments</h3>
+<p>Using the <code>set</code> statement, you can assign values to variables.</p>
+<pre class="jinjar bg-info"><code>{% set name="world" -%}
+Hello {{ name }}!</code></pre>
+<pre class="bg-success"><code>Hello world!</code></pre>
 </div>
 </div>
 <div id="expressions" class="section level2">
