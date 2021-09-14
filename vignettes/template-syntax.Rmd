@@ -23,17 +23,32 @@ Before starting, let's create a few R objects for rendering example templates.
 ```{r setup}
 library(jinjar)
 
+# length-1 vector
+title <- "My Webpage"
+
+# vector
+users <- c("User A", "User B", "User C")
+
+# list
+godzilla <- list(
+  Name = "Godzilla",
+  Born = 1952,
+  Birthplace = "Japan"
+)
+
+# data frame
 navigation <- data.frame(
   caption = c("Home", "Blog"),
   href = c("index.html", "blog.html")
 )
-title <- "My Webpage"
 ```
 
 ```{r, echo=FALSE}
 params <- list(
-  navigation = navigation,
-  title = title
+  title = title,
+  users = users,
+  godzilla = godzilla,
+  navigation = navigation
 )
 ```
 
@@ -103,30 +118,147 @@ To use the variable in other contexts (e.g. control structures), then these brac
 If a template variable has not been defined, then an error occurs.
 However, you can use the `default(foo, bar)` function to specify a fallback value.
 
+
 ## Comments {#comments}
 
 To comment-out some lines, preventing them from appearing in the rendered document, use the comment syntax (default: `{# ... #}`).
 This is useful for debugging or documenting the template.
 
+```{jinjar}
+Hello{# TODO: update this #}!
 ```
-{# note: commented-out template because we no longer use this
-    {% for user in users %}
-        ...
-    {% endfor %}
-#}
-```
+
 
 ## Whitespace Control {#whitespace}
 
+In the default configuration, whitespace (e.g. spaces, tabs, newlines) is left unchanged in the rendered output.
+For example, in the default configuration we get:
+
+```{jinjar, jinjar_lang="html"}
+<div>
+    {% if true %}
+        yay
+    {% endif %}
+</div>
+```
+
+By setting `trim_blocks = TRUE` when creating the `engine_config()`, the first newline after a control block is automatically removed.
+Setting `lstrip_blocks = TRUE` removes any whitespace from the beginning of the line until the start of each block.
+With both options enabled, the above example becomes:
+
+```{jinjar, jinjar_lang="html", jinjar_config=engine_config(trim_blocks = TRUE, lstrip_blocks = TRUE)}
+<div>
+    {% if true %}
+        yay
+    {% endif %}
+</div>
+```
+
+Instead of changing the global configuration, you can manually trim whitespace at a more finegrained level.
+
+* By putting a minus sign (`-`) after the opening delimiter, this removes any whitespace from the beginning of the line until the start of the block (i.e. the same as the `lstrip_blocks` feature).
+* By putting a minus sign (`-`) before the closing delimiter, this removes any whitespace (including newlines) until the next non-whitespace character (i.e. slightly different from the `trim_blocks` feature).
+
+This can be activated for control blocks, comments, or variable expressions:
+
+```{jinjar, jinjar_lang="html"}
+<div>
+    {% if true -%}
+        yay
+    {%- endif -%}
+</div>
+```
+
+
 ## Line Statements {#line-statements}
+
+If line statements are enabled (see `engine_config()`), it’s possible to mark a line as a statement.
+For example, if the line statement prefix is configured to `#`, you can do:
+
+```{jinjar, jinjar_lang="html", jinjar_config=engine_config(line_statement="#"), data=params}
+<ul id="navigation">
+# for item in navigation
+    <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+# endfor
+</ul>
+```
+
 
 ## Control Structures {#control-structures}
 
+A control structure refers to all those things that control the flow of a program.
+With the default syntax, control structures appear inside `{% ... %}` blocks.
+
+
 ### For
+
+A for-loop allows you to iterate over each element in a vector:
+
+```{jinjar, jinjar_lang="markdown", data=params}
+{% for user in users -%}
+{{ loop.index1 }}. {{ user }}
+{%- endfor -%}
+```
+
+or loop over key-value pairs in a named list:
+
+```{jinjar, jinjar_lang="html", data=params}
+<dl>
+{% for key, value in godzilla %}
+  <dt>{{ key }}</dt>
+  <dd>{{ value }}</dd>
+{% endfor -%}
+</dl>
+```
+
+As described in [Variables](#variables), a data frame is translated to an array of JSON objects.
+Therefore a nested combination of the above two loops could theoretically be used.
+In practice, it is much more common to iterate over rows and access the individual elements like so:
+
+```{jinjar, jinjar_lang="html", jinjar_config=engine_config(line_statement="#"), data=params}
+<ul id="navigation">
+{% for item in navigation -%}
+    <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+{% endfor -%}
+</ul>
+```
+
+While inside a for-loop block, you can access some special variables:
+
+| Variable        | Description |
+|:----------------|:------------|
+| `loop.index`    | The current iteration (0-based). |
+| `loop.index1`   | The current iteration (1-based). |
+| `loop.is_first` | True if first iteration. |
+| `loop.is_last`  | True if last iteration. |
+| `loop.parent`   | In nested loops, the parent loop variable. |
+
 
 ### If
 
+Conditional branches are written using `if`, `else if` and `else` statements, which evaluate [Expressions](#expressions).
+
+```{jinjar, data=params}
+{% if length(users) > 10 -%}
+{% for user in users -%}
+* {{ user }}
+{% endfor %}
+{% else if length(users) > 0 -%}
+{{ join(users, ", ") }}.
+{% else -%}
+No users found.
+{% endif %}
+```
+
+
 ### Assignments
+
+Using the `set` statement, you can assign values to variables.
+
+```{jinjar}
+{% set name="world" -%}
+Hello {{ name }}!
+```
 
 
 ## Expressions {#expressions}
