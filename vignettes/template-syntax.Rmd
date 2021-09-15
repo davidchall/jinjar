@@ -213,12 +213,12 @@ or loop over key-value pairs in a named list:
 
 As described in [Variables](#variables), a data frame is translated to an array of JSON objects.
 Therefore a nested combination of the above two loops could theoretically be used.
-In practice, it is much more common to iterate over rows and access the individual elements like so:
+In practice, it is much more common to iterate over rows and access the individual elements by their attributes:
 
 ```{jinjar, jinjar_lang="html", jinjar_config=engine_config(line_statement="#"), data=params}
 <ul id="navigation">
 {% for item in navigation -%}
-    <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+<li><a href="{{ item.href }}">{{ item.caption }}</a></li>
 {% endfor -%}
 </ul>
 ```
@@ -263,15 +263,80 @@ Hello {{ name }}!
 
 ## Expressions {#expressions}
 
+Basic expressions are supported in templates.
+
 ### Literals
+
+The simplest form of expressions are literals, which represent fixed values.
+
+As described in [Variables](#variables), the template is rendered using data stored in JSON format.
+For this reason, literals must also be specified in JSON format.
+The following types of literals are supported:
+
+* **String:** characters between two double quotes.
+* **Integer:** whole numbers without decimal part.
+* **Numeric:** floating point numbers written in decimal or scientific format.
+* **Boolean:** either `true` or `false` (lowercase).
+* **List:** data between square brackets.
+* **Object:** key-value data pairs between curly brackets (each key must be a string).
+* **NULL:** missing data is represented by `null`.
+
+Here is example usage for each type:
+
+```{jinjar}
+String: {{ "A string" }}
+Integer: {{ 3 }}
+Numeric: {{ 3.14 }} or {{ 1.6e-19 }}
+Boolean: {{ true }} or {{ false }}
+List: {{ [1, 2, 3] }}
+Object: {{ {"a": 1, "b": 2} }}
+Null: {{ null }}
+```
+
 
 ### Math
 
+You can perform simple arithmetic using standard operators:
+
+```{jinjar}
+1 + 1: {{ 1 + 1 }}
+3 - 2: {{ 3 - 2 }}
+2 * 2: {{ 2 * 2 }}
+1 / 2: {{ 1 / 2 }}
+2 ^ 3: {{ 2 ^ 3 }}
+7 % 3: {{ 7 % 3 }}
+```
+
+
 ### Comparisons
+
+You can perform comparisons:
+
+```{jinjar}
+1 == 1: {{ 1 == 1 }}
+1 != 1: {{ 1 != 1 }}
+2 >  1: {{ 2 > 1 }}
+2 >= 1: {{ 2 >= 1 }}
+2 <  1: {{ 2 < 1 }}
+2 <= 1: {{ 2 <= 1 }}
+```
+
 
 ### Logic
 
-### Other Operators
+Within expressions and control structures, you can use the Boolean operators: `and`, `or`, and `not`.
+
+```{jinjar}
+true and false: {{ true and false }}
+true or false: {{ true or false }}
+not false: {{ not false }}
+```
+
+You can also check if a value is contained within a list using `in`:
+
+```{jinjar}
+{{ 1 in [1, 2, 3] }}
+```
 
 
 ## Functions
