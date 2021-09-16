@@ -30,14 +30,17 @@ Imports:
     jsonlite,
     rlang
 Suggests: 
-    rmarkdown,
     knitr,
+    rmarkdown,
+    spelling,
     testthat (>= 3.0.0)
 LinkingTo: 
     cpp11
+VignetteBuilder: 
+    knitr
 Config/testthat/edition: 3
 Encoding: UTF-8
+Language: en-US
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 SystemRequirements: C++11
-VignetteBuilder: knitr
