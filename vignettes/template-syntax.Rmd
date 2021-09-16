@@ -14,9 +14,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-This vignette describes the template syntax supported by the jinjar R package, following the structure of the Jinja [Template Designer Documentation](https://jinja.palletsprojects.com/templates/).
-It is designed to act as a reference when writing templates, because there are many subtle differences between the jinjar and Jinja syntaxes.
-The underlying reason is that jinjar is powered by the fantastic [inja](https://github.com/pantor/inja) C++ library.
+This vignette describes the template syntax supported by jinjar, following the structure of the Jinja [Template Designer Documentation](https://jinja.palletsprojects.com/templates/).
+
+The jinjar R package is powered by the [inja](https://github.com/pantor/inja) C++ library.
+The syntax is very similar to that of the Jinja Python package, but there are also many differences -- some are obvious and some are subtle.
+This vignette can act as a reference when writing templates.
 
 Before starting, let's create a few R objects for rendering example templates.
 
@@ -340,3 +342,141 @@ You can also check if a value is contained within a list using `in`:
 
 
 ## Functions
+
+### Data Checks
+
+You can check if a value exists by passing the variable name as a string:
+
+```{jinjar, data=params}
+users does exist: {{ exists("users") }}
+abc doesn't exist: {{ exists("abc") }}
+```
+
+Similarly, you can check if a value exists within a JSON object, by passing the key as a string:
+
+```{jinjar, data=params}
+Birthplace does exist: {{ existsIn(godzilla, "Birthplace") }}
+Weight doesn't exist: {{ existsIn(godzilla, "Weight") }}
+```
+
+Concisely handle missing values using the `default()` function:
+
+```{jinjar, data=params}
+{{ default(godzilla.Weight, 20000) }}
+```
+
+You can also check the data type of a variable or literal:
+
+```{jinjar}
+{{ isString("a string") }}
+{{ isInteger(3) }}
+{{ isFloat(3.14) }}
+{{ isNumber(3) }} and {{ isNumber(3.14) }}
+{{ isBoolean(false) }}
+{{ isArray([1, 2, 3]) }}
+{{ isObject({"a": 1, "b": 2}) }}
+```
+
+
+### Data Conversion
+
+You can convert strings to numeric types, using the `int()` or `float()` functions:
+
+```{jinjar}
+{{ int("2") }}
+{{ float("2.5") }}
+```
+
+
+### Numeric Data
+
+You can check if an integer is even or odd, or divisible by some other integer.
+This could be used to make alternating row colors.
+
+```{jinjar}
+{{ even(42) }}
+{{ odd(42) }}
+{{ divisibleBy(42, 7) }}
+```
+
+You can round floating point numbers to a specific precision:
+
+```{jinjar}
+{{ round(3.1415, 0) }}
+{{ round(3.1415, 3) }}
+```
+
+
+### String Data
+
+Translate a string to lower case or upper case:
+
+```{jinjar}
+{{ lower("Hello") }}
+{{ upper("Hello") }}
+```
+
+
+### JSON Lists
+
+Get the number of list elements:
+
+```{jinjar}
+length(): {{ length([3,1,2]) }}
+```
+
+Get the first or last elements:
+
+```{jinjar}
+first(): {{ first([3,1,2]) }}
+last():  {{ last([3,1,2]) }}
+```
+
+Get the minimum or maximum elements:
+
+```{jinjar}
+min(): {{ min([3,1,2]) }}
+max(): {{ max([3,1,2]) }}
+```
+
+Sort the list into ascending order:
+
+```{jinjar}
+sort(): {{ sort([3,1,2]) }}
+```
+
+Join a list with a separator:
+
+```{jinjar, data=params}
+{{ join([1,2,3], " + ") }}
+{{ join(users, ", ") }}
+```
+
+Generate a list as a range of integers:
+
+```{jinjar}
+{% for i in range(4) %}{{ loop.index1 }}{% endfor %}
+```
+
+Access elements using a dynamic index with `at()`.
+Note that the index is **zero-based**.
+
+```{jinjar}
+{% set x = [1,2,3] -%}
+{% set i = 2 -%}
+{{ x.2 }}
+{{ at(x, i) }}
+```
+
+
+### JSON Objects
+
+Access values using a dynamic key with `at()`:
+
+```{jinjar}
+{% set x = {"a": 1, "b": 2} -%}
+{% set key = "b" -%}
+{{ x.b }}
+{{ at(x, key) }}
+```
+
