@@ -15,10 +15,18 @@ knitr::opts_chunk$set(
 ```
 
 This vignette describes the template syntax supported by jinjar, following the structure of the Jinja [Template Designer Documentation](https://jinja.palletsprojects.com/templates/).
+It is designed to act as a reference when writing templates.
 
 The jinjar R package is powered by the [inja](https://github.com/pantor/inja) C++ library.
-The syntax is very similar to that of the Jinja Python package, but there are also many differences -- some are obvious and some are subtle.
-This vignette can act as a reference when writing templates.
+The syntax is very similar to that of the Jinja Python package, but there are also many differences.
+Unfortunately, this means jinjar is not a drop-in replacement for Jinja -- you might need to adapt existing Jinja templates for the jinjar engine.
+
+The most fundamental difference between jinjar and Jinja is:
+
+* Jinja variables support direct interaction with the underlying Python objects.
+* jinjar variables are simple [JSON data types](https://www.w3schools.com/js/js_json_datatypes.asp). The underlying R objects are translated to JSON.
+
+This is described in more detail in the [Variables](#variables) section below.
 
 Before starting, let's create a few R objects for rendering example templates.
 
