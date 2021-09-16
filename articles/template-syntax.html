@@ -89,7 +89,8 @@
 
     
     
-<p>This vignette describes the template syntax supported by the jinjar R package, following the structure of the Jinja <a href="https://jinja.palletsprojects.com/templates/">Template Designer Documentation</a>. It is designed to act as a reference when writing templates, because there are many subtle differences between the jinjar and Jinja syntaxes. The underlying reason is that jinjar is powered by the fantastic <a href="https://github.com/pantor/inja">inja</a> C++ library.</p>
+<p>This vignette describes the template syntax supported by jinjar, following the structure of the Jinja <a href="https://jinja.palletsprojects.com/templates/">Template Designer Documentation</a>.</p>
+<p>The jinjar R package is powered by the <a href="https://github.com/pantor/inja">inja</a> C++ library. The syntax is very similar to that of the Jinja Python package, but there are also many differences – some are obvious and some are subtle. This vignette can act as a reference when writing templates.</p>
 <p>Before starting, let’s create a few R objects for rendering example templates.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://davidchall.github.io/jinjar">jinjar</a></span><span class="op">)</span>
@@ -445,6 +446,118 @@ not false: true</code></pre>
 <div id="functions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#functions" class="anchor"></a>Functions</h2>
+<div id="data-checks" class="section level3">
+<h3 class="hasAnchor">
+<a href="#data-checks" class="anchor"></a>Data Checks</h3>
+<p>You can check if a value exists by passing the variable name as a string:</p>
+<pre class="jinjar bg-info"><code>users does exist: {{ exists("users") }}
+abc doesn't exist: {{ exists("abc") }}</code></pre>
+<pre class="bg-success"><code>users does exist: true
+abc doesn't exist: false</code></pre>
+<p>Similarly, you can check if a value exists within a JSON object, by passing the key as a string:</p>
+<pre class="jinjar bg-info"><code>Birthplace does exist: {{ existsIn(godzilla, "Birthplace") }}
+Weight doesn't exist: {{ existsIn(godzilla, "Weight") }}</code></pre>
+<pre class="bg-success"><code>Birthplace does exist: true
+Weight doesn't exist: false</code></pre>
+<p>Concisely handle missing values using the <code>default()</code> function:</p>
+<pre class="jinjar bg-info"><code>{{ default(godzilla.Weight, 20000) }}</code></pre>
+<pre class="bg-success"><code>20000</code></pre>
+<p>You can also check the data type of a variable or literal:</p>
+<pre class="jinjar bg-info"><code>{{ isString("a string") }}
+{{ isInteger(3) }}
+{{ isFloat(3.14) }}
+{{ isNumber(3) }} and {{ isNumber(3.14) }}
+{{ isBoolean(false) }}
+{{ isArray([1, 2, 3]) }}
+{{ isObject({"a": 1, "b": 2}) }}</code></pre>
+<pre class="bg-success"><code>true
+true
+true
+true and true
+true
+true
+true</code></pre>
+</div>
+<div id="data-conversion" class="section level3">
+<h3 class="hasAnchor">
+<a href="#data-conversion" class="anchor"></a>Data Conversion</h3>
+<p>You can convert strings to numeric types, using the <code>int()</code> or <code>float()</code> functions:</p>
+<pre class="jinjar bg-info"><code>{{ int("2") }}
+{{ float("2.5") }}</code></pre>
+<pre class="bg-success"><code>2
+2.5</code></pre>
+</div>
+<div id="numeric-data" class="section level3">
+<h3 class="hasAnchor">
+<a href="#numeric-data" class="anchor"></a>Numeric Data</h3>
+<p>You can check if an integer is even or odd, or divisible by some other integer. This could be used to make alternating row colors.</p>
+<pre class="jinjar bg-info"><code>{{ even(42) }}
+{{ odd(42) }}
+{{ divisibleBy(42, 7) }}</code></pre>
+<pre class="bg-success"><code>true
+false
+true</code></pre>
+<p>You can round floating point numbers to a specific precision:</p>
+<pre class="jinjar bg-info"><code>{{ round(3.1415, 0) }}
+{{ round(3.1415, 3) }}</code></pre>
+<pre class="bg-success"><code>3
+3.142</code></pre>
+</div>
+<div id="string-data" class="section level3">
+<h3 class="hasAnchor">
+<a href="#string-data" class="anchor"></a>String Data</h3>
+<p>Translate a string to lower case or upper case:</p>
+<pre class="jinjar bg-info"><code>{{ lower("Hello") }}
+{{ upper("Hello") }}</code></pre>
+<pre class="bg-success"><code>hello
+HELLO</code></pre>
+</div>
+<div id="json-lists" class="section level3">
+<h3 class="hasAnchor">
+<a href="#json-lists" class="anchor"></a>JSON Lists</h3>
+<p>Get the number of list elements:</p>
+<pre class="jinjar bg-info"><code>length(): {{ length([3,1,2]) }}</code></pre>
+<pre class="bg-success"><code>length(): 3</code></pre>
+<p>Get the first or last elements:</p>
+<pre class="jinjar bg-info"><code>first(): {{ first([3,1,2]) }}
+last():  {{ last([3,1,2]) }}</code></pre>
+<pre class="bg-success"><code>first(): 3
+last():  2</code></pre>
+<p>Get the minimum or maximum elements:</p>
+<pre class="jinjar bg-info"><code>min(): {{ min([3,1,2]) }}
+max(): {{ max([3,1,2]) }}</code></pre>
+<pre class="bg-success"><code>min(): 1
+max(): 3</code></pre>
+<p>Sort the list into ascending order:</p>
+<pre class="jinjar bg-info"><code>sort(): {{ sort([3,1,2]) }}</code></pre>
+<pre class="bg-success"><code>sort(): [1,2,3]</code></pre>
+<p>Join a list with a separator:</p>
+<pre class="jinjar bg-info"><code>{{ join([1,2,3], " + ") }}
+{{ join(users, ", ") }}</code></pre>
+<pre class="bg-success"><code>1 + 2 + 3
+User A, User B, User C</code></pre>
+<p>Generate a list as a range of integers:</p>
+<pre class="jinjar bg-info"><code>{% for i in range(4) %}{{ loop.index1 }}{% endfor %}</code></pre>
+<pre class="bg-success"><code>1234</code></pre>
+<p>Access elements using a dynamic index with <code>at()</code>. Note that the index is <strong>zero-based</strong>.</p>
+<pre class="jinjar bg-info"><code>{% set x = [1,2,3] -%}
+{% set i = 2 -%}
+{{ x.2 }}
+{{ at(x, i) }}</code></pre>
+<pre class="bg-success"><code>3
+3</code></pre>
+</div>
+<div id="json-objects" class="section level3">
+<h3 class="hasAnchor">
+<a href="#json-objects" class="anchor"></a>JSON Objects</h3>
+<p>Access values using a dynamic key with <code>at()</code>:</p>
+<pre class="jinjar bg-info"><code>{% set x = {"a": 1, "b": 2} -%}
+{% set key = "b" -%}
+{{ x.b }}
+{{ at(x, key) }}</code></pre>
+<pre class="bg-success"><code>2
+2</code></pre>
+</div>
 </div>
   </div>
 
