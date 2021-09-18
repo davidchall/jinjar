@@ -152,7 +152,7 @@
 <span id="cb3-11"><a href="#cb3-11"></a>    </span>
 <span id="cb3-12"><a href="#cb3-12"></a><span class="kw">&lt;/body&gt;</span></span>
 <span id="cb3-13"><a href="#cb3-13"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
-<p>The following example shows the default configuration settings, but you can adjust the syntax configuration as desired using <code><a href="../reference/engine_config.html">engine_config()</a></code>.</p>
+<p>The following example shows the default configuration settings, but you can adjust the syntax configuration as desired using <code><a href="../reference/jinjar_config.html">jinjar_config()</a></code>.</p>
 <p>There are a few kinds of delimiters. The default delimiters are configured as follows:</p>
 <ul>
 <li>
@@ -163,7 +163,7 @@
 <li>
 <code>{# ... #}</code> for <a href="#comments">Comments</a> not included in the template output</li>
 </ul>
-<p><a href="#line-statements">Line Statements</a> are also possible, though they don’t have default prefix characters. To use them, set <code>line_statement</code> when creating the <code><a href="../reference/engine_config.html">engine_config()</a></code>.</p>
+<p><a href="#line-statements">Line Statements</a> are also possible, though they don’t have default prefix characters. To use them, set <code>line_statement</code> when creating the <code><a href="../reference/jinjar_config.html">jinjar_config()</a></code>.</p>
 </div>
 <div id="variables" class="section level2">
 <h2 class="hasAnchor">
@@ -225,7 +225,7 @@
 <span id="cb7-3"><a href="#cb7-3"></a>        yay</span>
 <span id="cb7-4"><a href="#cb7-4"></a>    </span>
 <span id="cb7-5"><a href="#cb7-5"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
-<p>By setting <code>trim_blocks = TRUE</code> when creating the <code><a href="../reference/engine_config.html">engine_config()</a></code>, the first newline after a control block is automatically removed. Setting <code>lstrip_blocks = TRUE</code> removes any whitespace from the beginning of the line until the start of each block. With both options enabled, the above example becomes:</p>
+<p>By setting <code>trim_blocks = TRUE</code> when creating the <code><a href="../reference/jinjar_config.html">jinjar_config()</a></code>, the first newline after a control block is automatically removed. Setting <code>lstrip_blocks = TRUE</code> removes any whitespace from the beginning of the line until the start of each block. With both options enabled, the above example becomes:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">&lt;div&gt;</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a>    {% if true %}</span>
 <span id="cb8-3"><a href="#cb8-3"></a>        yay</span>
@@ -252,7 +252,7 @@
 <div id="line-statements" class="section level2">
 <h2 class="hasAnchor">
 <a href="#line-statements" class="anchor"></a>Line Statements</h2>
-<p>If line statements are enabled (see <code><a href="../reference/engine_config.html">engine_config()</a></code>), it’s possible to mark a line as a statement. For example, if the line statement prefix is configured to <code>#</code>, you can do:</p>
+<p>If line statements are enabled (see <code><a href="../reference/jinjar_config.html">jinjar_config()</a></code>), it’s possible to mark a line as a statement. For example, if the line statement prefix is configured to <code>#</code>, you can do:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">&lt;ul</span><span class="ot"> id=</span><span class="st">"navigation"</span><span class="kw">&gt;</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a># for item in navigation</span>
 <span id="cb12-3"><a href="#cb12-3"></a>    <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">"{{ item.href }}"</span><span class="kw">&gt;</span>{{ item.caption }}<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>

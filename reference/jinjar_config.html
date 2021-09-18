@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • jinjar</title>
+<title>Configure the templating engine — jinjar_config • jinjar</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,9 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Configure the templating engine — jinjar_config" />
+<meta property="og:description" content="Create an object to configure the templating engine behavior (e.g. customize
+the syntax). The default values have been chosen to match the Jinja defaults." />
 
 
 
@@ -58,7 +60,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -117,67 +119,85 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Configure the templating engine</h1>
+    <small class="dont-index">Source: <a href='https://github.com/davidchall/jinjar/blob/master/R/config.R'><code>R/config.R</code></a></small>
+    <div class="hidden name"><code>jinjar_config.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Create an object to configure the templating engine behavior (e.g. customize
+the syntax). The default values have been chosen to match the Jinja defaults.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>jinjar_config</span><span class='op'>(</span>
+  loader <span class='op'>=</span> <span class='cn'>NULL</span>,
+  block_open <span class='op'>=</span> <span class='st'>"{%"</span>,
+  block_close <span class='op'>=</span> <span class='st'>"%}"</span>,
+  variable_open <span class='op'>=</span> <span class='st'>"{{"</span>,
+  variable_close <span class='op'>=</span> <span class='st'>"}}"</span>,
+  comment_open <span class='op'>=</span> <span class='st'>"{#"</span>,
+  comment_close <span class='op'>=</span> <span class='st'>"#}"</span>,
+  line_statement <span class='op'>=</span> <span class='cn'>NULL</span>,
+  trim_blocks <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  lstrip_blocks <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-rendering-templates" class="hasAnchor"><a href="#section-rendering-templates" class="anchor"></a>Rendering templates</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="render.html">render()</a></code> </p>
-        </td>
-        <td><p>Render template</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-configuration" class="hasAnchor"><a href="#section-configuration" class="anchor"></a>Configuration</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="jinjar_config.html">jinjar_config()</a></code> </p>
-        </td>
-        <td><p>Configure the templating engine</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="loader.html">path_loader()</a></code> <code><a href="loader.html">package_loader()</a></code> <code><a href="loader.html">list_loader()</a></code> </p>
-        </td>
-        <td><p>Template loaders</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>loader</th>
+      <td><p>How the engine discovers templates. Choices:</p><ul>
+<li><p><code>NULL</code> (default), disables search for templates.</p></li>
+<li><p>Path to template directory.</p></li>
+<li><p>A <code><a href='loader.html'>loader</a></code> object.</p></li>
+</ul></td>
+    </tr>
+    <tr>
+      <th>block_open, block_close</th>
+      <td><p>The opening and closing delimiters
+for control blocks. Default: <code>"{%"</code> and <code>"%}"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>variable_open, variable_close</th>
+      <td><p>The opening and closing delimiters
+for print statements. Default: <code>"{{"</code> and <code>"}}"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>comment_open, comment_close</th>
+      <td><p>The opening and closing delimiters
+for comments. Default: <code>"{#"</code> and <code>"#}"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>line_statement</th>
+      <td><p>The prefix for an inline statement. If <code>NULL</code> (the
+default), inline statements are disabled.</p></td>
+    </tr>
+    <tr>
+      <th>trim_blocks</th>
+      <td><p>Remove first newline after a block. Default: <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>lstrip_blocks</th>
+      <td><p>Remove inline whitespace before a block. Default: <code>FALSE</code>.</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A <code>"jinjar_config"</code> object.</p>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>The equivalent Jinja class is <code>Environment</code>, but this term has special
+significance in R (see <code><a href='https://rdrr.io/r/base/environment.html'>environment()</a></code>).</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>jinjar_config</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Loader: disabled
+#&gt; Syntax: {% block %} {{ variable }} {# comment #}</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
