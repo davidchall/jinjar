@@ -19,7 +19,7 @@ knit_jinjar <- function(options) {
   }
 
   code <- paste(options$code, collapse = "\n")
-  jinjar_config <- options$jinjar_config %||% jinjar_config()
+  jinjar_config <- options$jinjar_config %||% default_config()
   out <- render(code, !!!options$data, .config = jinjar_config)
 
   # override styling and syntax highlighting

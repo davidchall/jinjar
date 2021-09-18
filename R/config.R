@@ -95,3 +95,15 @@ print.jinjar_config <- function(x, ...) {
 
   invisible(x)
 }
+
+#' @rdname jinjar_config
+#' @export
+default_config <- function() {
+  config <- getOption("jinjar.default_config")
+  if (is.null(config)) {
+    config <- jinjar_config()
+    options("jinjar.default_config" = config)
+  }
+
+  config
+}

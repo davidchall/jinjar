@@ -2,6 +2,7 @@
 % Please edit documentation in R/config.R
 \name{jinjar_config}
 \alias{jinjar_config}
+\alias{default_config}
 \title{Configure the templating engine}
 \usage{
 jinjar_config(
@@ -16,6 +17,8 @@ jinjar_config(
   trim_blocks = FALSE,
   lstrip_blocks = FALSE
 )
+
+default_config()
 }
 \arguments{
 \item{loader}{How the engine discovers templates. Choices:

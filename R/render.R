@@ -6,7 +6,9 @@
 #' * A template string.
 #' * A path to a template file (use [fs::path()]).
 #' @param ... <[`dynamic-dots`][rlang::dyn-dots]> Data passed to the template.
-#' @param .config The engine configuration (see [jinjar_config()]).
+#' @param .config The engine configuration. The default matches Jinja defaults,
+#'   but you can use [jinjar_config()] to customize things like syntax delimiters,
+#'   whitespace control, and loading auxiliary templates.
 #' @return String containing rendered template.
 #'
 #' @examples
@@ -28,7 +30,7 @@ render <- function(.x, ...) {
 
 #' @rdname render
 #' @export
-render.character <- function(.x, ..., .config = jinjar_config()) {
+render.character <- function(.x, ..., .config = default_config()) {
   checkmate::assert_string(.x, min.chars = 1)
   checkmate::assert_class(.config, "jinjar_config")
 
@@ -37,7 +39,7 @@ render.character <- function(.x, ..., .config = jinjar_config()) {
 
 #' @rdname render
 #' @export
-render.fs_path <- function(.x, ..., .config = jinjar_config()) {
+render.fs_path <- function(.x, ..., .config = default_config()) {
   checkmate::assert_string(.x, min.chars = 1)
   checkmate::assert_class(.config, "jinjar_config")
 

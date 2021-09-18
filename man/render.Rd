@@ -8,9 +8,9 @@
 \usage{
 render(.x, ...)
 
-\method{render}{character}(.x, ..., .config = jinjar_config())
+\method{render}{character}(.x, ..., .config = default_config())
 
-\method{render}{fs_path}(.x, ..., .config = jinjar_config())
+\method{render}{fs_path}(.x, ..., .config = default_config())
 }
 \arguments{
 \item{.x}{The template. Choices:
@@ -21,7 +21,9 @@ render(.x, ...)
 
 \item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> Data passed to the template.}
 
-\item{.config}{The engine configuration (see \code{\link[=jinjar_config]{jinjar_config()}}).}
+\item{.config}{The engine configuration. The default matches Jinja defaults,
+but you can use \code{\link[=jinjar_config]{jinjar_config()}} to customize things like syntax delimiters,
+whitespace control, and loading auxiliary templates.}
 }
 \value{
 String containing rendered template.
