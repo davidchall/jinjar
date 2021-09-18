@@ -132,10 +132,10 @@
     <pre class="usage"><span class='fu'>render</span><span class='op'>(</span><span class='va'>.x</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for character</span>
-<span class='fu'>render</span><span class='op'>(</span><span class='va'>.x</span>, <span class='va'>...</span>, .config <span class='op'>=</span> <span class='fu'><a href='jinjar_config.html'>jinjar_config</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>render</span><span class='op'>(</span><span class='va'>.x</span>, <span class='va'>...</span>, .config <span class='op'>=</span> <span class='fu'><a href='jinjar_config.html'>default_config</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'># S3 method for fs_path</span>
-<span class='fu'>render</span><span class='op'>(</span><span class='va'>.x</span>, <span class='va'>...</span>, .config <span class='op'>=</span> <span class='fu'><a href='jinjar_config.html'>jinjar_config</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
+<span class='fu'>render</span><span class='op'>(</span><span class='va'>.x</span>, <span class='va'>...</span>, .config <span class='op'>=</span> <span class='fu'><a href='jinjar_config.html'>default_config</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -153,7 +153,9 @@
     </tr>
     <tr>
       <th>.config</th>
-      <td><p>The engine configuration (see <code><a href='jinjar_config.html'>jinjar_config()</a></code>).</p></td>
+      <td><p>The engine configuration. The default matches Jinja defaults,
+but you can use <code><a href='jinjar_config.html'>jinjar_config()</a></code> to customize things like syntax delimiters,
+whitespace control, and loading auxiliary templates.</p></td>
     </tr>
     </table>
 
