@@ -6,7 +6,7 @@
 #' * `data`: A named list of variables to pass to the template.
 #' * `jinjar_lang`: A string (e.g. `"sql"`, `"html"`) to choose the syntax
 #'   highlighting applied to the template and its rendered output.
-#' * `jinjar_config`: A `"jinjar_engine_config"` object to configure the template engine.
+#' * `jinjar_config`: A `"jinjar_config"` object to configure the template engine.
 #' @noRd
 knit_jinjar <- function(options) {
   engine_output <- get("engine_output", envir = asNamespace("knitr"))
@@ -19,7 +19,7 @@ knit_jinjar <- function(options) {
   }
 
   code <- paste(options$code, collapse = "\n")
-  jinjar_config <- options$jinjar_config %||% engine_config()
+  jinjar_config <- options$jinjar_config %||% jinjar_config()
   out <- render(code, !!!options$data, .config = jinjar_config)
 
   # override styling and syntax highlighting

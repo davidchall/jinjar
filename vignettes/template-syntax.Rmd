@@ -89,7 +89,7 @@ We will cover the details later in this document:
 </html>
 ```
 
-The following example shows the default configuration settings, but you can adjust the syntax configuration as desired using `engine_config()`.
+The following example shows the default configuration settings, but you can adjust the syntax configuration as desired using `jinjar_config()`.
 
 There are a few kinds of delimiters. The default delimiters are configured as follows:
 
@@ -98,7 +98,7 @@ There are a few kinds of delimiters. The default delimiters are configured as fo
 * `{# ... #}` for [Comments](#comments) not included in the template output
 
 [Line Statements](#line-statements) are also possible, though they don’t have default prefix characters.
-To use them, set `line_statement` when creating the `engine_config()`.
+To use them, set `line_statement` when creating the `jinjar_config()`.
 
 
 ## Variables {#variables}
@@ -152,11 +152,11 @@ For example, in the default configuration we get:
 </div>
 ```
 
-By setting `trim_blocks = TRUE` when creating the `engine_config()`, the first newline after a control block is automatically removed.
+By setting `trim_blocks = TRUE` when creating the `jinjar_config()`, the first newline after a control block is automatically removed.
 Setting `lstrip_blocks = TRUE` removes any whitespace from the beginning of the line until the start of each block.
 With both options enabled, the above example becomes:
 
-```{jinjar, jinjar_lang="html", jinjar_config=engine_config(trim_blocks = TRUE, lstrip_blocks = TRUE)}
+```{jinjar, jinjar_lang="html", jinjar_config=jinjar_config(trim_blocks = TRUE, lstrip_blocks = TRUE)}
 <div>
     {% if true %}
         yay
@@ -182,10 +182,10 @@ This can be activated for control blocks, comments, or variable expressions:
 
 ## Line Statements {#line-statements}
 
-If line statements are enabled (see `engine_config()`), it’s possible to mark a line as a statement.
+If line statements are enabled (see `jinjar_config()`), it’s possible to mark a line as a statement.
 For example, if the line statement prefix is configured to `#`, you can do:
 
-```{jinjar, jinjar_lang="html", jinjar_config=engine_config(line_statement="#"), data=params}
+```{jinjar, jinjar_lang="html", jinjar_config=jinjar_config(line_statement="#"), data=params}
 <ul id="navigation">
 # for item in navigation
     <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
@@ -225,7 +225,7 @@ As described in [Variables](#variables), a data frame is translated to an array 
 Therefore a nested combination of the above two loops could theoretically be used.
 In practice, it is much more common to iterate over rows and access the individual elements by their attributes:
 
-```{jinjar, jinjar_lang="html", jinjar_config=engine_config(line_statement="#"), data=params}
+```{jinjar, jinjar_lang="html", jinjar_config=jinjar_config(line_statement="#"), data=params}
 <ul id="navigation">
 {% for item in navigation -%}
 <li><a href="{{ item.href }}">{{ item.caption }}</a></li>

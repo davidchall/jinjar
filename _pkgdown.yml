@@ -6,5 +6,5 @@ reference:
     - render
   - title: Configuration
   - contents:
-    - engine_config
+    - jinjar_config
     - loader

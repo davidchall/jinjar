@@ -11,7 +11,7 @@ test_that("templating features work", {
 
 test_that("template files work", {
   with_dir_tree(list("foo" = "Hello {{ name }}!"), {
-    path_config <- engine_config(fs::path_wd())
+    path_config <- jinjar_config(fs::path_wd())
 
     expect_equal(
       render(fs::path("foo"), name = "world"),
@@ -41,13 +41,13 @@ test_that("include tag", {
     "foo" = src,
     "bar" = aux
   ), {
-    path_config <- engine_config(path_loader(fs::path_wd()))
+    path_config <- jinjar_config(path_loader(fs::path_wd()))
 
     expect_error(render(fs::path("foo"), name = "world"))
     expect_snapshot(render(fs::path("foo"), name = "world", .config = path_config))
   })
 
-  list_config <- engine_config(list_loader(list(
+  list_config <- jinjar_config(list_loader(list(
     "bar" = aux
   )))
   expect_error(render(src, name = "world"))
@@ -62,13 +62,13 @@ test_that("extends tag", {
     "foo" = src,
     "bar" = aux
   ), {
-    path_config <- engine_config(path_loader(fs::path_wd()))
+    path_config <- jinjar_config(path_loader(fs::path_wd()))
 
     expect_error(render(fs::path("foo"), name = "world"))
     expect_snapshot(render(fs::path("foo"), name = "world", .config = path_config))
   })
 
-  list_config <- engine_config(list_loader(list(
+  list_config <- jinjar_config(list_loader(list(
     "bar" = aux
   )))
   expect_error(render(src, name = "world"))

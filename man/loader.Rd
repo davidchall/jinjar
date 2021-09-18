@@ -43,5 +43,5 @@ list_loader(list(
 ))
 }
 \seealso{
-The loader is an argument to \code{engine_config()}.
+The loader is an argument to \code{jinjar_config()}.
 }

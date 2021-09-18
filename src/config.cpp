@@ -5,7 +5,7 @@
 
 
 inja::Environment setup_environment(const cpp11::list& config) {
-  if (!Rf_inherits(config, "jinjar_engine_config")) {
+  if (!Rf_inherits(config, "jinjar_config")) {
     cpp11::stop("Found invalid engine config."); // # nocov
   }
 

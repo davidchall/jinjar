@@ -20,12 +20,12 @@
 #'   default), inline statements are disabled.
 #' @param trim_blocks Remove first newline after a block. Default: `FALSE`.
 #' @param lstrip_blocks Remove inline whitespace before a block. Default: `FALSE`.
-#' @return A `"jinjar_engine_config"` object.
+#' @return A `"jinjar_config"` object.
 #'
 #' @examples
-#' engine_config()
+#' jinjar_config()
 #' @export
-engine_config <- function(loader = NULL,
+jinjar_config <- function(loader = NULL,
                           block_open = "{%",
                           block_close = "%}",
                           variable_open = "{{",
@@ -75,11 +75,11 @@ engine_config <- function(loader = NULL,
     loader = loader,
     trim_blocks = trim_blocks,
     lstrip_blocks = lstrip_blocks
-  )), class = "jinjar_engine_config")
+  )), class = "jinjar_config")
 }
 
 #' @export
-print.jinjar_engine_config <- function(x, ...) {
+print.jinjar_config <- function(x, ...) {
   if (is.null(x$loader)) {
     cat("Loader: disabled\n")
   } else {
