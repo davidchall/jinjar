@@ -34,17 +34,25 @@ test_that("template files work", {
 })
 
 test_that("include tag", {
-  src <- "{% include \"bar\" %}"
+  src <- "Welcome: {% include \"bar\" %}"
   aux <- "Hello {{ name }}!"
 
   with_dir_tree(list(
     "foo" = src,
     "bar" = aux
   ), {
-    path_config <- jinjar_config(path_loader(fs::path_wd()))
 
     expect_error(render(fs::path("foo"), name = "world"))
-    expect_snapshot(render(fs::path("foo"), name = "world", .config = path_config))
+    expect_snapshot(render(
+      fs::path("foo"),
+      name = "world",
+      .config = jinjar_config(ignore_missing_files = TRUE)
+    ))
+    expect_snapshot(render(
+      fs::path("foo"),
+      name = "world",
+      .config = jinjar_config(path_loader(fs::path_wd()))
+    ))
   })
 
   list_config <- jinjar_config(list_loader(list(
@@ -62,10 +70,17 @@ test_that("extends tag", {
     "foo" = src,
     "bar" = aux
   ), {
-    path_config <- jinjar_config(path_loader(fs::path_wd()))
-
     expect_error(render(fs::path("foo"), name = "world"))
-    expect_snapshot(render(fs::path("foo"), name = "world", .config = path_config))
+    expect_snapshot(render(
+      fs::path("foo"),
+      name = "world",
+      .config = jinjar_config(ignore_missing_files = TRUE)
+    ))
+    expect_snapshot(render(
+      fs::path("foo"),
+      name = "world",
+      .config = jinjar_config(path_loader(fs::path_wd()))
+    ))
   })
 
   list_config <- jinjar_config(list_loader(list(

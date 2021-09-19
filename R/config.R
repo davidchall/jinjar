@@ -20,6 +20,9 @@
 #'   default), inline statements are disabled.
 #' @param trim_blocks Remove first newline after a block. Default: `FALSE`.
 #' @param lstrip_blocks Remove inline whitespace before a block. Default: `FALSE`.
+#' @param ignore_missing_files Ignore `include` or `extends` statements when
+#'   the auxiliary template cannot be found. If `FALSE` (default), then an error
+#'   is raised.
 #' @return A `"jinjar_config"` object.
 #'
 #' @examples
@@ -34,7 +37,8 @@ jinjar_config <- function(loader = NULL,
                           comment_close = "#}",
                           line_statement = NULL,
                           trim_blocks = FALSE,
-                          lstrip_blocks = FALSE) {
+                          lstrip_blocks = FALSE,
+                          ignore_missing_files = FALSE) {
   checkmate::assert(
     checkmate::check_null(loader),
     checkmate::check_directory_exists(loader),
@@ -53,6 +57,7 @@ jinjar_config <- function(loader = NULL,
   checkmate::assert_string(line_statement, min.chars = 1, null.ok = TRUE)
   checkmate::assert_flag(trim_blocks)
   checkmate::assert_flag(lstrip_blocks)
+  checkmate::assert_flag(ignore_missing_files)
 
   delimiters <- c(
     variable_open = variable_open,
@@ -74,7 +79,8 @@ jinjar_config <- function(loader = NULL,
   structure(c(as.list(delimiters), list(
     loader = loader,
     trim_blocks = trim_blocks,
-    lstrip_blocks = lstrip_blocks
+    lstrip_blocks = lstrip_blocks,
+    ignore_missing_files = ignore_missing_files
   )), class = "jinjar_config")
 }
 

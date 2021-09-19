@@ -15,7 +15,8 @@ jinjar_config(
   comment_close = "#}",
   line_statement = NULL,
   trim_blocks = FALSE,
-  lstrip_blocks = FALSE
+  lstrip_blocks = FALSE,
+  ignore_missing_files = FALSE
 )
 
 default_config()
@@ -43,6 +44,10 @@ default), inline statements are disabled.}
 \item{trim_blocks}{Remove first newline after a block. Default: \code{FALSE}.}
 
 \item{lstrip_blocks}{Remove inline whitespace before a block. Default: \code{FALSE}.}
+
+\item{ignore_missing_files}{Ignore \code{include} or \code{extends} statements when
+the auxiliary template cannot be found. If \code{FALSE} (default), then an error
+is raised.}
 }
 \value{
 A \code{"jinjar_config"} object.

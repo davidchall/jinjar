@@ -34,6 +34,9 @@ inja::Environment setup_environment(const cpp11::list& config) {
   env.set_lstrip_blocks(
     cpp11::as_cpp<bool>(config["lstrip_blocks"])
   );
+  env.set_throw_at_missing_includes(
+    !cpp11::as_cpp<bool>(config["ignore_missing_files"])
+  );
 
   return env;
 }
