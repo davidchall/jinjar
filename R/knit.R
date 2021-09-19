@@ -4,9 +4,10 @@
 #' This is achieved using the `jinjar` RMarkdown engine, which reads chunk options:
 #'
 #' * `data`: A named list of variables to pass to the template.
-#' * `jinjar_lang`: A string (e.g. `"sql"`, `"html"`) to choose the syntax
+#' * `engine.opts`: A named list of engine options:
+#'   * `lang`: A string (e.g. `"sql"`, `"html"`) to specify the syntax
 #'   highlighting applied to the template and its rendered output.
-#' * `jinjar_config`: A `"jinjar_config"` object to configure the template engine.
+#'   * `config`: An engine configuration object (see [jinjar_config()]).
 #' @noRd
 knit_jinjar <- function(options) {
   engine_output <- get("engine_output", envir = asNamespace("knitr"))
@@ -14,17 +15,17 @@ knit_jinjar <- function(options) {
   if (identical(.Platform$GUI, "RStudio") && is.character(options$data)) {
     options$data <- get(options$data, envir = globalenv())
   }
-  if (identical(.Platform$GUI, "RStudio") && is.character(options$jinja_config)) {
-    options$jinja_config <- get(options$jinja_config, envir = globalenv())
-  }
 
   code <- paste(options$code, collapse = "\n")
-  jinjar_config <- options$jinjar_config %||% default_config()
-  out <- render(code, !!!options$data, .config = jinjar_config)
+  out <- if (options$eval) {
+    config <- options$engine.opts$config %||% default_config()
+    render(code, !!!options$data, .config = config)
+  } else ""
 
   # override styling and syntax highlighting
-  options$class.source <- c(options$class.source, options$jinjar_lang, "bg-info")
-  options$class.output <- c(options$class.output, options$jinjar_lang, "bg-success")
+  lang <- options$engine.opts$lang
+  options$class.source <- c(options$class.source, lang, "bg-info")
+  options$class.output <- c(options$class.output, lang, "bg-success")
   options$comment <- NULL
 
   engine_output(options, code, out)

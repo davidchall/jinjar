@@ -53,7 +53,7 @@ navigation <- data.frame(
 )
 ```
 
-```{r, echo=FALSE}
+```{r, include=FALSE}
 params <- list(
   title = title,
   users = users,
@@ -72,7 +72,7 @@ A template contains **variables** and/or **expressions**, which get replaced wit
 Below is a minimal template that illustrates a few basics using the default jinjar configuration.
 We will cover the details later in this document:
 
-```{jinjar, jinjar_lang="html", data=params}
+```{jinjar, data=params, engine.opts=list(lang="html")}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -144,7 +144,7 @@ Hello{# TODO: update this #}!
 In the default configuration, whitespace (e.g. spaces, tabs, newlines) is left unchanged in the rendered output.
 For example, in the default configuration we get:
 
-```{jinjar, jinjar_lang="html"}
+```{jinjar, engine.opts=list(lang="html")}
 <div>
     {% if true %}
         yay
@@ -156,7 +156,7 @@ By setting `trim_blocks = TRUE` when creating the `jinjar_config()`, the first n
 Setting `lstrip_blocks = TRUE` removes any whitespace from the beginning of the line until the start of each block.
 With both options enabled, the above example becomes:
 
-```{jinjar, jinjar_lang="html", jinjar_config=jinjar_config(trim_blocks = TRUE, lstrip_blocks = TRUE)}
+```{jinjar, engine.opts=list(lang="html", config=jinjar_config(trim_blocks=TRUE, lstrip_blocks=TRUE))}
 <div>
     {% if true %}
         yay
@@ -171,7 +171,7 @@ Instead of changing the global configuration, you can manually trim whitespace a
 
 This can be activated for control blocks, comments, or variable expressions:
 
-```{jinjar, jinjar_lang="html"}
+```{jinjar, engine.opts=list(lang="html")}
 <div>
     {% if true -%}
         yay
@@ -185,7 +185,7 @@ This can be activated for control blocks, comments, or variable expressions:
 If line statements are enabled (see `jinjar_config()`), it’s possible to mark a line as a statement.
 For example, if the line statement prefix is configured to `#`, you can do:
 
-```{jinjar, jinjar_lang="html", jinjar_config=jinjar_config(line_statement="#"), data=params}
+```{jinjar, data=params, engine.opts=list(lang="html", config=jinjar_config(line_statement="#"))}
 <ul id="navigation">
 # for item in navigation
     <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
@@ -204,7 +204,7 @@ With the default syntax, control structures appear inside `{% ... %}` blocks.
 
 A for-loop allows you to iterate over each element in a vector:
 
-```{jinjar, jinjar_lang="markdown", data=params}
+```{jinjar, data=params, engine.opts=list(lang="markdown")}
 {% for user in users -%}
 {{ loop.index1 }}. {{ user }}
 {%- endfor -%}
@@ -212,7 +212,7 @@ A for-loop allows you to iterate over each element in a vector:
 
 or loop over key-value pairs in a named list:
 
-```{jinjar, jinjar_lang="html", data=params}
+```{jinjar, data=params, engine.opts=list(lang="html")}
 <dl>
 {% for key, value in godzilla %}
   <dt>{{ key }}</dt>
@@ -225,7 +225,7 @@ As described in [Variables](#variables), a data frame is translated to an array 
 Therefore a nested combination of the above two loops could theoretically be used.
 In practice, it is much more common to iterate over rows and access the individual elements by their attributes:
 
-```{jinjar, jinjar_lang="html", jinjar_config=jinjar_config(line_statement="#"), data=params}
+```{jinjar, data=params, engine.opts=list(lang="html", config=jinjar_config(line_statement="#"))}
 <ul id="navigation">
 {% for item in navigation -%}
 <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
@@ -248,8 +248,8 @@ While inside a for-loop block, you can access some special variables:
 
 Conditional branches are written using `if`, `else if` and `else` statements, which evaluate [Expressions](#expressions).
 
-```{jinjar, data=params}
-{% if length(users) > 10 -%}
+```{jinjar, data=params, engine.opts=list(lang="markdown")}
+{% if length(users) > 5 -%}
 {% for user in users -%}
 * {{ user }}
 {% endfor %}
