@@ -339,16 +339,16 @@
 <h3 class="hasAnchor">
 <a href="#if" class="anchor"></a>If</h3>
 <p>Conditional branches are written using <code>if</code>, <code>else if</code> and <code>else</code> statements, which evaluate <a href="#expressions">Expressions</a>.</p>
-<pre class="jinjar bg-info"><code>{% if length(users) &gt; 10 -%}
-{% for user in users -%}
-* {{ user }}
-{% endfor %}
-{% else if length(users) &gt; 0 -%}
-{{ join(users, ", ") }}.
-{% else -%}
-No users found.
-{% endif %}</code></pre>
-<pre class="bg-success"><code>User A, User B, User C.</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode jinjar markdown bg-info"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1"></a>{% if length(users) &gt; 5 -%}</span>
+<span id="cb20-2"><a href="#cb20-2"></a>{% for user in users -%}</span>
+<span id="cb20-3"><a href="#cb20-3"></a>* <span class="st">{{ user }}</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="st">{% endfor %}</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a><span class="st">{% else if length(users) &gt; 0 -%}</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a><span class="st">{{ join(users, ", ") }}.</span></span>
+<span id="cb20-7"><a href="#cb20-7"></a><span class="st">{% else -%}</span></span>
+<span id="cb20-8"><a href="#cb20-8"></a><span class="st">No users found.</span></span>
+<span id="cb20-9"><a href="#cb20-9"></a><span class="st">{% endif %}</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode markdown bg-success"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1"></a>User A, User B, User C.</span></code></pre></div>
 </div>
 <div id="assignments" class="section level3">
 <h3 class="hasAnchor">
