@@ -106,16 +106,18 @@
 <span class="co">#&gt; [1] "Hello world!"</span></code></pre></div>
 <p>Here’s a more advanced example, using loops and conditional statements:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">template</span> <span class="op">&lt;-</span> <span class="st">'
+<code class="sourceCode R"><span class="va">template</span> <span class="op">&lt;-</span> <span class="st">'Humans in A New Hope
+
 {% for person in people -%}
-{%- if "A New Hope" in person.films and default(person.species, "Unknown") == "Human" -%}
-  * {{ person.name }} ({{ person.homeworld }})
-{%- endif -%}
-{%- endfor %}
+{% if "A New Hope" in person.films and default(person.species, "Unknown") == "Human" -%}
+* {{ person.name }} ({{ person.homeworld }})
+{% endif -%}
+{% endfor -%}
 '</span>
 
 <span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/render.html">render</a></span><span class="op">(</span><span class="va">template</span>, people <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="va">starwars</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span>
+<span class="co">#&gt; Humans in A New Hope</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; * Luke Skywalker (Tatooine)</span>
 <span class="co">#&gt; * Darth Vader (Tatooine)</span>
