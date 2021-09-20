@@ -1,0 +1,122 @@
+---
+title: "Auxiliary Templates"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Auxiliary Templates}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, include=FALSE}
+library(jinjar)
+```
+
+As the complexity of your templating project grows, it can be helpful to refactor common pieces into auxiliary templates so they can be reused.
+The [`{% include %}`](#include) and [`{% extends %}`](#extends) tags support two very different approaches to this, described below.
+
+
+## Loading Auxiliary Templates
+
+TODO
+
+
+## Template Inclusion {#include}
+
+The `include` tag can be used to include an auxiliary template and return the rendered contents of that file into the main document.
+Included templates have access to the same variables as the main template.
+
+By default, an error is raised if the included template cannot be found.
+You can ignore these errors by setting the `ignore_missing_files` argument in `jinjar_config()`.
+
+As an example, we create an auxiliary file `header.html` with contents:
+
+```{cat, engine.opts=list(file="header.html", lang="html")}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My webpage</title>
+</head>
+```
+
+and an auxiliary file `footer.html` with contents:
+
+```{cat, engine.opts=list(file="footer.html", lang="html")}
+</html>
+```
+
+And then the main template is rendered as:
+
+```{jinjar, engine.opts=list(lang="html", config=jinjar_config(getwd()))}
+{% include "header.html" %}
+<body>
+Body
+</body>
+{% include "footer.html" %}
+```
+
+```{r clean_include, include=FALSE}
+unlink(c("header.html", "footer.html"))
+```
+
+
+## Template Inheritance {#extends}
+
+Template inheritance allows you to build a base "skeleton" template that contains all the common elements of your document and defines _blocks_ that child templates can override.
+This is a very powerful technique.
+
+As an example, consider the following base template stored in `base.html`:
+
+```{cat, engine.opts=list(file="base.html", lang="html")}
+<!DOCTYPE html>
+<html>
+<head>
+  {% block head -%}
+  <link rel="stylesheet" href="style.css" />
+  <title>{% block title %}{% endblock %} - My Webpage</title>
+  {% endblock %}
+</head>
+<body>
+  <div id="content">{% block content %}{% endblock %}</div>
+</body>
+</html>
+```
+
+This base template declares three `{% block %}` tags that child templates can fill in: `head`, `title` and `content`.
+Note that the base template itself defines some content for the `head` block -- we'll show how a child template can use this below.
+
+A child template uses the `{% extends %}` tag to declare which parent template it builds upon.
+This should be the first tag in the child template, so the templating engine knows it must locate the parent template when rendering.
+
+Building upon the base template example above, a child template might look like this:
+
+```{jinjar, engine.opts=list(lang="html", config=jinjar_config(getwd()))}
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+  {{ super() }}
+  <style type="text/css">
+    .important { color: #336699; }
+  </style>
+{% endblock %}
+{% block content %}
+  <h1>Index</h1>
+  <p class="important">
+    Welcome to my blog!
+  </p>
+{% endblock %}
+```
+
+This child template defines the three blocks declared by the parent template: `head`, `title` and `content`.
+In the case of the `head` block, it uses `{{ super() }}` to render the contents of the `head` block defined by the parent template.
+If we were using nested `extends` tags, we could pass an argument to skip levels in the inheritance tree (e.g. `{{ super(2) }}`).
+
+```{r clean_extends, include=FALSE}
+unlink(c("base.html"))
+```

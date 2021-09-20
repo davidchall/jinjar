@@ -8,3 +8,10 @@ reference:
   - contents:
     - jinjar_config
     - loader
+
+articles:
+  - title: All vignettes
+    navbar: ~
+    contents:
+    - template-syntax
+    - auxiliary-templates
