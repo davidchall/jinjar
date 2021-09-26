@@ -90,7 +90,7 @@
 <a href="#jinjar" class="anchor"></a>jinjar</h1></div>
 <!-- badges: start -->
 
-<p>jinjar is a templating engine for R, inspired by the <a href="https://jinja.palletsprojects.com/">jinja</a> Python package and powered by the <a href="https://github.com/pantor/inja">inja</a> C++ library.</p>
+<p>jinjar is a templating engine for R, inspired by the <a href="https://jinja.palletsprojects.com/">Jinja</a> Python package and powered by the <a href="https://github.com/pantor/inja">inja</a> C++ library.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -134,6 +134,19 @@
 <span class="co">#&gt; * Wedge Antilles (Corellia)</span>
 <span class="co">#&gt; * Jek Tono Porkins (Bestine IV)</span>
 <span class="co">#&gt; * Raymus Antilles (Alderaan)</span></code></pre></div>
+</div>
+<div id="related-work" class="section level2">
+<h2 class="hasAnchor">
+<a href="#related-work" class="anchor"></a>Related work</h2>
+<p>An important characteristic of a templating engine is how much logic is supported. This spectrum ranges from <strong>logic-less</strong> templates (i.e. only variable substitution is supported) to <strong>arbitrary code execution</strong>. Generally speaking, logic-less templates are easier to maintain because their functionality is so restricted. But often the data doesn’t align with how it should be rendered – templating logic offers the flexibility to bridge this gap.</p>
+<p>Fortunately, we already have very popular R packages that fall on opposite ends of this spectrum:</p>
+<ul>
+<li>
+<a href="https://github.com/edwindj/whisker"><strong>whisker</strong></a> – Implements the <a href="https://mustache.github.io">Mustache</a> templating syntax. This is nearly <strong>logic-less</strong>, though some simple control flow is supported. Mustache templates are language agnostic (i.e. can be rendered by other Mustache implementations).</li>
+<li>
+<a href="https://yihui.org/knitr/"><strong>knitr</strong></a> and <a href="https://github.com/rstudio/rmarkdown"><strong>rmarkdown</strong></a> – Allows <strong>arbitrary code execution</strong> to be knitted together with Markdown text content. It even supports <a href="https://bookdown.org/yihui/rmarkdown/language-engines.html">multiple language engines</a> (e.g. R, Python, C++, SQL).</li>
+</ul>
+<p>In contrast, jinjar strikes a balance inspired by the <a href="https://jinja.palletsprojects.com/">Jinja</a> Python package. It supports more complex logic than whisker, but without the arbitrary code execution of knitr. You can learn about the supported logic in <code><a href="articles/template-syntax.html">vignette("template-syntax")</a></code>.</p>
 </div>
 </div>
   </div>
