@@ -3,7 +3,7 @@
 #' Loaders are responsible for exposing templates to the templating engine.
 #'
 #' @return A `"jinjar_loader"` object.
-#' @seealso The loader is an argument to `jinjar_config()`.
+#' @seealso The loader is an argument to [jinjar_config()].
 #' @examples
 #' path_loader(R.home())
 #'

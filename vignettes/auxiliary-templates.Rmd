@@ -24,7 +24,28 @@ The [`{% include %}`](#include) and [`{% extends %}`](#extends) tags support two
 
 ## Loading Auxiliary Templates
 
-TODO
+When your main template makes reference to auxiliary templates, you'll need to specify how the templating engine can find these auxiliary templates.
+This is achieved using a template loader (see `help("loader")`).
+
+There are different types of loader, but `path_loader()` is the most commonly used.
+This allows you to specify the directory where auxiliary templates are stored in files.
+
+Imagine you have a main template that uses nested template inheritance (`content` inherits from `blog_post.html`, which in turns inherits from `base.html`).
+You might store these two auxiliary templates in a templates directory:
+
+```shell
+/path/to/templates/
+|-- base.html
+|-- blog_post.html
+```
+
+When rendering the main template, you create the loader object as part of the engine configuration:
+
+```{r, eval=FALSE}
+config <- jinjar_config(loader = path_loader("path", "to", "templates"))
+output <- render(content, !!!data, .config = config)
+```
+
 
 
 ## Template Inclusion {#include}
