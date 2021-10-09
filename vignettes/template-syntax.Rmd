@@ -51,6 +51,9 @@ navigation <- data.frame(
   caption = c("Home", "Blog"),
   href = c("index.html", "blog.html")
 )
+
+# HTML special characters
+name <- 'Dwayne "The Rock" Johnson'
 ```
 
 ```{r, include=FALSE}
@@ -58,7 +61,8 @@ params <- list(
   title = title,
   users = users,
   godzilla = godzilla,
-  navigation = navigation
+  navigation = navigation,
+  name = name
 )
 ```
 
@@ -191,6 +195,20 @@ For example, if the line statement prefix is configured to `#`, you can do:
     <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
 # endfor
 </ul>
+```
+
+
+## HTML Escaping {#html-escaping}
+
+When generating HTML from templates, there’s always a risk that a variable will include characters that affect the resulting HTML.
+The special characters are: `<`, `>`, `&` and `"`.
+
+In jinjar, it's **your** responsibility to manually escape variables, using the `escape_html()` function.
+You should escape variables that _might_ contain any of the special characters.
+But if a variable is trusted to contain well-formed HTML, then it should not be escaped (otherwise you could accidentally double-escape the content).
+
+```{jinjar, data=params}
+<input type="text" value="{{ escape_html(name) }}">
 ```
 
 
@@ -434,6 +452,12 @@ Translate a string to lower case or upper case:
 ```{jinjar}
 {{ lower("Hello") }}
 {{ upper("Hello") }}
+```
+
+Escape special characters for use in HTML content (see [HTML Escaping](#html-escaping)):
+
+```{jinjar, data=params}
+<input type="text" value="{{ escape_html(name) }}">
 ```
 
 

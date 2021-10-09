@@ -89,3 +89,10 @@ test_that("extends tag", {
   expect_error(render(src, name = "world"))
   expect_snapshot(render(src, name = "world", .config = list_config))
 })
+
+test_that("escape_html() works", {
+  expect_equal(
+    render("{{ escape_html(x) }}", x = '&<>"&'),
+    "&amp;&lt;&gt;&quot;&amp;"
+  )
+})
