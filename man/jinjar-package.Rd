@@ -6,11 +6,7 @@
 \alias{jinjar-package}
 \title{jinjar: Templating Engine Inspired by Jinja}
 \description{
-Templating engine powered by the 'inja' C++ library. Users
-    write a template document, using syntax inspired by the 'jinja' Python
-    package, and then render the final document by passing data from R.
-    The template syntax supports features such as variables, loops and
-    conditions.
+Templating engine powered by the 'inja' C++ library. Users write a template document, using syntax inspired by the 'jinja' Python package, and then render the final document by passing data from R. The template syntax supports features such as variables, loops and conditions.
 }
 \seealso{
 Useful links:
