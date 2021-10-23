@@ -39,7 +39,7 @@ render("Hello {{ name }}!", name = "world")
 Here’s a more advanced example, using loops and conditional statements:
 
 ``` r
-template <- 'Humans in A New Hope
+template <- 'Humans of A New Hope
 
 {% for person in people -%}
 {% if "A New Hope" in person.films and default(person.species, "Unknown") == "Human" -%}
@@ -50,7 +50,7 @@ template <- 'Humans in A New Hope
 
 text <- render(template, people = dplyr::starwars)
 writeLines(text)
-#> Humans in A New Hope
+#> Humans of A New Hope
 #> 
 #> * Luke Skywalker (Tatooine)
 #> * Darth Vader (Tatooine)
