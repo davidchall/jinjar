@@ -60,6 +60,6 @@ list_loader <- function(x) {
 
 #' @export
 print.list_loader <- function(x, ...) {
-  cat("List loader:", paste(sQuote(names(x)), collapse = ", "))
+  cat("List loader:", paste0("`", names(x), "`", collapse = ", "))
   invisible(x)
 }
