@@ -44,3 +44,7 @@ render("Hello {{ name }}!", !!!params)
 render(fs::path("template.txt"), name = "world")
 }
 }
+\seealso{
+\code{vignette("template-syntax")} describes how to write templates and
+render them using data variables.
+}

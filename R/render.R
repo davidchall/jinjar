@@ -11,6 +11,8 @@
 #'   whitespace control, and loading auxiliary templates.
 #' @return String containing rendered template.
 #'
+#' @seealso `vignette("template-syntax")` describes how to write templates and
+#'   render them using data variables.
 #' @examples
 #' # pass data as arguments
 #' render("Hello {{ name }}!", name = "world")
