@@ -5,15 +5,15 @@ Authors@R: c(
     person("David", "Hall", , "david.hall.physics@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0002-2193-0480")),
     person("Lars", "Berscheid", role = "cph",
-           comment = "Author of bundled inja"),
+           comment = "Author of bundled inja library"),
     person("Niels", "Lohmann", role = "cph",
-           comment = "Author of bundled json")
+           comment = "Author of bundled json library")
   )
 Description: Templating engine powered by the 'inja' C++ library. Users
-    write a template document, using syntax inspired by the 'jinja' Python
+    write a template document, using syntax inspired by the 'Jinja' Python
     package, and then render the final document by passing data from R.
-    The template syntax supports features such as variables, loops and
-    conditions.
+    The template syntax supports features such as variables, loops,
+    conditions and inheritance.
 License: MIT + file LICENSE
 URL: https://davidchall.github.io/jinjar,
     https://github.com/davidchall/jinjar

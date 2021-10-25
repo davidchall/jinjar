@@ -6,7 +6,7 @@
 \alias{jinjar-package}
 \title{jinjar: Templating Engine Inspired by Jinja}
 \description{
-Templating engine powered by the 'inja' C++ library. Users write a template document, using syntax inspired by the 'jinja' Python package, and then render the final document by passing data from R. The template syntax supports features such as variables, loops and conditions.
+Templating engine powered by the 'inja' C++ library. Users write a template document, using syntax inspired by the 'Jinja' Python package, and then render the final document by passing data from R. The template syntax supports features such as variables, loops, conditions and inheritance.
 }
 \seealso{
 Useful links:
@@ -22,8 +22,8 @@ Useful links:
 
 Other contributors:
 \itemize{
-  \item Lars Berscheid (Author of bundled inja) [copyright holder]
-  \item Niels Lohmann (Author of bundled json) [copyright holder]
+  \item Lars Berscheid (Author of bundled inja library) [copyright holder]
+  \item Niels Lohmann (Author of bundled json library) [copyright holder]
 }
 
 }
