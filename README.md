@@ -20,7 +20,14 @@ by the [inja](https://github.com/pantor/inja) C++ library.
 
 ## Installation
 
-You can install the development version from GitHub:
+You can install the released version of bignum from
+[CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("jinjar")
+```
+
+Or you can install the development version from GitHub:
 
 ``` r
 # install.packages("remotes")
