@@ -15,7 +15,7 @@ Description: Templating engine powered by the 'inja' C++ library. Users
     The template syntax supports features such as variables, loops,
     conditions and inheritance.
 License: MIT + file LICENSE
-URL: https://davidchall.github.io/jinjar,
+URL: https://davidchall.github.io/jinjar/,
     https://github.com/davidchall/jinjar
 BugReports: https://github.com/davidchall/jinjar/issues
 Imports:

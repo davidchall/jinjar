@@ -11,7 +11,7 @@ Templating engine powered by the 'inja' C++ library. Users write a template docu
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://davidchall.github.io/jinjar}
+  \item \url{https://davidchall.github.io/jinjar/}
   \item \url{https://github.com/davidchall/jinjar}
   \item Report bugs at \url{https://github.com/davidchall/jinjar/issues}
 }

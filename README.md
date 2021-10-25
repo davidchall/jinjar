@@ -10,7 +10,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 [![CRAN
 status](https://www.r-pkg.org/badges/version/jinjar)](https://CRAN.R-project.org/package=jinjar)
 [![Codecov test
-coverage](https://codecov.io/gh/davidchall/jinjar/branch/master/graph/badge.svg)](https://codecov.io/gh/davidchall/jinjar?branch=master)
+coverage](https://codecov.io/gh/davidchall/jinjar/branch/master/graph/badge.svg)](https://app.codecov.io/gh/davidchall/jinjar?branch=master)
 [![R-CMD-check](https://github.com/davidchall/jinjar/workflows/R-CMD-check/badge.svg)](https://github.com/davidchall/jinjar/actions)
 <!-- badges: end -->
 
