@@ -1,3 +1,6 @@
+development:
+  mode: auto
+
 url: https://davidchall.github.io/jinjar
 
 reference:
