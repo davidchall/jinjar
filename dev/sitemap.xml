@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://davidchall.github.io/jinjar/index.html</loc>
+  </url>
+  <url>
+    <loc>https://davidchall.github.io/jinjar/reference/jinjar-package.html</loc>
+  </url>
+  <url>
+    <loc>https://davidchall.github.io/jinjar/reference/jinjar_config.html</loc>
+  </url>
+  <url>
+    <loc>https://davidchall.github.io/jinjar/reference/loader.html</loc>
+  </url>
+  <url>
+    <loc>https://davidchall.github.io/jinjar/reference/render.html</loc>
+  </url>
+  <url>
+    <loc>https://davidchall.github.io/jinjar/articles/auxiliary-templates.html</loc>
+  </url>
+  <url>
+    <loc>https://davidchall.github.io/jinjar/articles/template-syntax.html</loc>
+  </url>
+</urlset>
