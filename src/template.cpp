@@ -1,10 +1,27 @@
-#include "config.h"
-#include "loader.h"
 #include <cpp11.hpp>
-#include <inja.hpp>
+#include "template.h"
+#include "loader.h"
 
 
-inja::Environment setup_environment(const cpp11::list& config) {
+jinjar::Template::Template(const cpp11::strings& x, const cpp11::list& config): env(setup_environment(config)) {
+  templ = env.parse(
+    cpp11::as_cpp<std::string>(x)
+  );
+}
+
+const cpp11::strings jinjar::Template::render(const cpp11::strings& data_json) {
+  auto data = nlohmann::json::parse(
+    cpp11::as_cpp<std::string>(data_json)
+  );
+
+  std::string result = env.render(templ, data);
+
+  cpp11::writable::strings output;
+  output.push_back(result);
+  return output;
+}
+
+inja::Environment jinjar::Template::setup_environment(const cpp11::list& config) {
   if (!Rf_inherits(config, "jinjar_config")) {
     cpp11::stop("Found invalid engine config."); // # nocov
   }
@@ -37,6 +54,15 @@ inja::Environment setup_environment(const cpp11::list& config) {
   env.set_throw_at_missing_includes(
     !cpp11::as_cpp<bool>(config["ignore_missing_files"])
   );
+
+  env.add_callback("escape_html", 1, [](inja::Arguments& args) {
+    std::string s = args.at(0)->get<std::string>();
+    inja::replace_substring(s, "&", "&amp;");
+    inja::replace_substring(s, "<", "&lt;");
+    inja::replace_substring(s, ">", "&gt;");
+    inja::replace_substring(s, "\"", "&quot;");
+    return s;
+  });
 
   return env;
 }

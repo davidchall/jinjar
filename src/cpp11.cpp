@@ -6,16 +6,16 @@
 #include <R_ext/Visibility.h>
 
 // render.cpp
-cpp11::strings c_render(const cpp11::strings& input, const cpp11::strings& data_json, const cpp11::list& config);
-extern "C" SEXP _jinjar_c_render(SEXP input, SEXP data_json, SEXP config) {
+cpp11::strings c_render_string(const cpp11::strings& input, const cpp11::strings& data_json, const cpp11::list& config);
+extern "C" SEXP _jinjar_c_render_string(SEXP input, SEXP data_json, SEXP config) {
   BEGIN_CPP11
-    return cpp11::as_sexp(c_render(cpp11::as_cpp<cpp11::decay_t<const cpp11::strings&>>(input), cpp11::as_cpp<cpp11::decay_t<const cpp11::strings&>>(data_json), cpp11::as_cpp<cpp11::decay_t<const cpp11::list&>>(config)));
+    return cpp11::as_sexp(c_render_string(cpp11::as_cpp<cpp11::decay_t<const cpp11::strings&>>(input), cpp11::as_cpp<cpp11::decay_t<const cpp11::strings&>>(data_json), cpp11::as_cpp<cpp11::decay_t<const cpp11::list&>>(config)));
   END_CPP11
 }
 
 extern "C" {
 static const R_CallMethodDef CallEntries[] = {
-    {"_jinjar_c_render", (DL_FUNC) &_jinjar_c_render, 3},
+    {"_jinjar_c_render_string", (DL_FUNC) &_jinjar_c_render_string, 3},
     {NULL, NULL, 0}
 };
 }

@@ -36,7 +36,7 @@ render.character <- function(.x, ..., .config = default_config()) {
   checkmate::assert_string(.x, min.chars = 1)
   checkmate::assert_class(.config, "jinjar_config")
 
-  c_render(.x, encode(...), .config)
+  c_render_string(.x, encode(...), .config)
 }
 
 #' @rdname render
@@ -53,7 +53,7 @@ render.fs_path <- function(.x, ..., .config = default_config()) {
 
   checkmate::assert_file_exists(.x, access = "r")
 
-  c_render(read_utf8(.x), encode(...), .config)
+  c_render_string(read_utf8(.x), encode(...), .config)
 }
 
 read_utf8 <- function(path) {
