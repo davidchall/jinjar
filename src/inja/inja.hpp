@@ -4229,7 +4229,7 @@ class Environment {
   TemplateStorage template_storage;
 
 public:
-  Environment() : Environment("") {}
+  Environment() : Environment("./") {}
 
   explicit Environment(const std::string &global_path) : input_path(global_path), output_path(global_path) {}
 
@@ -4292,7 +4292,7 @@ public:
 
   Template parse(nonstd::string_view input) {
     Parser parser(parser_config, lexer_config, template_storage, function_storage);
-    return parser.parse(input);
+    return parser.parse(input, input_path);
   }
 
   Template parse_template(const std::string &filename) {

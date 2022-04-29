@@ -38,20 +38,20 @@ test_that("include tag", {
   aux <- "Hello {{ name }}!"
 
   with_dir_tree(list(
-    "foo" = src,
-    "bar" = aux
+    "templates/foo" = src,
+    "templates/bar" = aux
   ), {
 
     expect_error(render(fs::path("foo"), name = "world"))
     expect_snapshot(render(
-      fs::path("foo"),
+      fs::path("templates/foo"),
       name = "world",
       .config = jinjar_config(ignore_missing_files = TRUE)
     ))
     expect_snapshot(render(
       fs::path("foo"),
       name = "world",
-      .config = jinjar_config(path_loader(fs::path_wd()))
+      .config = jinjar_config(path_loader(fs::path_wd("templates")))
     ))
   })
 
