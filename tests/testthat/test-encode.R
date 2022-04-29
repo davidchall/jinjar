@@ -1,5 +1,7 @@
 test_that("dynamic dots work", {
-  expect_snapshot_error(encode(a = 1, a = "b"))
+  # https://github.com/r-lib/rlang/issues/1394
+  # expect_snapshot_error(encode(a = 1, a = "b"))
+  expect_error(encode(a = 1, a = "b"))
   expect_snapshot_error(encode(a = 1, "b", mtcars))
 
   res <- jsonlite::toJSON(list(a = 1), auto_unbox = TRUE)
