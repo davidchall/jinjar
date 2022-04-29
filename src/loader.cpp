@@ -35,7 +35,8 @@ PathLoader::PathLoader(const cpp11::list& loader) {
 }
 
 inja::Environment PathLoader::init_environment() {
-  return(inja::Environment(path));
+  // inja expects trailing slash
+  return(inja::Environment(path + "/"));
 }
 
 
