@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,23 +33,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">jinjar</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -61,10 +57,13 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/davidchall/jinjar/">
+  <a href="https://github.com/davidchall/jinjar/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -85,7 +84,7 @@
       <h1 data-toc-skip>Auxiliary Templates</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/davidchall/jinjar/blob/master/vignettes/auxiliary-templates.Rmd"><code>vignettes/auxiliary-templates.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/davidchall/jinjar/blob/HEAD/vignettes/auxiliary-templates.Rmd" class="external-link"><code>vignettes/auxiliary-templates.Rmd</code></a></small>
       <div class="hidden name"><code>auxiliary-templates.Rmd</code></div>
 
     </div>
@@ -93,9 +92,9 @@
     
     
 <p>As the complexity of your templating project grows, it can be helpful to refactor common pieces into auxiliary templates so they can be reused. The <a href="#include"><code>{% include %}</code></a> and <a href="#extends"><code>{% extends %}</code></a> tags support two very different approaches to this, described below.</p>
-<div id="loading-auxiliary-templates" class="section level2">
-<h2 class="hasAnchor">
-<a href="#loading-auxiliary-templates" class="anchor"></a>Loading Auxiliary Templates</h2>
+<div class="section level2">
+<h2 id="loading-auxiliary-templates">Loading Auxiliary Templates<a class="anchor" aria-label="anchor" href="#loading-auxiliary-templates"></a>
+</h2>
 <p>When your main template makes reference to auxiliary templates, you’ll need to specify how the templating engine can find these auxiliary templates. This is achieved using a template loader (see <code><a href="../reference/loader.html">help("loader")</a></code>).</p>
 <p>There are different types of loader, but <code><a href="../reference/loader.html">path_loader()</a></code> is the most commonly used. This allows you to specify the directory where auxiliary templates are stored in files.</p>
 <p>Imagine you have a main template that uses nested template inheritance (<code>content</code> inherits from <code>blog_post.html</code>, which in turns inherits from <code>base.html</code>). You might store these two auxiliary templates in a templates directory:</p>
@@ -107,9 +106,9 @@
 <code class="sourceCode R"><span class="va">config</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/jinjar_config.html">jinjar_config</a></span><span class="op">(</span>loader <span class="op">=</span> <span class="fu"><a href="../reference/loader.html">path_loader</a></span><span class="op">(</span><span class="st">"path"</span>, <span class="st">"to"</span>, <span class="st">"templates"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">output</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/render.html">render</a></span><span class="op">(</span><span class="va">content</span>, <span class="op">!</span><span class="op">!</span><span class="op">!</span><span class="va">data</span>, .config <span class="op">=</span> <span class="va">config</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="include" class="section level2">
-<h2 class="hasAnchor">
-<a href="#include" class="anchor"></a>Template Inclusion</h2>
+<div class="section level2">
+<h2 id="include">Template Inclusion<a class="anchor" aria-label="anchor" href="#include"></a>
+</h2>
 <p>The <code>include</code> tag can be used to include an auxiliary template and return the rendered contents of that file into the main document. Included templates have access to the same variables as the main template.</p>
 <p>By default, an error is raised if the included template cannot be found. You can ignore these errors by setting the <code>ignore_missing_files</code> argument in <code><a href="../reference/jinjar_config.html">jinjar_config()</a></code>.</p>
 <p>As an example, we create an auxiliary file <code>header.html</code> with contents:</p>
@@ -137,9 +136,9 @@
 <span id="cb6-9"><a href="#cb6-9"></a><span class="kw">&lt;/body&gt;</span></span>
 <span id="cb6-10"><a href="#cb6-10"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
 </div>
-<div id="extends" class="section level2">
-<h2 class="hasAnchor">
-<a href="#extends" class="anchor"></a>Template Inheritance</h2>
+<div class="section level2">
+<h2 id="extends">Template Inheritance<a class="anchor" aria-label="anchor" href="#extends"></a>
+</h2>
 <p>Template inheritance allows you to build a base “skeleton” template that contains all the common elements of your document and defines <em>blocks</em> that child templates can override. This is a very powerful technique.</p>
 <p>As an example, consider the following base template stored in <code>base.html</code>:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
@@ -207,11 +206,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by David Hall.</p>
+  <p></p>
+<p>Developed by David Hall.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer>
@@ -219,6 +220,8 @@
 
   
 
+
+  
 
   </body>
 </html>

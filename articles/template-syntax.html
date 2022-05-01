@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,23 +33,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">jinjar</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -61,10 +57,13 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/davidchall/jinjar/">
+  <a href="https://github.com/davidchall/jinjar/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -85,49 +84,49 @@
       <h1 data-toc-skip>Template Syntax</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/davidchall/jinjar/blob/master/vignettes/template-syntax.Rmd"><code>vignettes/template-syntax.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/davidchall/jinjar/blob/HEAD/vignettes/template-syntax.Rmd" class="external-link"><code>vignettes/template-syntax.Rmd</code></a></small>
       <div class="hidden name"><code>template-syntax.Rmd</code></div>
 
     </div>
 
     
     
-<p>This vignette describes the template syntax supported by jinjar, following the structure of the Jinja <a href="https://jinja.palletsprojects.com/templates/">Template Designer Documentation</a>. It is designed to act as a reference when writing templates.</p>
-<p>The jinjar R package is powered by the <a href="https://github.com/pantor/inja">inja</a> C++ library. The syntax is very similar to that of the Jinja Python package, but there are also many differences. Unfortunately, this means jinjar is not a drop-in replacement for Jinja – you might need to adapt existing Jinja templates for the jinjar engine.</p>
+<p>This vignette describes the template syntax supported by jinjar, following the structure of the Jinja <a href="https://jinja.palletsprojects.com/templates/" class="external-link">Template Designer Documentation</a>. It is designed to act as a reference when writing templates.</p>
+<p>The jinjar R package is powered by the <a href="https://github.com/pantor/inja" class="external-link">inja</a> C++ library. The syntax is very similar to that of the Jinja Python package, but there are also many differences. Unfortunately, this means jinjar is not a drop-in replacement for Jinja – you might need to adapt existing Jinja templates for the jinjar engine.</p>
 <p>The most fundamental difference between jinjar and Jinja is:</p>
 <ul>
 <li>Jinja variables support direct interaction with the underlying Python objects.</li>
-<li>jinjar variables are simple <a href="https://www.w3schools.com/js/js_json_datatypes.asp">JSON data types</a>. The underlying R objects are translated to JSON.</li>
+<li>jinjar variables are simple <a href="https://www.w3schools.com/js/js_json_datatypes.asp" class="external-link">JSON data types</a>. The underlying R objects are translated to JSON.</li>
 </ul>
 <p>This is described in more detail in the <a href="#variables">Variables</a> section below.</p>
 <p>Before starting, let’s create a few R objects for rendering example templates.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://davidchall.github.io/jinjar/">jinjar</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://davidchall.github.io/jinjar/">jinjar</a></span><span class="op">)</span>
 
 <span class="co"># length-1 vector</span>
 <span class="va">title</span> <span class="op">&lt;-</span> <span class="st">"My Webpage"</span>
 
 <span class="co"># vector</span>
-<span class="va">users</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"User A"</span>, <span class="st">"User B"</span>, <span class="st">"User C"</span><span class="op">)</span>
+<span class="va">users</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"User A"</span>, <span class="st">"User B"</span>, <span class="st">"User C"</span><span class="op">)</span>
 
 <span class="co"># list</span>
-<span class="va">godzilla</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+<span class="va">godzilla</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
   Name <span class="op">=</span> <span class="st">"Godzilla"</span>,
   Born <span class="op">=</span> <span class="fl">1952</span>,
   Birthplace <span class="op">=</span> <span class="st">"Japan"</span>
 <span class="op">)</span>
 
 <span class="co"># data frame</span>
-<span class="va">navigation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
-  caption <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Home"</span>, <span class="st">"Blog"</span><span class="op">)</span>,
-  href <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"index.html"</span>, <span class="st">"blog.html"</span><span class="op">)</span>
+<span class="va">navigation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>
+  caption <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Home"</span>, <span class="st">"Blog"</span><span class="op">)</span>,
+  href <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"index.html"</span>, <span class="st">"blog.html"</span><span class="op">)</span>
 <span class="op">)</span>
 
 <span class="co"># HTML special characters</span>
 <span class="va">name</span> <span class="op">&lt;-</span> <span class="st">'Dwayne "The Rock" Johnson'</span></code></pre></div>
-<div id="synopsis" class="section level2">
-<h2 class="hasAnchor">
-<a href="#synopsis" class="anchor"></a>Synopsis</h2>
+<div class="section level2">
+<h2 id="synopsis">Synopsis<a class="anchor" aria-label="anchor" href="#synopsis"></a>
+</h2>
 <p>A jinjar template is simply a text file, and when rendered the output is also a text file (e.g. HTML, SQL, LaTeX).</p>
 <p>A template contains <strong>variables</strong> and/or <strong>expressions</strong>, which get replaced with values when a template is rendered; and <strong>tags</strong>, which control the logic of the template.</p>
 <p>Below is a minimal template that illustrates a few basics using the default jinjar configuration. We will cover the details later in this document:</p>
@@ -171,9 +170,9 @@
 </ul>
 <p><a href="#line-statements">Line Statements</a> are also possible, though they don’t have default prefix characters. To use them, set <code>line_statement</code> when creating the <code><a href="../reference/jinjar_config.html">jinjar_config()</a></code>.</p>
 </div>
-<div id="variables" class="section level2">
-<h2 class="hasAnchor">
-<a href="#variables" class="anchor"></a>Variables</h2>
+<div class="section level2">
+<h2 id="variables">Variables<a class="anchor" aria-label="anchor" href="#variables"></a>
+</h2>
 <p>When writing a template, we refer to variables that act as data placeholders. We define their values when rendering the template.</p>
 <p>Although we pass R objects to <code><a href="../reference/render.html">render()</a></code>, it is helpful to understand that these are encoded as JSON objects before the template is rendered.</p>
 <table class="table">
@@ -210,16 +209,16 @@
 <p>The double-brace syntax is used to print the value of the variable (e.g. <code>{{ foo }}</code>). To use the variable in other contexts (e.g. control structures), then these braces are omitted (e.g. <code>{% for bar in foo %}</code>).</p>
 <p>If a template variable has not been defined, then an error occurs. However, you can use the <code>default(foo, bar)</code> function to specify a fallback value.</p>
 </div>
-<div id="comments" class="section level2">
-<h2 class="hasAnchor">
-<a href="#comments" class="anchor"></a>Comments</h2>
+<div class="section level2">
+<h2 id="comments">Comments<a class="anchor" aria-label="anchor" href="#comments"></a>
+</h2>
 <p>To comment-out some lines, preventing them from appearing in the rendered document, use the comment syntax (default: <code>{# ... #}</code>). This is useful for debugging or documenting the template.</p>
 <pre class="jinjar bg-info"><code>Hello{# TODO: update this #}!</code></pre>
 <pre class="bg-success"><code>Hello!</code></pre>
 </div>
-<div id="whitespace" class="section level2">
-<h2 class="hasAnchor">
-<a href="#whitespace" class="anchor"></a>Whitespace Control</h2>
+<div class="section level2">
+<h2 id="whitespace">Whitespace Control<a class="anchor" aria-label="anchor" href="#whitespace"></a>
+</h2>
 <p>In the default configuration, whitespace (e.g. spaces, tabs, newlines) is left unchanged in the rendered output. For example, in the default configuration we get:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">&lt;div&gt;</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a>    {% if true %}</span>
@@ -242,8 +241,8 @@
 <span id="cb9-3"><a href="#cb9-3"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
 <p>Instead of changing the global configuration, you can manually trim whitespace at a more finegrained level.</p>
 <ul>
-<li>By putting a minus sign (<code><a href="https://rdrr.io/r/base/Arithmetic.html">-</a></code>) after the opening delimiter, this removes any whitespace from the beginning of the line until the start of the block (i.e. the same as the <code>lstrip_blocks</code> feature).</li>
-<li>By putting a minus sign (<code><a href="https://rdrr.io/r/base/Arithmetic.html">-</a></code>) before the closing delimiter, this removes any whitespace (including newlines) until the next non-whitespace character (i.e. slightly different from the <code>trim_blocks</code> feature).</li>
+<li>By putting a minus sign (<code>-</code>) after the opening delimiter, this removes any whitespace from the beginning of the line until the start of the block (i.e. the same as the <code>lstrip_blocks</code> feature).</li>
+<li>By putting a minus sign (<code>-</code>) before the closing delimiter, this removes any whitespace (including newlines) until the next non-whitespace character (i.e. slightly different from the <code>trim_blocks</code> feature).</li>
 </ul>
 <p>This can be activated for control blocks, comments, or variable expressions:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">&lt;div&gt;</span></span>
@@ -255,9 +254,9 @@
 <span id="cb11-2"><a href="#cb11-2"></a>    yay</span>
 <span id="cb11-3"><a href="#cb11-3"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
 </div>
-<div id="line-statements" class="section level2">
-<h2 class="hasAnchor">
-<a href="#line-statements" class="anchor"></a>Line Statements</h2>
+<div class="section level2">
+<h2 id="line-statements">Line Statements<a class="anchor" aria-label="anchor" href="#line-statements"></a>
+</h2>
 <p>If line statements are enabled (see <code><a href="../reference/jinjar_config.html">jinjar_config()</a></code>), it’s possible to mark a line as a statement. For example, if the line statement prefix is configured to <code>#</code>, you can do:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">&lt;ul</span><span class="ot"> id=</span><span class="st">"navigation"</span><span class="kw">&gt;</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a># for item in navigation</span>
@@ -269,21 +268,21 @@
 <span id="cb13-3"><a href="#cb13-3"></a>    <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">"blog.html"</span><span class="kw">&gt;</span>Blog<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
 <span id="cb13-4"><a href="#cb13-4"></a><span class="kw">&lt;/ul&gt;</span></span></code></pre></div>
 </div>
-<div id="html-escaping" class="section level2">
-<h2 class="hasAnchor">
-<a href="#html-escaping" class="anchor"></a>HTML Escaping</h2>
-<p>When generating HTML from templates, there’s always a risk that a variable will include characters that affect the resulting HTML. The special characters are: <code><a href="https://rdrr.io/r/base/Comparison.html">&lt;</a></code>, <code><a href="https://rdrr.io/r/base/Comparison.html">&gt;</a></code>, <code><a href="https://rdrr.io/r/base/Logic.html">&amp;</a></code> and <code>"</code>.</p>
+<div class="section level2">
+<h2 id="html-escaping">HTML Escaping<a class="anchor" aria-label="anchor" href="#html-escaping"></a>
+</h2>
+<p>When generating HTML from templates, there’s always a risk that a variable will include characters that affect the resulting HTML. The special characters are: <code>&lt;</code>, <code>&gt;</code>, <code>&amp;</code> and <code>"</code>.</p>
 <p>In jinjar, it’s <strong>your</strong> responsibility to manually escape variables, using the <code>escape_html()</code> function. You should escape variables that <em>might</em> contain any of the special characters. But if a variable is trusted to contain well-formed HTML, then it should not be escaped (otherwise you could accidentally double-escape the content).</p>
 <pre class="jinjar bg-info"><code>&lt;input type="text" value="{{ escape_html(name) }}"&gt;</code></pre>
 <pre class="bg-success"><code>&lt;input type="text" value="Dwayne &amp;quot;The Rock&amp;quot; Johnson"&gt;</code></pre>
 </div>
-<div id="control-structures" class="section level2">
-<h2 class="hasAnchor">
-<a href="#control-structures" class="anchor"></a>Control Structures</h2>
+<div class="section level2">
+<h2 id="control-structures">Control Structures<a class="anchor" aria-label="anchor" href="#control-structures"></a>
+</h2>
 <p>A control structure refers to all those things that control the flow of a program. With the default syntax, control structures appear inside <code>{% ... %}</code> blocks.</p>
-<div id="for" class="section level3">
-<h3 class="hasAnchor">
-<a href="#for" class="anchor"></a>For</h3>
+<div class="section level3">
+<h3 id="for">For<a class="anchor" aria-label="anchor" href="#for"></a>
+</h3>
 <p>A for-loop allows you to iterate over each element in a vector:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode jinjar markdown bg-info"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1"></a>{% for user in users -%}</span>
 <span id="cb16-2"><a href="#cb16-2"></a>{{ loop.index1 }}. {{ user }}</span>
@@ -349,9 +348,9 @@
 </tbody>
 </table>
 </div>
-<div id="if" class="section level3">
-<h3 class="hasAnchor">
-<a href="#if" class="anchor"></a>If</h3>
+<div class="section level3">
+<h3 id="if">If<a class="anchor" aria-label="anchor" href="#if"></a>
+</h3>
 <p>Conditional branches are written using <code>if</code>, <code>else if</code> and <code>else</code> statements, which evaluate <a href="#expressions">Expressions</a>.</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode jinjar markdown bg-info"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1"></a>{% if length(users) &gt; 5 -%}</span>
 <span id="cb22-2"><a href="#cb22-2"></a>{% for user in users -%}</span>
@@ -364,32 +363,32 @@
 <span id="cb22-9"><a href="#cb22-9"></a><span class="st">{% endif %}</span></span></code></pre></div>
 <div class="sourceCode" id="cb23"><pre class="sourceCode markdown bg-success"><code class="sourceCode markdown"><span id="cb23-1"><a href="#cb23-1"></a>User A, User B, User C.</span></code></pre></div>
 </div>
-<div id="assignments" class="section level3">
-<h3 class="hasAnchor">
-<a href="#assignments" class="anchor"></a>Assignments</h3>
+<div class="section level3">
+<h3 id="assignments">Assignments<a class="anchor" aria-label="anchor" href="#assignments"></a>
+</h3>
 <p>Using the <code>set</code> statement, you can assign values to variables.</p>
 <pre class="jinjar bg-info"><code>{% set name="world" -%}
 Hello {{ name }}!</code></pre>
 <pre class="bg-success"><code>Hello world!</code></pre>
 </div>
-<div id="extends" class="section level3">
-<h3 class="hasAnchor">
-<a href="#extends" class="anchor"></a>Extends</h3>
+<div class="section level3">
+<h3 id="extends">Extends<a class="anchor" aria-label="anchor" href="#extends"></a>
+</h3>
 <p>The <code>extends</code> tag can be used for template inheritance. See <em>Template Inheritance</em> in <code><a href="../articles/auxiliary-templates.html">vignette("auxiliary-templates")</a></code>.</p>
 </div>
-<div id="include" class="section level3">
-<h3 class="hasAnchor">
-<a href="#include" class="anchor"></a>Include</h3>
+<div class="section level3">
+<h3 id="include">Include<a class="anchor" aria-label="anchor" href="#include"></a>
+</h3>
 <p>The <code>include</code> tag inserts the rendered contents of an auxiliary template. See <em>Template Inclusion</em> in <code><a href="../articles/auxiliary-templates.html">vignette("auxiliary-templates")</a></code>.</p>
 </div>
 </div>
-<div id="expressions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#expressions" class="anchor"></a>Expressions</h2>
+<div class="section level2">
+<h2 id="expressions">Expressions<a class="anchor" aria-label="anchor" href="#expressions"></a>
+</h2>
 <p>Basic expressions are supported in templates.</p>
-<div id="literals" class="section level3">
-<h3 class="hasAnchor">
-<a href="#literals" class="anchor"></a>Literals</h3>
+<div class="section level3">
+<h3 id="literals">Literals<a class="anchor" aria-label="anchor" href="#literals"></a>
+</h3>
 <p>The simplest form of expressions are literals, which represent fixed values.</p>
 <p>As described in <a href="#variables">Variables</a>, the template is rendered using data stored in JSON format. For this reason, literals must also be specified in JSON format. The following types of literals are supported:</p>
 <ul>
@@ -424,9 +423,9 @@ List: [1,2,3]
 Object: {"a":1,"b":2}
 Null: </code></pre>
 </div>
-<div id="math" class="section level3">
-<h3 class="hasAnchor">
-<a href="#math" class="anchor"></a>Math</h3>
+<div class="section level3">
+<h3 id="math">Math<a class="anchor" aria-label="anchor" href="#math"></a>
+</h3>
 <p>You can perform simple arithmetic using standard operators:</p>
 <pre class="jinjar bg-info"><code>1 + 1: {{ 1 + 1 }}
 3 - 2: {{ 3 - 2 }}
@@ -441,26 +440,26 @@ Null: </code></pre>
 2 ^ 3: 8
 7 % 3: 1</code></pre>
 </div>
-<div id="comparisons" class="section level3">
-<h3 class="hasAnchor">
-<a href="#comparisons" class="anchor"></a>Comparisons</h3>
+<div class="section level3">
+<h3 id="comparisons">Comparisons<a class="anchor" aria-label="anchor" href="#comparisons"></a>
+</h3>
 <p>You can perform comparisons:</p>
-<pre class="jinjar bg-info"><code>1 == 1: {{ 1 == 1 }}
-1 != 1: {{ 1 != 1 }}
-2 &gt;  1: {{ 2 &gt; 1 }}
-2 &gt;= 1: {{ 2 &gt;= 1 }}
-2 &lt;  1: {{ 2 &lt; 1 }}
-2 &lt;= 1: {{ 2 &lt;= 1 }}</code></pre>
-<pre class="bg-success"><code>1 == 1: true
-1 != 1: false
-2 &gt;  1: true
-2 &gt;= 1: true
-2 &lt;  1: false
-2 &lt;= 1: false</code></pre>
+<pre class="jinjar bg-info"><code><span class="fl">1</span> <span class="op">==</span> <span class="fl">1</span><span class="op">:</span> <span class="op">{</span><span class="op">{</span> <span class="fl">1</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">}</span><span class="op">}</span>
+<span class="fl">1</span> <span class="op">!=</span> <span class="fl">1</span><span class="op">:</span> <span class="op">{</span><span class="op">{</span> <span class="fl">1</span> <span class="op">!=</span> <span class="fl">1</span> <span class="op">}</span><span class="op">}</span>
+<span class="fl">2</span> <span class="op">&gt;</span>  <span class="fl">1</span><span class="op">:</span> <span class="op">{</span><span class="op">{</span> <span class="fl">2</span> <span class="op">&gt;</span> <span class="fl">1</span> <span class="op">}</span><span class="op">}</span>
+<span class="fl">2</span> <span class="op">&gt;=</span> <span class="fl">1</span><span class="op">:</span> <span class="op">{</span><span class="op">{</span> <span class="fl">2</span> <span class="op">&gt;=</span> <span class="fl">1</span> <span class="op">}</span><span class="op">}</span>
+<span class="fl">2</span> <span class="op">&lt;</span>  <span class="fl">1</span><span class="op">:</span> <span class="op">{</span><span class="op">{</span> <span class="fl">2</span> <span class="op">&lt;</span> <span class="fl">1</span> <span class="op">}</span><span class="op">}</span>
+<span class="fl">2</span> <span class="op">&lt;=</span> <span class="fl">1</span><span class="op">:</span> <span class="op">{</span><span class="op">{</span> <span class="fl">2</span> <span class="op">&lt;=</span> <span class="fl">1</span> <span class="op">}</span><span class="op">}</span></code></pre>
+<pre class="bg-success"><code><span class="fl">1</span> <span class="op">==</span> <span class="fl">1</span><span class="op">:</span> <span class="va">true</span>
+<span class="fl">1</span> <span class="op">!=</span> <span class="fl">1</span><span class="op">:</span> <span class="va">false</span>
+<span class="fl">2</span> <span class="op">&gt;</span>  <span class="fl">1</span><span class="op">:</span> <span class="va">true</span>
+<span class="fl">2</span> <span class="op">&gt;=</span> <span class="fl">1</span><span class="op">:</span> <span class="va">true</span>
+<span class="fl">2</span> <span class="op">&lt;</span>  <span class="fl">1</span><span class="op">:</span> <span class="va">false</span>
+<span class="fl">2</span> <span class="op">&lt;=</span> <span class="fl">1</span><span class="op">:</span> <span class="va">false</span></code></pre>
 </div>
-<div id="logic" class="section level3">
-<h3 class="hasAnchor">
-<a href="#logic" class="anchor"></a>Logic</h3>
+<div class="section level3">
+<h3 id="logic">Logic<a class="anchor" aria-label="anchor" href="#logic"></a>
+</h3>
 <p>Within expressions and control structures, you can use the Boolean operators: <code>and</code>, <code>or</code>, and <code>not</code>.</p>
 <pre class="jinjar bg-info"><code>true and false: {{ true and false }}
 true or false: {{ true or false }}
@@ -470,15 +469,15 @@ true or false: true
 not false: true</code></pre>
 <p>You can also check if a value is contained within a list using <code>in</code>:</p>
 <pre class="jinjar bg-info"><code>{{ 1 in [1, 2, 3] }}</code></pre>
-<pre class="bg-success"><code>true</code></pre>
+<pre class="bg-success"><code><span class="va">true</span></code></pre>
 </div>
 </div>
-<div id="functions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#functions" class="anchor"></a>Functions</h2>
-<div id="data-checks" class="section level3">
-<h3 class="hasAnchor">
-<a href="#data-checks" class="anchor"></a>Data Checks</h3>
+<div class="section level2">
+<h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a>
+</h2>
+<div class="section level3">
+<h3 id="data-checks">Data Checks<a class="anchor" aria-label="anchor" href="#data-checks"></a>
+</h3>
 <p>You can check if a value exists by passing the variable name as a string:</p>
 <pre class="jinjar bg-info"><code>users does exist: {{ exists("users") }}
 abc doesn't exist: {{ exists("abc") }}</code></pre>
@@ -490,8 +489,8 @@ Weight doesn't exist: {{ existsIn(godzilla, "Weight") }}</code></pre>
 <pre class="bg-success"><code>Birthplace does exist: true
 Weight doesn't exist: false</code></pre>
 <p>Concisely handle missing values using the <code>default()</code> function:</p>
-<pre class="jinjar bg-info"><code>{{ default(godzilla.Weight, 20000) }}</code></pre>
-<pre class="bg-success"><code>20000</code></pre>
+<pre class="jinjar bg-info"><code><span class="op">{</span><span class="op">{</span> <span class="fu">default</span><span class="op">(</span><span class="va">godzilla.Weight</span>, <span class="fl">20000</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span></code></pre>
+<pre class="bg-success"><code><span class="fl">20000</span></code></pre>
 <p>You can also check the data type of a variable or literal:</p>
 <pre class="jinjar bg-info"><code>{{ isString("a string") }}
 {{ isInteger(3) }}
@@ -508,59 +507,59 @@ true
 true
 true</code></pre>
 </div>
-<div id="data-conversion" class="section level3">
-<h3 class="hasAnchor">
-<a href="#data-conversion" class="anchor"></a>Data Conversion</h3>
+<div class="section level3">
+<h3 id="data-conversion">Data Conversion<a class="anchor" aria-label="anchor" href="#data-conversion"></a>
+</h3>
 <p>You can convert strings to numeric types, using the <code>int()</code> or <code>float()</code> functions:</p>
-<pre class="jinjar bg-info"><code>{{ int("2") }}
-{{ float("2.5") }}</code></pre>
-<pre class="bg-success"><code>2
-2.5</code></pre>
+<pre class="jinjar bg-info"><code><span class="op">{</span><span class="op">{</span> <span class="fu">int</span><span class="op">(</span><span class="st">"2"</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span>
+<span class="op">{</span><span class="op">{</span> <span class="fu">float</span><span class="op">(</span><span class="st">"2.5"</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span></code></pre>
+<pre class="bg-success"><code><span class="fl">2</span>
+<span class="fl">2.5</span></code></pre>
 </div>
-<div id="numeric-data" class="section level3">
-<h3 class="hasAnchor">
-<a href="#numeric-data" class="anchor"></a>Numeric Data</h3>
+<div class="section level3">
+<h3 id="numeric-data">Numeric Data<a class="anchor" aria-label="anchor" href="#numeric-data"></a>
+</h3>
 <p>You can check if an integer is even or odd, or divisible by some other integer. This could be used to make alternating row colors.</p>
-<pre class="jinjar bg-info"><code>{{ even(42) }}
-{{ odd(42) }}
-{{ divisibleBy(42, 7) }}</code></pre>
-<pre class="bg-success"><code>true
-false
-true</code></pre>
+<pre class="jinjar bg-info"><code><span class="op">{</span><span class="op">{</span> <span class="fu">even</span><span class="op">(</span><span class="fl">42</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span>
+<span class="op">{</span><span class="op">{</span> <span class="fu">odd</span><span class="op">(</span><span class="fl">42</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span>
+<span class="op">{</span><span class="op">{</span> <span class="fu">divisibleBy</span><span class="op">(</span><span class="fl">42</span>, <span class="fl">7</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span></code></pre>
+<pre class="bg-success"><code><span class="va">true</span>
+<span class="va">false</span>
+<span class="va">true</span></code></pre>
 <p>You can round floating point numbers to a specific precision:</p>
-<pre class="jinjar bg-info"><code>{{ round(3.1415, 0) }}
-{{ round(3.1415, 3) }}</code></pre>
-<pre class="bg-success"><code>3
-3.142</code></pre>
+<pre class="jinjar bg-info"><code><span class="op">{</span><span class="op">{</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">3.1415</span>, <span class="fl">0</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span>
+<span class="op">{</span><span class="op">{</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">3.1415</span>, <span class="fl">3</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span></code></pre>
+<pre class="bg-success"><code><span class="fl">3</span>
+<span class="fl">3.142</span></code></pre>
 </div>
-<div id="string-data" class="section level3">
-<h3 class="hasAnchor">
-<a href="#string-data" class="anchor"></a>String Data</h3>
+<div class="section level3">
+<h3 id="string-data">String Data<a class="anchor" aria-label="anchor" href="#string-data"></a>
+</h3>
 <p>Translate a string to lower case or upper case:</p>
-<pre class="jinjar bg-info"><code>{{ lower("Hello") }}
-{{ upper("Hello") }}</code></pre>
-<pre class="bg-success"><code>hello
-HELLO</code></pre>
+<pre class="jinjar bg-info"><code><span class="op">{</span><span class="op">{</span> <span class="fu">lower</span><span class="op">(</span><span class="st">"Hello"</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span>
+<span class="op">{</span><span class="op">{</span> <span class="fu">upper</span><span class="op">(</span><span class="st">"Hello"</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span></code></pre>
+<pre class="bg-success"><code><span class="va">hello</span>
+<span class="va">HELLO</span></code></pre>
 <p>Escape special characters for use in HTML content (see <a href="#html-escaping">HTML Escaping</a>):</p>
 <pre class="jinjar bg-info"><code>&lt;input type="text" value="{{ escape_html(name) }}"&gt;</code></pre>
 <pre class="bg-success"><code>&lt;input type="text" value="Dwayne &amp;quot;The Rock&amp;quot; Johnson"&gt;</code></pre>
 </div>
-<div id="json-lists" class="section level3">
-<h3 class="hasAnchor">
-<a href="#json-lists" class="anchor"></a>JSON Lists</h3>
+<div class="section level3">
+<h3 id="json-lists">JSON Lists<a class="anchor" aria-label="anchor" href="#json-lists"></a>
+</h3>
 <p>Get the number of list elements:</p>
 <pre class="jinjar bg-info"><code>length(): {{ length([3,1,2]) }}</code></pre>
-<pre class="bg-success"><code>length(): 3</code></pre>
+<pre class="bg-success"><code><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="op">)</span><span class="op">:</span> <span class="fl">3</span></code></pre>
 <p>Get the first or last elements:</p>
 <pre class="jinjar bg-info"><code>first(): {{ first([3,1,2]) }}
 last():  {{ last([3,1,2]) }}</code></pre>
-<pre class="bg-success"><code>first(): 3
-last():  2</code></pre>
+<pre class="bg-success"><code><span class="fu">first</span><span class="op">(</span><span class="op">)</span><span class="op">:</span> <span class="fl">3</span>
+<span class="fu">last</span><span class="op">(</span><span class="op">)</span><span class="op">:</span>  <span class="fl">2</span></code></pre>
 <p>Get the minimum or maximum elements:</p>
 <pre class="jinjar bg-info"><code>min(): {{ min([3,1,2]) }}
 max(): {{ max([3,1,2]) }}</code></pre>
-<pre class="bg-success"><code>min(): 1
-max(): 3</code></pre>
+<pre class="bg-success"><code><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="op">)</span><span class="op">:</span> <span class="fl">1</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="op">)</span><span class="op">:</span> <span class="fl">3</span></code></pre>
 <p>Sort the list into ascending order:</p>
 <pre class="jinjar bg-info"><code>sort(): {{ sort([3,1,2]) }}</code></pre>
 <pre class="bg-success"><code>sort(): [1,2,3]</code></pre>
@@ -571,25 +570,25 @@ max(): 3</code></pre>
 User A, User B, User C</code></pre>
 <p>Generate a list as a range of integers:</p>
 <pre class="jinjar bg-info"><code>{% for i in range(4) %}{{ loop.index1 }}{% endfor %}</code></pre>
-<pre class="bg-success"><code>1234</code></pre>
+<pre class="bg-success"><code><span class="fl">1234</span></code></pre>
 <p>Access elements using a dynamic index with <code>at()</code>. Note that the index is <strong>zero-based</strong>.</p>
 <pre class="jinjar bg-info"><code>{% set x = [1,2,3] -%}
 {% set i = 2 -%}
 {{ x.2 }}
 {{ at(x, i) }}</code></pre>
-<pre class="bg-success"><code>3
-3</code></pre>
+<pre class="bg-success"><code><span class="fl">3</span>
+<span class="fl">3</span></code></pre>
 </div>
-<div id="json-objects" class="section level3">
-<h3 class="hasAnchor">
-<a href="#json-objects" class="anchor"></a>JSON Objects</h3>
+<div class="section level3">
+<h3 id="json-objects">JSON Objects<a class="anchor" aria-label="anchor" href="#json-objects"></a>
+</h3>
 <p>Access values using a dynamic key with <code>at()</code>:</p>
 <pre class="jinjar bg-info"><code>{% set x = {"a": 1, "b": 2} -%}
 {% set key = "b" -%}
 {{ x.b }}
 {{ at(x, key) }}</code></pre>
-<pre class="bg-success"><code>2
-2</code></pre>
+<pre class="bg-success"><code><span class="fl">2</span>
+<span class="fl">2</span></code></pre>
 </div>
 </div>
   </div>
@@ -605,11 +604,13 @@ User A, User B, User C</code></pre>
 
 
       <footer><div class="copyright">
-  <p>Developed by David Hall.</p>
+  <p></p>
+<p>Developed by David Hall.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer>
@@ -617,6 +618,8 @@ User A, User B, User C</code></pre>
 
   
 
+
+  
 
   </body>
 </html>
