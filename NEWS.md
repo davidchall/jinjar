@@ -1,3 +1,5 @@
+# jinjar (development version)
+
 # jinjar 0.1.1
 
 * `path_loader()` now correctly finds template files outside the working directory (#11).
