@@ -9,6 +9,18 @@ test_that("templating features work", {
   )
 })
 
+test_that("storing parsed document works", {
+  tmpl <- parse_template("Hello {{ name }}!")
+  expect_equal(
+    render(tmpl, name = "world"),
+    "Hello world!"
+  )
+  expect_equal(
+    render(tmpl, name = "David"),
+    "Hello David!"
+  )
+})
+
 test_that("template files work", {
   with_dir_tree(list("foo" = "Hello {{ name }}!"), {
     path_config <- jinjar_config(fs::path_wd())
