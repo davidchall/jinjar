@@ -44,9 +44,6 @@ parse_template.fs_path <- function(.x, .config = default_config()) {
     paste(readLines(path, encoding = "UTF-8", warn = FALSE), collapse = "\n")
   }
 
-  checkmate::assert_string(.x, min.chars = 1)
-  checkmate::assert_class(.config, "jinjar_config")
-
   if (inherits(.config$loader, "path_loader")) {
     if (!fs::path_has_parent(.x, .config$loader$path)) {
       .x <- fs::path_abs(.x, .config$loader$path)
