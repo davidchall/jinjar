@@ -10,15 +10,11 @@ test_that("templating features work", {
 })
 
 test_that("storing parsed document works", {
-  tmpl <- parse_template("Hello {{ name }}!")
-  expect_equal(
-    render(tmpl, name = "world"),
-    "Hello world!"
-  )
-  expect_equal(
-    render(tmpl, name = "David"),
-    "Hello David!"
-  )
+  x <- parse_template("Hello {{ name }}!")
+
+  expect_snapshot(print(x))
+  expect_equal(render(x, name = "world"), "Hello world!")
+  expect_equal(render(x, name = "David"), "Hello David!")
 })
 
 test_that("template files work", {
