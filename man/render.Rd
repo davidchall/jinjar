@@ -4,6 +4,7 @@
 \alias{render}
 \alias{render.character}
 \alias{render.fs_path}
+\alias{render.jinjar_template}
 \title{Render template}
 \usage{
 render(.x, ...)
@@ -11,12 +12,15 @@ render(.x, ...)
 \method{render}{character}(.x, ..., .config = default_config())
 
 \method{render}{fs_path}(.x, ..., .config = default_config())
+
+\method{render}{jinjar_template}(.x, ...)
 }
 \arguments{
 \item{.x}{The template. Choices:
 \itemize{
 \item A template string.
 \item A path to a template file (use \code{\link[fs:path]{fs::path()}}).
+\item A parsed template (use \code{\link[=parse_template]{parse_template()}}).
 }}
 
 \item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> Data passed to the template.}
@@ -45,6 +49,9 @@ render(fs::path("template.txt"), name = "world")
 }
 }
 \seealso{
-\code{vignette("template-syntax")} describes how to write templates and
-render them using data variables.
+\itemize{
+\item \code{\link[=parse_template]{parse_template()}} supports parsing a template once and rendering multiple
+times with different data variables.
+\item \code{vignette("template-syntax")} describes how to write templates.
+}
 }

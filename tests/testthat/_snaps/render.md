@@ -1,3 +1,10 @@
+# storing parsed document works
+
+    Code
+      print(x)
+    Output
+      Hello {{ name }}!
+
 # include tag
 
     Code

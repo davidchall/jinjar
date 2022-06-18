@@ -5,14 +5,17 @@
 #' @param .x The template. Choices:
 #' * A template string.
 #' * A path to a template file (use [fs::path()]).
+#' * A parsed template (use [parse_template()]).
 #' @param ... <[`dynamic-dots`][rlang::dyn-dots]> Data passed to the template.
 #' @param .config The engine configuration. The default matches Jinja defaults,
 #'   but you can use [jinjar_config()] to customize things like syntax delimiters,
 #'   whitespace control, and loading auxiliary templates.
 #' @return String containing rendered template.
 #'
-#' @seealso `vignette("template-syntax")` describes how to write templates and
-#'   render them using data variables.
+#' @seealso
+#' * [parse_template()] supports parsing a template once and rendering multiple
+#'   times with different data variables.
+#' * `vignette("template-syntax")` describes how to write templates.
 #' @examples
 #' # pass data as arguments
 #' render("Hello {{ name }}!", name = "world")
@@ -33,29 +36,17 @@ render <- function(.x, ...) {
 #' @rdname render
 #' @export
 render.character <- function(.x, ..., .config = default_config()) {
-  checkmate::assert_string(.x, min.chars = 1)
-  checkmate::assert_class(.config, "jinjar_config")
-
-  c_render(.x, encode(...), .config)
+  render(parse_template(.x, .config), ...)
 }
 
 #' @rdname render
 #' @export
 render.fs_path <- function(.x, ..., .config = default_config()) {
-  checkmate::assert_string(.x, min.chars = 1)
-  checkmate::assert_class(.config, "jinjar_config")
-
-  if (inherits(.config$loader, "path_loader")) {
-    if (!fs::path_has_parent(.x, .config$loader$path)) {
-      .x <- fs::path_abs(.x, .config$loader$path)
-    }
-  }
-
-  checkmate::assert_file_exists(.x, access = "r")
-
-  c_render(read_utf8(.x), encode(...), .config)
+  render(parse_template(.x, .config), ...)
 }
 
-read_utf8 <- function(path) {
-  paste(readLines(path, encoding = "UTF-8", warn = FALSE), collapse = "\n")
+#' @rdname render
+#' @export
+render.jinjar_template <- function(.x, ...) {
+  render_(attr(.x, "parsed"), encode(...))
 }

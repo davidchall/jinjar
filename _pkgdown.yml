@@ -3,6 +3,7 @@ url: https://davidchall.github.io/jinjar
 reference:
   - title: Rendering templates
   - contents:
+    - parse
     - render
   - title: Configuration
   - contents:
