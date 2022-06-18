@@ -72,7 +72,10 @@
 <span class="fu">render</span><span class="op">(</span><span class="va">.x</span>, <span class="va">...</span>, .config <span class="op">=</span> <span class="fu"><a href="jinjar_config.html">default_config</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># S3 method for fs_path</span>
-<span class="fu">render</span><span class="op">(</span><span class="va">.x</span>, <span class="va">...</span>, .config <span class="op">=</span> <span class="fu"><a href="jinjar_config.html">default_config</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu">render</span><span class="op">(</span><span class="va">.x</span>, <span class="va">...</span>, .config <span class="op">=</span> <span class="fu"><a href="jinjar_config.html">default_config</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># S3 method for jinjar_template</span>
+<span class="fu">render</span><span class="op">(</span><span class="va">.x</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -80,22 +83,33 @@
     <dl><dt>.x</dt>
 <dd><p>The template. Choices:</p><ul><li><p>A template string.</p></li>
 <li><p>A path to a template file (use <code><a href="https://fs.r-lib.org/reference/path.html" class="external-link">fs::path()</a></code>).</p></li>
+<li><p>A parsed template (use <code><a href="parse.html">parse_template()</a></code>).</p></li>
 </ul></dd>
+
+
 <dt>...</dt>
 <dd><p>&lt;<code><a href="https://rlang.r-lib.org/reference/dyn-dots.html" class="external-link">dynamic-dots</a></code>&gt; Data passed to the template.</p></dd>
+
+
 <dt>.config</dt>
 <dd><p>The engine configuration. The default matches Jinja defaults,
 but you can use <code><a href="jinjar_config.html">jinjar_config()</a></code> to customize things like syntax delimiters,
 whitespace control, and loading auxiliary templates.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>String containing rendered template.</p>
+    
+
+<p>String containing rendered template.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p><code><a href="../articles/template-syntax.html">vignette("template-syntax")</a></code> describes how to write templates and
-render them using data variables.</p></div>
+    <div class="dont-index">
+<ul><li><p><code><a href="parse.html">parse_template()</a></code> supports parsing a template once and rendering multiple
+times with different data variables.</p></li>
+<li><p><code><a href="../articles/template-syntax.html">vignette("template-syntax")</a></code> describes how to write templates.</p></li>
+</ul></div>
     </div>
 
     <div id="ref-examples">
@@ -127,7 +141,7 @@ render them using data variables.</p></div>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
       </footer></div>
