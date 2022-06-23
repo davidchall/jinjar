@@ -64,5 +64,38 @@ inja::Environment jinjar::Template::setup_environment(const cpp11::list& config)
     return s;
   });
 
+  env.add_callback("escape_sql", 1, [](inja::Arguments& args) {
+    const auto val = *args[0];
+
+    auto escape_sql = [](const nlohmann::json& x) {
+      std::string out;
+      if (x.is_string()) {
+        out = "'" + x.get<std::string>() + "'";
+      } else if (x.is_null()) {
+        out = "NULL";
+      } else if (x.is_number() || x.is_boolean()) {
+        out = x;
+      } else {
+        std::string received = x.type_name();
+        cpp11::stop("escape_sql() expects string, numeric or boolean but received " + received);
+      }
+      return out;
+    };
+
+    std::ostringstream os;
+    if (val.is_array()) {
+      std::string sep;
+      for (const auto& x : val) {
+        os << sep;
+        os << escape_sql(x);
+        sep = ", ";
+      }
+    } else {
+      os << escape_sql(val);
+    }
+
+    return os.str();
+  });
+
   return env;
 }
