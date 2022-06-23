@@ -198,20 +198,6 @@ For example, if the line statement prefix is configured to `#`, you can do:
 ```
 
 
-## HTML Escaping {#html-escaping}
-
-When generating HTML from templates, there’s always a risk that a variable will include characters that affect the resulting HTML.
-The special characters are: `<`, `>`, `&` and `"`.
-
-In jinjar, it's **your** responsibility to manually escape variables, using the `escape_html()` function.
-You should escape variables that _might_ contain any of the special characters.
-But if a variable is trusted to contain well-formed HTML, then it should not be escaped (otherwise you could accidentally double-escape the content).
-
-```{jinjar, data=params}
-<input type="text" value="{{ escape_html(name) }}">
-```
-
-
 ## Control Structures {#control-structures}
 
 A control structure refers to all those things that control the flow of a program.
@@ -423,6 +409,39 @@ You can convert strings to numeric types, using the `int()` or `float()` functio
 ```{jinjar}
 {{ int("2") }}
 {{ float("2.5") }}
+```
+
+
+### HTML Escaping {#html-escaping}
+
+When generating HTML from templates, there’s always a risk that a variable will include characters that affect the resulting HTML.
+The special characters are: `<`, `>`, `&` and `"`.
+
+In jinjar, it's **your** responsibility to manually escape variables, using the `escape_html()` function.
+You should escape variables that _might_ contain any of the special characters.
+But if a variable is trusted to contain well-formed HTML, then it should not be escaped (otherwise you could accidentally double-escape the content).
+
+```{jinjar, data=params}
+<input type="text" value="{{ escape_html(name) }}">
+```
+
+
+### SQL Quoting {#sql-quoting}
+
+SQL databases expect string literals to be wrapped in single-quotes, while other types of literals (e.g., numbers) are not quoted.
+This is cumbersome to achieve when writing a template, so the `quote_sql()` function provides this functionality.
+
+**Important:** `quote_sql()` does not provide any protection against SQL injection attacks.
+
+```{jinjar, data=params}
+WHERE title = {{ quote_sql(title) }} AND year = {{ quote_sql(godzilla.Born) }}
+```
+
+When passed an array, `quote_sql()` will quote each element and return a comma-separated list.
+This is particularly helpful when using the SQL `IN` operator.
+
+```{jinjar, data=params}
+WHERE user IN ({{ quote_sql(users) }})
 ```
 
 

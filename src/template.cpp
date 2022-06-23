@@ -64,7 +64,7 @@ inja::Environment jinjar::Template::setup_environment(const cpp11::list& config)
     return s;
   });
 
-  env.add_callback("escape_sql", 1, [](inja::Arguments& args) {
+  env.add_callback("quote_sql", 1, [](inja::Arguments& args) {
     const auto val = *args[0];
 
     auto escape_sql = [](const nlohmann::json& x) {
