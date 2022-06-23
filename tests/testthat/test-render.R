@@ -104,3 +104,34 @@ test_that("escape_html() works", {
     "&amp;&lt;&gt;&quot;&amp;"
   )
 })
+
+test_that("escape_sql() works", {
+  expect_equal(
+    render("WHERE x = {{ escape_sql(col) }}", col = "world"),
+    "WHERE x = 'world'"
+  )
+  expect_equal(
+    render("WHERE x = {{ escape_sql(col) }}", col = 1L),
+    "WHERE x = 1"
+  )
+  expect_equal(
+    render("WHERE x = {{ escape_sql(col) }}", col = 2.5),
+    "WHERE x = 2.5"
+  )
+  expect_equal(
+    render("WHERE x = {{ escape_sql(col) }}", col = TRUE),
+    "WHERE x = true"
+  )
+  expect_equal(
+    render("WHERE x = {{ escape_sql(col) }}", col = NA),
+    "WHERE x = NULL"
+  )
+  expect_equal(
+    render("WHERE x IN ({{ escape_sql(col) }})", col = c("world", "galaxy")),
+    "WHERE x IN ('world', 'galaxy')"
+  )
+  expect_equal(
+    render("WHERE x IN ({{ escape_sql(col) }})", col = c(1, 4, 6)),
+    "WHERE x IN (1, 4, 6)"
+  )
+})

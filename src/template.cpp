@@ -74,7 +74,7 @@ inja::Environment jinjar::Template::setup_environment(const cpp11::list& config)
       } else if (x.is_null()) {
         out = "NULL";
       } else if (x.is_number() || x.is_boolean()) {
-        out = x;
+        out = x.dump();
       } else {
         std::string received = x.type_name();
         cpp11::stop("escape_sql() expects string, numeric or boolean but received " + received);
