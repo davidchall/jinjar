@@ -120,7 +120,11 @@ test_that("quote_sql() works", {
   )
   expect_equal(
     render("WHERE x = {{ quote_sql(col) }}", col = TRUE),
-    "WHERE x = true"
+    "WHERE x = TRUE"
+  )
+  expect_equal(
+    render("WHERE x = {{ quote_sql(col) }}", col = FALSE),
+    "WHERE x = FALSE"
   )
   expect_equal(
     render("WHERE x = {{ quote_sql(col) }}", col = NA),
