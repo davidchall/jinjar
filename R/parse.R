@@ -59,7 +59,26 @@ parse_template.fs_path <- function(.x, .config = default_config()) {
 
 #' @export
 print.jinjar_template <- function(x, ...) {
-  cat(x)
+  find_blocks <- function(x, block) {
+    open <- attr(x, "config")[[paste0(block, "_open")]]
+    close <- attr(x, "config")[[paste0(block, "_close")]]
 
+    ix_open <- as.integer(gregexpr(open, x, fixed = TRUE)[[1]])
+    ix_close <- as.integer(gregexpr(close, x, fixed = TRUE)[[1]])
+
+    # ignore unmatched open/close patterns
+    find_matching_close <- function(x) min(ix_close[ix_close > x])
+    ix_close_match <- vapply(ix_open, find_matching_close, FUN.VALUE = 0L)
+
+    ix_open <- ix_open[c(1, diff(ix_close_match)) != 0]
+    ix_close <- ix_close[ix_close %in% ix_close_match]
+
+    print(ix_open)
+    print(ix_close)
+  }
+
+  find_blocks(x, "variable")
+
+  cat(x)
   invisible(x)
 }
