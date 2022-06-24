@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">jinjar</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1.9000</span>
       </span>
     </div>
 
@@ -38,6 +38,9 @@
       <a href="../articles/auxiliary-templates.html">Auxiliary Templates</a>
     </li>
   </ul></li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/davidchall/jinjar/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -69,7 +72,10 @@
 <span class="fu">render</span><span class="op">(</span><span class="va">.x</span>, <span class="va">...</span>, .config <span class="op">=</span> <span class="fu"><a href="jinjar_config.html">default_config</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># S3 method for fs_path</span>
-<span class="fu">render</span><span class="op">(</span><span class="va">.x</span>, <span class="va">...</span>, .config <span class="op">=</span> <span class="fu"><a href="jinjar_config.html">default_config</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu">render</span><span class="op">(</span><span class="va">.x</span>, <span class="va">...</span>, .config <span class="op">=</span> <span class="fu"><a href="jinjar_config.html">default_config</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># S3 method for jinjar_template</span>
+<span class="fu">render</span><span class="op">(</span><span class="va">.x</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -77,6 +83,7 @@
     <dl><dt>.x</dt>
 <dd><p>The template. Choices:</p><ul><li><p>A template string.</p></li>
 <li><p>A path to a template file (use <code><a href="https://fs.r-lib.org/reference/path.html" class="external-link">fs::path()</a></code>).</p></li>
+<li><p>A parsed template (use <code><a href="parse.html">parse_template()</a></code>).</p></li>
 </ul></dd>
 
 
@@ -98,8 +105,11 @@ whitespace control, and loading auxiliary templates.</p></dd>
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p><code><a href="../articles/template-syntax.html">vignette("template-syntax")</a></code> describes how to write templates and
-render them using data variables.</p></div>
+    <div class="dont-index">
+<ul><li><p><code><a href="parse.html">parse_template()</a></code> supports parsing a template once and rendering multiple
+times with different data variables.</p></li>
+<li><p><code><a href="../articles/template-syntax.html">vignette("template-syntax")</a></code> describes how to write templates.</p></li>
+</ul></div>
     </div>
 
     <div id="ref-examples">
