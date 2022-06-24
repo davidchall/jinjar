@@ -5,7 +5,7 @@
 #' @return A `"jinjar_loader"` object.
 #' @seealso The loader is an argument to [jinjar_config()].
 #' @examples
-#' path_loader(R.home())
+#' path_loader(getwd())
 #'
 #' package_loader("base", "demo")
 #'
