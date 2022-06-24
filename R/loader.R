@@ -5,7 +5,7 @@
 #' @return A `"jinjar_loader"` object.
 #' @seealso The loader is an argument to [jinjar_config()].
 #' @examples
-#' path_loader(R.home())
+#' path_loader(getwd())
 #'
 #' package_loader("base", "demo")
 #'
@@ -26,7 +26,7 @@ new_loader <- function(..., .class = character()) {
 #' @export
 path_loader <- function(...) {
   path <- fs::path_abs(fs::path(...))
-  checkmate::assert_directory_exists(path)
+  check_dir_exists(path)
 
   new_loader(
     path = path,
@@ -54,7 +54,10 @@ print.path_loader <- function(x, ...) {
 #' @rdname loader
 #' @export
 list_loader <- function(x) {
-  checkmate::assert_list(x, types = "character", names = "unique", min.len = 1)
+  if (!(is_bare_list(x) && is_named(x))) {
+    cli::cli_abort("{.arg x} must be a named list")
+  }
+
   do.call(new_loader, c(x, .class = "list_loader"))
 }
 

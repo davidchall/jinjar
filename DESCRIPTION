@@ -19,10 +19,10 @@ URL: https://davidchall.github.io/jinjar/,
     https://github.com/davidchall/jinjar
 BugReports: https://github.com/davidchall/jinjar/issues
 Imports:
-    checkmate,
+    cli,
     fs,
     jsonlite,
-    rlang
+    rlang (>= 1.0.0)
 Suggests: 
     knitr,
     rmarkdown,

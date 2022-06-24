@@ -1,6 +1,6 @@
 # input validation works
 
-    Conflicting delimiters: variable_open, block_open
+    Conflicting delimiters: `variable_open` and `block_open`
 
 # default works
 

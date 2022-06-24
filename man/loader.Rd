@@ -33,7 +33,7 @@ Loaders are responsible for exposing templates to the templating engine.
 \code{list_loader()} loads templates from a named list.
 }
 \examples{
-path_loader(R.home())
+path_loader(getwd())
 
 package_loader("base", "demo")
 
