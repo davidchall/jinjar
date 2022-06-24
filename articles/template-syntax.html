@@ -269,14 +269,6 @@
 <span id="cb13-4"><a href="#cb13-4"></a><span class="kw">&lt;/ul&gt;</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="html-escaping">HTML Escaping<a class="anchor" aria-label="anchor" href="#html-escaping"></a>
-</h2>
-<p>When generating HTML from templates, there’s always a risk that a variable will include characters that affect the resulting HTML. The special characters are: <code>&lt;</code>, <code>&gt;</code>, <code>&amp;</code> and <code>"</code>.</p>
-<p>In jinjar, it’s <strong>your</strong> responsibility to manually escape variables, using the <code>escape_html()</code> function. You should escape variables that <em>might</em> contain any of the special characters. But if a variable is trusted to contain well-formed HTML, then it should not be escaped (otherwise you could accidentally double-escape the content).</p>
-<pre class="jinjar bg-info"><code>&lt;input type="text" value="{{ escape_html(name) }}"&gt;</code></pre>
-<pre class="bg-success"><code>&lt;input type="text" value="Dwayne &amp;quot;The Rock&amp;quot; Johnson"&gt;</code></pre>
-</div>
-<div class="section level2">
 <h2 id="control-structures">Control Structures<a class="anchor" aria-label="anchor" href="#control-structures"></a>
 </h2>
 <p>A control structure refers to all those things that control the flow of a program. With the default syntax, control structures appear inside <code>{% ... %}</code> blocks.</p>
@@ -284,40 +276,40 @@
 <h3 id="for">For<a class="anchor" aria-label="anchor" href="#for"></a>
 </h3>
 <p>A for-loop allows you to iterate over each element in a vector:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode jinjar markdown bg-info"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1"></a>{% for user in users -%}</span>
-<span id="cb16-2"><a href="#cb16-2"></a>{{ loop.index1 }}. {{ user }}</span>
-<span id="cb16-3"><a href="#cb16-3"></a>{%- endfor -%}</span></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode markdown bg-success"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1"></a>1. <span class="st">User A</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="st">2. User B</span></span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="st">3. User C</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode jinjar markdown bg-info"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1"></a>{% for user in users -%}</span>
+<span id="cb14-2"><a href="#cb14-2"></a>{{ loop.index1 }}. {{ user }}</span>
+<span id="cb14-3"><a href="#cb14-3"></a>{%- endfor -%}</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode markdown bg-success"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1"></a>1. <span class="st">User A</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="st">2. User B</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="st">3. User C</span></span></code></pre></div>
 <p>or loop over key-value pairs in a named list:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">&lt;dl&gt;</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a>{% for key, value in godzilla %}</span>
-<span id="cb18-3"><a href="#cb18-3"></a>  <span class="kw">&lt;dt&gt;</span>{{ key }}<span class="kw">&lt;/dt&gt;</span></span>
-<span id="cb18-4"><a href="#cb18-4"></a>  <span class="kw">&lt;dd&gt;</span>{{ value }}<span class="kw">&lt;/dd&gt;</span></span>
-<span id="cb18-5"><a href="#cb18-5"></a>{% endfor -%}</span>
-<span id="cb18-6"><a href="#cb18-6"></a><span class="kw">&lt;/dl&gt;</span></span></code></pre></div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode html bg-success"><code class="sourceCode html"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">&lt;dl&gt;</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a></span>
-<span id="cb19-3"><a href="#cb19-3"></a>  <span class="kw">&lt;dt&gt;</span>Birthplace<span class="kw">&lt;/dt&gt;</span></span>
-<span id="cb19-4"><a href="#cb19-4"></a>  <span class="kw">&lt;dd&gt;</span>Japan<span class="kw">&lt;/dd&gt;</span></span>
-<span id="cb19-5"><a href="#cb19-5"></a></span>
-<span id="cb19-6"><a href="#cb19-6"></a>  <span class="kw">&lt;dt&gt;</span>Born<span class="kw">&lt;/dt&gt;</span></span>
-<span id="cb19-7"><a href="#cb19-7"></a>  <span class="kw">&lt;dd&gt;</span>1952<span class="kw">&lt;/dd&gt;</span></span>
-<span id="cb19-8"><a href="#cb19-8"></a></span>
-<span id="cb19-9"><a href="#cb19-9"></a>  <span class="kw">&lt;dt&gt;</span>Name<span class="kw">&lt;/dt&gt;</span></span>
-<span id="cb19-10"><a href="#cb19-10"></a>  <span class="kw">&lt;dd&gt;</span>Godzilla<span class="kw">&lt;/dd&gt;</span></span>
-<span id="cb19-11"><a href="#cb19-11"></a><span class="kw">&lt;/dl&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">&lt;dl&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>{% for key, value in godzilla %}</span>
+<span id="cb16-3"><a href="#cb16-3"></a>  <span class="kw">&lt;dt&gt;</span>{{ key }}<span class="kw">&lt;/dt&gt;</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a>  <span class="kw">&lt;dd&gt;</span>{{ value }}<span class="kw">&lt;/dd&gt;</span></span>
+<span id="cb16-5"><a href="#cb16-5"></a>{% endfor -%}</span>
+<span id="cb16-6"><a href="#cb16-6"></a><span class="kw">&lt;/dl&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode html bg-success"><code class="sourceCode html"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">&lt;dl&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a></span>
+<span id="cb17-3"><a href="#cb17-3"></a>  <span class="kw">&lt;dt&gt;</span>Birthplace<span class="kw">&lt;/dt&gt;</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a>  <span class="kw">&lt;dd&gt;</span>Japan<span class="kw">&lt;/dd&gt;</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a></span>
+<span id="cb17-6"><a href="#cb17-6"></a>  <span class="kw">&lt;dt&gt;</span>Born<span class="kw">&lt;/dt&gt;</span></span>
+<span id="cb17-7"><a href="#cb17-7"></a>  <span class="kw">&lt;dd&gt;</span>1952<span class="kw">&lt;/dd&gt;</span></span>
+<span id="cb17-8"><a href="#cb17-8"></a></span>
+<span id="cb17-9"><a href="#cb17-9"></a>  <span class="kw">&lt;dt&gt;</span>Name<span class="kw">&lt;/dt&gt;</span></span>
+<span id="cb17-10"><a href="#cb17-10"></a>  <span class="kw">&lt;dd&gt;</span>Godzilla<span class="kw">&lt;/dd&gt;</span></span>
+<span id="cb17-11"><a href="#cb17-11"></a><span class="kw">&lt;/dl&gt;</span></span></code></pre></div>
 <p>As described in <a href="#variables">Variables</a>, a data frame is translated to an array of JSON objects. Therefore a nested combination of the above two loops could theoretically be used. In practice, it is much more common to iterate over rows and access the individual elements by their attributes:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">&lt;ul</span><span class="ot"> id=</span><span class="st">"navigation"</span><span class="kw">&gt;</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a>{% for item in navigation -%}</span>
-<span id="cb20-3"><a href="#cb20-3"></a><span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">"{{ item.href }}"</span><span class="kw">&gt;</span>{{ item.caption }}<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
-<span id="cb20-4"><a href="#cb20-4"></a>{% endfor -%}</span>
-<span id="cb20-5"><a href="#cb20-5"></a><span class="kw">&lt;/ul&gt;</span></span></code></pre></div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode html bg-success"><code class="sourceCode html"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">&lt;ul</span><span class="ot"> id=</span><span class="st">"navigation"</span><span class="kw">&gt;</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">"index.html"</span><span class="kw">&gt;</span>Home<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
-<span id="cb21-3"><a href="#cb21-3"></a><span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">"blog.html"</span><span class="kw">&gt;</span>Blog<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
-<span id="cb21-4"><a href="#cb21-4"></a><span class="kw">&lt;/ul&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">&lt;ul</span><span class="ot"> id=</span><span class="st">"navigation"</span><span class="kw">&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>{% for item in navigation -%}</span>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">"{{ item.href }}"</span><span class="kw">&gt;</span>{{ item.caption }}<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a>{% endfor -%}</span>
+<span id="cb18-5"><a href="#cb18-5"></a><span class="kw">&lt;/ul&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode html bg-success"><code class="sourceCode html"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">&lt;ul</span><span class="ot"> id=</span><span class="st">"navigation"</span><span class="kw">&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">"index.html"</span><span class="kw">&gt;</span>Home<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">"blog.html"</span><span class="kw">&gt;</span>Blog<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a><span class="kw">&lt;/ul&gt;</span></span></code></pre></div>
 <p>While inside a for-loop block, you can access some special variables:</p>
 <table class="table">
 <thead><tr class="header">
@@ -352,16 +344,16 @@
 <h3 id="if">If<a class="anchor" aria-label="anchor" href="#if"></a>
 </h3>
 <p>Conditional branches are written using <code>if</code>, <code>else if</code> and <code>else</code> statements, which evaluate <a href="#expressions">Expressions</a>.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode jinjar markdown bg-info"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1"></a>{% if length(users) &gt; 5 -%}</span>
-<span id="cb22-2"><a href="#cb22-2"></a>{% for user in users -%}</span>
-<span id="cb22-3"><a href="#cb22-3"></a>* <span class="st">{{ user }}</span></span>
-<span id="cb22-4"><a href="#cb22-4"></a><span class="st">{% endfor %}</span></span>
-<span id="cb22-5"><a href="#cb22-5"></a><span class="st">{% else if length(users) &gt; 0 -%}</span></span>
-<span id="cb22-6"><a href="#cb22-6"></a><span class="st">{{ join(users, ", ") }}.</span></span>
-<span id="cb22-7"><a href="#cb22-7"></a><span class="st">{% else -%}</span></span>
-<span id="cb22-8"><a href="#cb22-8"></a><span class="st">No users found.</span></span>
-<span id="cb22-9"><a href="#cb22-9"></a><span class="st">{% endif %}</span></span></code></pre></div>
-<div class="sourceCode" id="cb23"><pre class="sourceCode markdown bg-success"><code class="sourceCode markdown"><span id="cb23-1"><a href="#cb23-1"></a>User A, User B, User C.</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode jinjar markdown bg-info"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1"></a>{% if length(users) &gt; 5 -%}</span>
+<span id="cb20-2"><a href="#cb20-2"></a>{% for user in users -%}</span>
+<span id="cb20-3"><a href="#cb20-3"></a>* <span class="st">{{ user }}</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="st">{% endfor %}</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a><span class="st">{% else if length(users) &gt; 0 -%}</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a><span class="st">{{ join(users, ", ") }}.</span></span>
+<span id="cb20-7"><a href="#cb20-7"></a><span class="st">{% else -%}</span></span>
+<span id="cb20-8"><a href="#cb20-8"></a><span class="st">No users found.</span></span>
+<span id="cb20-9"><a href="#cb20-9"></a><span class="st">{% endif %}</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode markdown bg-success"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1"></a>User A, User B, User C.</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="assignments">Assignments<a class="anchor" aria-label="anchor" href="#assignments"></a>
@@ -517,6 +509,25 @@ true</code></pre>
 <span class="fl">2.5</span></code></pre>
 </div>
 <div class="section level3">
+<h3 id="html-escaping">HTML Escaping<a class="anchor" aria-label="anchor" href="#html-escaping"></a>
+</h3>
+<p>When generating HTML from templates, there’s always a risk that a variable will include characters that affect the resulting HTML. The special characters are: <code>&lt;</code>, <code>&gt;</code>, <code>&amp;</code> and <code>"</code>.</p>
+<p>In jinjar, it’s <strong>your</strong> responsibility to manually escape variables, using the <code>escape_html()</code> function. You should escape variables that <em>might</em> contain any of the special characters. But if a variable is trusted to contain well-formed HTML, then it should not be escaped (otherwise you could accidentally double-escape the content).</p>
+<pre class="jinjar bg-info"><code>&lt;input type="text" value="{{ escape_html(name) }}"&gt;</code></pre>
+<pre class="bg-success"><code>&lt;input type="text" value="Dwayne &amp;quot;The Rock&amp;quot; Johnson"&gt;</code></pre>
+</div>
+<div class="section level3">
+<h3 id="sql-quoting">SQL Quoting<a class="anchor" aria-label="anchor" href="#sql-quoting"></a>
+</h3>
+<p>SQL databases expect string literals to be wrapped in single-quotes, while other types of literals (e.g., numbers) are not quoted. This is cumbersome to achieve when writing a template, so the <code>quote_sql()</code> function provides this functionality.</p>
+<p><strong>Important:</strong> <code>quote_sql()</code> does not provide any protection against SQL injection attacks.</p>
+<pre class="jinjar bg-info"><code>WHERE title = {{ quote_sql(title) }} AND year = {{ quote_sql(godzilla.Born) }}</code></pre>
+<pre class="bg-success"><code>WHERE title = 'My Webpage' AND year = 1952</code></pre>
+<p>When passed an array, <code>quote_sql()</code> will quote each element and return a comma-separated list. This is particularly helpful when using the SQL <code>IN</code> operator.</p>
+<pre class="jinjar bg-info"><code>WHERE user IN ({{ quote_sql(users) }})</code></pre>
+<pre class="bg-success"><code>WHERE user IN ('User A', 'User B', 'User C')</code></pre>
+</div>
+<div class="section level3">
 <h3 id="numeric-data">Numeric Data<a class="anchor" aria-label="anchor" href="#numeric-data"></a>
 </h3>
 <p>You can check if an integer is even or odd, or divisible by some other integer. This could be used to make alternating row colors.</p>
@@ -610,7 +621,7 @@ User A, User B, User C</code></pre>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer>
