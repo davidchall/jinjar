@@ -65,8 +65,6 @@ inja::Environment jinjar::Template::setup_environment(const cpp11::list& config)
   });
 
   env.add_callback("quote_sql", 1, [](inja::Arguments& args) {
-    const auto val = *args[0];
-
     auto quote_sql = [](const nlohmann::json& x) {
       std::string out;
       if (x.is_string()) {
@@ -85,6 +83,8 @@ inja::Environment jinjar::Template::setup_environment(const cpp11::list& config)
     };
 
     std::ostringstream os;
+    const auto val = *args[0];
+
     if (val.is_array()) {
       std::string sep;
       for (const auto& x : val) {
