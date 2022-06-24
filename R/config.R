@@ -39,25 +39,24 @@ jinjar_config <- function(loader = NULL,
                           trim_blocks = FALSE,
                           lstrip_blocks = FALSE,
                           ignore_missing_files = FALSE) {
-  checkmate::assert(
-    checkmate::check_null(loader),
-    checkmate::check_directory_exists(loader),
-    checkmate::check_class(loader, "jinjar_loader")
-  )
+
+  if (!(is_null(loader) || is_string(loader) || inherits(loader, "jinjar_loader"))) {
+    cli::cli_abort("{.arg loader} must be NULL, a path, or a loader object.")
+  }
   if (is.character(loader)) {
     loader <- path_loader(loader)
   }
 
-  checkmate::assert_string(block_open, min.chars = 1)
-  checkmate::assert_string(block_close, min.chars = 1)
-  checkmate::assert_string(variable_open, min.chars = 1)
-  checkmate::assert_string(variable_close, min.chars = 1)
-  checkmate::assert_string(comment_open, min.chars = 1)
-  checkmate::assert_string(comment_close, min.chars = 1)
-  checkmate::assert_string(line_statement, min.chars = 1, null.ok = TRUE)
-  checkmate::assert_flag(trim_blocks)
-  checkmate::assert_flag(lstrip_blocks)
-  checkmate::assert_flag(ignore_missing_files)
+  check_string(block_open)
+  check_string(block_close)
+  check_string(variable_open)
+  check_string(variable_close)
+  check_string(comment_open)
+  check_string(comment_close)
+  check_string(line_statement %||% "")
+  check_bool(trim_blocks)
+  check_bool(lstrip_blocks)
+  check_bool(ignore_missing_files)
 
   delimiters <- c(
     variable_open = variable_open,
@@ -70,10 +69,7 @@ jinjar_config <- function(loader = NULL,
   )
   if (anyDuplicated(delimiters)) {
     conflicts <- delimiters[duplicated(delimiters) | duplicated(delimiters, fromLast = TRUE)]
-    stop(
-      paste("Conflicting delimiters:", paste(names(conflicts), collapse = ", ")),
-      call. = FALSE
-    )
+    cli::cli_abort("Conflicting delimiters: {.arg {names(conflicts)}}")
   }
 
   structure(c(as.list(delimiters), list(

@@ -26,8 +26,10 @@ parse_template <- function(.x, .config) {
 #' @rdname parse
 #' @export
 parse_template.character <- function(.x, .config = default_config()) {
-  checkmate::assert_string(.x, min.chars = 1)
-  checkmate::assert_class(.config, "jinjar_config")
+  check_string(.x)
+  if (!inherits(.config, "jinjar_config")) {
+    cli::cli_abort("{.arg .config} must be a {.cls jinjar_config} object.")
+  }
 
   structure(
     .x,
@@ -50,7 +52,7 @@ parse_template.fs_path <- function(.x, .config = default_config()) {
     }
   }
 
-  checkmate::assert_file_exists(.x, access = "r")
+  check_file_exists(.x)
 
   parse_template(read_utf8(.x), .config)
 }
