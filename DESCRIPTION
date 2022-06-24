@@ -22,7 +22,7 @@ Imports:
     cli,
     fs,
     jsonlite,
-    rlang
+    rlang (>= 1.0.0)
 Suggests: 
     knitr,
     rmarkdown,
