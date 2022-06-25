@@ -78,7 +78,7 @@
 
       
 
-      </header><script src="template-syntax_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Template Syntax</h1>
@@ -130,33 +130,33 @@
 <p>A jinjar template is simply a text file, and when rendered the output is also a text file (e.g. HTML, SQL, LaTeX).</p>
 <p>A template contains <strong>variables</strong> and/or <strong>expressions</strong>, which get replaced with values when a template is rendered; and <strong>tags</strong>, which control the logic of the template.</p>
 <p>Below is a minimal template that illustrates a few basics using the default jinjar configuration. We will cover the details later in this document:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">&lt;html</span><span class="ot"> lang=</span><span class="st">"en"</span><span class="kw">&gt;</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">&lt;head&gt;</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>    <span class="kw">&lt;title&gt;</span>{{ title }}<span class="kw">&lt;/title&gt;</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="kw">&lt;/head&gt;</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="kw">&lt;body&gt;</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>    <span class="kw">&lt;ul</span><span class="ot"> id=</span><span class="st">"navigation"</span><span class="kw">&gt;</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a>    {% for item in navigation -%}</span>
-<span id="cb2-9"><a href="#cb2-9"></a>        <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">"{{ item.href }}"</span><span class="kw">&gt;</span>{{ item.caption }}<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a>    {% endfor -%}</span>
-<span id="cb2-11"><a href="#cb2-11"></a>    <span class="kw">&lt;/ul&gt;</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a>    {# a comment #}</span>
-<span id="cb2-13"><a href="#cb2-13"></a><span class="kw">&lt;/body&gt;</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode html bg-success"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">&lt;html</span><span class="ot"> lang=</span><span class="st">"en"</span><span class="kw">&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="kw">&lt;head&gt;</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>    <span class="kw">&lt;title&gt;</span>My Webpage<span class="kw">&lt;/title&gt;</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="kw">&lt;/head&gt;</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="kw">&lt;body&gt;</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a>    <span class="kw">&lt;ul</span><span class="ot"> id=</span><span class="st">"navigation"</span><span class="kw">&gt;</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a>    <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">"index.html"</span><span class="kw">&gt;</span>Home<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a>    <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">"blog.html"</span><span class="kw">&gt;</span>Blog<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a>    <span class="kw">&lt;/ul&gt;</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a>    </span>
-<span id="cb3-12"><a href="#cb3-12"></a><span class="kw">&lt;/body&gt;</span></span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html</span> <span class="er">lang</span><span class="ot">=</span><span class="st">"en"</span><span class="kw">&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;head&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;title&gt;</span>{{ title }}<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/head&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;body&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;ul</span> <span class="er">id</span><span class="ot">=</span><span class="st">"navigation"</span><span class="kw">&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    {% for item in navigation -%}</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;li&gt;&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">"{{ item.href }}"</span><span class="kw">&gt;</span>{{ item.caption }}<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    {% endfor -%}</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/ul&gt;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    {# a comment #}</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/body&gt;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode html bg-success"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html</span> <span class="er">lang</span><span class="ot">=</span><span class="st">"en"</span><span class="kw">&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;head&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;title&gt;</span>My Webpage<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/head&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;body&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;ul</span> <span class="er">id</span><span class="ot">=</span><span class="st">"navigation"</span><span class="kw">&gt;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;li&gt;&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">"index.html"</span><span class="kw">&gt;</span>Home<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;li&gt;&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">"blog.html"</span><span class="kw">&gt;</span>Blog<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/ul&gt;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/body&gt;</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
 <p>The following example shows the default configuration settings, but you can adjust the syntax configuration as desired using <code><a href="../reference/jinjar_config.html">jinjar_config()</a></code>.</p>
 <p>There are a few kinds of delimiters. The default delimiters are configured as follows:</p>
 <ul>
@@ -220,53 +220,53 @@
 <h2 id="whitespace">Whitespace Control<a class="anchor" aria-label="anchor" href="#whitespace"></a>
 </h2>
 <p>In the default configuration, whitespace (e.g. spaces, tabs, newlines) is left unchanged in the rendered output. For example, in the default configuration we get:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">&lt;div&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>    {% if true %}</span>
-<span id="cb6-3"><a href="#cb6-3"></a>        yay</span>
-<span id="cb6-4"><a href="#cb6-4"></a>    {% endif %}</span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode html bg-success"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">&lt;div&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>    </span>
-<span id="cb7-3"><a href="#cb7-3"></a>        yay</span>
-<span id="cb7-4"><a href="#cb7-4"></a>    </span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    {% if true %}</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        yay</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    {% endif %}</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode html bg-success"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        yay</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
 <p>By setting <code>trim_blocks = TRUE</code> when creating the <code><a href="../reference/jinjar_config.html">jinjar_config()</a></code>, the first newline after a control block is automatically removed. Setting <code>lstrip_blocks = TRUE</code> removes any whitespace from the beginning of the line until the start of each block. With both options enabled, the above example becomes:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">&lt;div&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>    {% if true %}</span>
-<span id="cb8-3"><a href="#cb8-3"></a>        yay</span>
-<span id="cb8-4"><a href="#cb8-4"></a>    {% endif %}</span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode html bg-success"><code class="sourceCode html"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">&lt;div&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>        yay</span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    {% if true %}</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        yay</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    {% endif %}</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode html bg-success"><code class="sourceCode html"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>        yay</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
 <p>Instead of changing the global configuration, you can manually trim whitespace at a more finegrained level.</p>
 <ul>
 <li>By putting a minus sign (<code>-</code>) after the opening delimiter, this removes any whitespace from the beginning of the line until the start of the block (i.e. the same as the <code>lstrip_blocks</code> feature).</li>
 <li>By putting a minus sign (<code>-</code>) before the closing delimiter, this removes any whitespace (including newlines) until the next non-whitespace character (i.e. slightly different from the <code>trim_blocks</code> feature).</li>
 </ul>
 <p>This can be activated for control blocks, comments, or variable expressions:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">&lt;div&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>    {% if true -%}</span>
-<span id="cb10-3"><a href="#cb10-3"></a>        yay</span>
-<span id="cb10-4"><a href="#cb10-4"></a>    {%- endif -%}</span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode html bg-success"><code class="sourceCode html"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">&lt;div&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a>    yay</span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    {% if true -%}</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        yay</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    {%- endif -%}</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode html bg-success"><code class="sourceCode html"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    yay</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="line-statements">Line Statements<a class="anchor" aria-label="anchor" href="#line-statements"></a>
 </h2>
 <p>If line statements are enabled (see <code><a href="../reference/jinjar_config.html">jinjar_config()</a></code>), it’s possible to mark a line as a statement. For example, if the line statement prefix is configured to <code>#</code>, you can do:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">&lt;ul</span><span class="ot"> id=</span><span class="st">"navigation"</span><span class="kw">&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a># for item in navigation</span>
-<span id="cb12-3"><a href="#cb12-3"></a>    <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">"{{ item.href }}"</span><span class="kw">&gt;</span>{{ item.caption }}<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
-<span id="cb12-4"><a href="#cb12-4"></a># endfor</span>
-<span id="cb12-5"><a href="#cb12-5"></a><span class="kw">&lt;/ul&gt;</span></span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode html bg-success"><code class="sourceCode html"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">&lt;ul</span><span class="ot"> id=</span><span class="st">"navigation"</span><span class="kw">&gt;</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>    <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">"index.html"</span><span class="kw">&gt;</span>Home<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
-<span id="cb13-3"><a href="#cb13-3"></a>    <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">"blog.html"</span><span class="kw">&gt;</span>Blog<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a><span class="kw">&lt;/ul&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;ul</span> <span class="er">id</span><span class="ot">=</span><span class="st">"navigation"</span><span class="kw">&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a># for item in navigation</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;li&gt;&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">"{{ item.href }}"</span><span class="kw">&gt;</span>{{ item.caption }}<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a># endfor</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/ul&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode html bg-success"><code class="sourceCode html"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;ul</span> <span class="er">id</span><span class="ot">=</span><span class="st">"navigation"</span><span class="kw">&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;li&gt;&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">"index.html"</span><span class="kw">&gt;</span>Home<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;li&gt;&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">"blog.html"</span><span class="kw">&gt;</span>Blog<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/ul&gt;</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="control-structures">Control Structures<a class="anchor" aria-label="anchor" href="#control-structures"></a>
@@ -276,40 +276,40 @@
 <h3 id="for">For<a class="anchor" aria-label="anchor" href="#for"></a>
 </h3>
 <p>A for-loop allows you to iterate over each element in a vector:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode jinjar markdown bg-info"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1"></a>{% for user in users -%}</span>
-<span id="cb14-2"><a href="#cb14-2"></a>{{ loop.index1 }}. {{ user }}</span>
-<span id="cb14-3"><a href="#cb14-3"></a>{%- endfor -%}</span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode markdown bg-success"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1"></a>1. <span class="st">User A</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="st">2. User B</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="st">3. User C</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode jinjar markdown bg-info"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>{% for user in users -%}</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>{{ loop.index1 }}. {{ user }}</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>{%- endfor -%}</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode markdown bg-success"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>User A</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>User B</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>User C</span></code></pre></div>
 <p>or loop over key-value pairs in a named list:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">&lt;dl&gt;</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a>{% for key, value in godzilla %}</span>
-<span id="cb16-3"><a href="#cb16-3"></a>  <span class="kw">&lt;dt&gt;</span>{{ key }}<span class="kw">&lt;/dt&gt;</span></span>
-<span id="cb16-4"><a href="#cb16-4"></a>  <span class="kw">&lt;dd&gt;</span>{{ value }}<span class="kw">&lt;/dd&gt;</span></span>
-<span id="cb16-5"><a href="#cb16-5"></a>{% endfor -%}</span>
-<span id="cb16-6"><a href="#cb16-6"></a><span class="kw">&lt;/dl&gt;</span></span></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode html bg-success"><code class="sourceCode html"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">&lt;dl&gt;</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a></span>
-<span id="cb17-3"><a href="#cb17-3"></a>  <span class="kw">&lt;dt&gt;</span>Birthplace<span class="kw">&lt;/dt&gt;</span></span>
-<span id="cb17-4"><a href="#cb17-4"></a>  <span class="kw">&lt;dd&gt;</span>Japan<span class="kw">&lt;/dd&gt;</span></span>
-<span id="cb17-5"><a href="#cb17-5"></a></span>
-<span id="cb17-6"><a href="#cb17-6"></a>  <span class="kw">&lt;dt&gt;</span>Born<span class="kw">&lt;/dt&gt;</span></span>
-<span id="cb17-7"><a href="#cb17-7"></a>  <span class="kw">&lt;dd&gt;</span>1952<span class="kw">&lt;/dd&gt;</span></span>
-<span id="cb17-8"><a href="#cb17-8"></a></span>
-<span id="cb17-9"><a href="#cb17-9"></a>  <span class="kw">&lt;dt&gt;</span>Name<span class="kw">&lt;/dt&gt;</span></span>
-<span id="cb17-10"><a href="#cb17-10"></a>  <span class="kw">&lt;dd&gt;</span>Godzilla<span class="kw">&lt;/dd&gt;</span></span>
-<span id="cb17-11"><a href="#cb17-11"></a><span class="kw">&lt;/dl&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;dl&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>{% for key, value in godzilla %}</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;dt&gt;</span>{{ key }}<span class="kw">&lt;/dt&gt;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;dd&gt;</span>{{ value }}<span class="kw">&lt;/dd&gt;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>{% endfor -%}</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/dl&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode html bg-success"><code class="sourceCode html"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;dl&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;dt&gt;</span>Birthplace<span class="kw">&lt;/dt&gt;</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;dd&gt;</span>Japan<span class="kw">&lt;/dd&gt;</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;dt&gt;</span>Born<span class="kw">&lt;/dt&gt;</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;dd&gt;</span>1952<span class="kw">&lt;/dd&gt;</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;dt&gt;</span>Name<span class="kw">&lt;/dt&gt;</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;dd&gt;</span>Godzilla<span class="kw">&lt;/dd&gt;</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/dl&gt;</span></span></code></pre></div>
 <p>As described in <a href="#variables">Variables</a>, a data frame is translated to an array of JSON objects. Therefore a nested combination of the above two loops could theoretically be used. In practice, it is much more common to iterate over rows and access the individual elements by their attributes:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">&lt;ul</span><span class="ot"> id=</span><span class="st">"navigation"</span><span class="kw">&gt;</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a>{% for item in navigation -%}</span>
-<span id="cb18-3"><a href="#cb18-3"></a><span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">"{{ item.href }}"</span><span class="kw">&gt;</span>{{ item.caption }}<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
-<span id="cb18-4"><a href="#cb18-4"></a>{% endfor -%}</span>
-<span id="cb18-5"><a href="#cb18-5"></a><span class="kw">&lt;/ul&gt;</span></span></code></pre></div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode html bg-success"><code class="sourceCode html"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">&lt;ul</span><span class="ot"> id=</span><span class="st">"navigation"</span><span class="kw">&gt;</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a><span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">"index.html"</span><span class="kw">&gt;</span>Home<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
-<span id="cb19-3"><a href="#cb19-3"></a><span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">"blog.html"</span><span class="kw">&gt;</span>Blog<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
-<span id="cb19-4"><a href="#cb19-4"></a><span class="kw">&lt;/ul&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;ul</span> <span class="er">id</span><span class="ot">=</span><span class="st">"navigation"</span><span class="kw">&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>{% for item in navigation -%}</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;li&gt;&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">"{{ item.href }}"</span><span class="kw">&gt;</span>{{ item.caption }}<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>{% endfor -%}</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/ul&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode html bg-success"><code class="sourceCode html"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;ul</span> <span class="er">id</span><span class="ot">=</span><span class="st">"navigation"</span><span class="kw">&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;li&gt;&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">"index.html"</span><span class="kw">&gt;</span>Home<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;li&gt;&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">"blog.html"</span><span class="kw">&gt;</span>Blog<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/ul&gt;</span></span></code></pre></div>
 <p>While inside a for-loop block, you can access some special variables:</p>
 <table class="table">
 <thead><tr class="header">
@@ -344,16 +344,16 @@
 <h3 id="if">If<a class="anchor" aria-label="anchor" href="#if"></a>
 </h3>
 <p>Conditional branches are written using <code>if</code>, <code>else if</code> and <code>else</code> statements, which evaluate <a href="#expressions">Expressions</a>.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode jinjar markdown bg-info"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1"></a>{% if length(users) &gt; 5 -%}</span>
-<span id="cb20-2"><a href="#cb20-2"></a>{% for user in users -%}</span>
-<span id="cb20-3"><a href="#cb20-3"></a>* <span class="st">{{ user }}</span></span>
-<span id="cb20-4"><a href="#cb20-4"></a><span class="st">{% endfor %}</span></span>
-<span id="cb20-5"><a href="#cb20-5"></a><span class="st">{% else if length(users) &gt; 0 -%}</span></span>
-<span id="cb20-6"><a href="#cb20-6"></a><span class="st">{{ join(users, ", ") }}.</span></span>
-<span id="cb20-7"><a href="#cb20-7"></a><span class="st">{% else -%}</span></span>
-<span id="cb20-8"><a href="#cb20-8"></a><span class="st">No users found.</span></span>
-<span id="cb20-9"><a href="#cb20-9"></a><span class="st">{% endif %}</span></span></code></pre></div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode markdown bg-success"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1"></a>User A, User B, User C.</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode jinjar markdown bg-info"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>{% if length(users) &gt; 5 -%}</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>{% for user in users -%}</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>{{ user }}</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>{% endfor %}</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>{% else if length(users) &gt; 0 -%}</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>{{ join(users, ", ") }}.</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>{% else -%}</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>No users found.</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>{% endif %}</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode markdown bg-success"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>User A, User B, User C.</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="assignments">Assignments<a class="anchor" aria-label="anchor" href="#assignments"></a>
