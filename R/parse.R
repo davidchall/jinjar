@@ -59,26 +59,63 @@ parse_template.fs_path <- function(.x, .config = default_config()) {
 
 #' @export
 print.jinjar_template <- function(x, ...) {
-  find_blocks <- function(x, block) {
-    open <- attr(x, "config")[[paste0(block, "_open")]]
-    close <- attr(x, "config")[[paste0(block, "_close")]]
+  config <- attr(x, "config")
 
-    ix_open <- as.integer(gregexpr(open, x, fixed = TRUE)[[1]])
-    ix_close <- as.integer(gregexpr(close, x, fixed = TRUE)[[1]])
+  blocks <- rbind(
+    find_blocks(x, "block", config$block_open, config$block_close),
+    find_blocks(x, "variable", config$variable_open, config$variable_close),
+    find_blocks(x, "comment", config$comment_open, config$comment_close)
+  )
 
-    # ignore unmatched open/close patterns
-    find_matching_close <- function(x) min(ix_close[ix_close > x])
-    ix_close_match <- vapply(ix_open, find_matching_close, FUN.VALUE = 0L)
-
-    ix_open <- ix_open[c(1, diff(ix_close_match)) != 0]
-    ix_close <- ix_close[ix_close %in% ix_close_match]
-
-    print(ix_open)
-    print(ix_close)
+  # handle line statements
+  if (nchar(config$line_statement) > 0) {
+    blocks <- rbind(blocks, find_blocks(x, "block", config$line_statement, "\n"))
   }
 
-  find_blocks(x, "variable")
+  # sort in order of appearance
+  blocks <- blocks[order(blocks$open),]
+
+  print(blocks)
+
+  ix_write <- 0
+  output <- character()
+  for (row in 1:nrow(blocks)) {
+    ix_open <- blocks[row, "open"]
+    ix_close <- blocks[row, "close"]
+
+    if (ix_write < ix_open) {
+      output <- c(output, substr(x, ix_write, ix_open - 1))
+      ix_write <- ix_open
+    }
+
+    if (ix_write == ix_open) {
+      output <- c(output, substr(x, ix_open, ix_close))
+      ix_write <- ix_close + 1
+    }
+  }
+
+  print(output)
 
   cat(x)
   invisible(x)
+}
+
+find_blocks <- function(x, type, open, close) {
+  ix_open <- as.integer(gregexpr(open, x, fixed = TRUE)[[1]])
+  ix_close <- as.integer(gregexpr(close, x, fixed = TRUE)[[1]])
+
+  # no blocks found
+  if (all(ix_open == -1L)) {
+    return(data.frame(type = character(), open = integer(), close = integer()))
+  }
+
+  # ignore unmatched open/close patterns
+  find_matching_close <- function(x) min(ix_close[ix_close > x])
+  ix_close_match <- vapply(ix_open, find_matching_close, FUN.VALUE = 0L)
+
+  ix_open <- ix_open[c(1, diff(ix_close_match)) != 0]
+  ix_close <- ix_close[ix_close %in% ix_close_match]
+  ix_close <- ix_close + nchar(close) - 1
+
+  data.frame(type = type, open = ix_open, close = ix_close)
 }
