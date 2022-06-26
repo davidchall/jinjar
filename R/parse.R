@@ -59,8 +59,15 @@ parse_template.fs_path <- function(.x, .config = default_config()) {
 
 #' @export
 print.jinjar_template <- function(x, ...) {
+  cli::cli_verbatim(style_template(x))
+
+  invisible(x)
+}
+
+style_template <- function(x) {
   config <- attr(x, "config")
 
+  # find blocks
   blocks <- rbind(
     find_blocks(x, "block", config$block_open, config$block_close),
     find_blocks(x, "variable", config$variable_open, config$variable_close),
@@ -72,32 +79,31 @@ print.jinjar_template <- function(x, ...) {
     blocks <- rbind(blocks, find_blocks(x, "block", config$line_statement, "\n"))
   }
 
-  # sort in order of appearance
-  blocks <- blocks[order(blocks$open),]
+  # sort blocks in order of appearance
+  blocks <- blocks[order(blocks$ix_open),]
 
-  print(blocks)
-
+  # style blocks
   ix_write <- 0
   output <- character()
-  for (row in 1:nrow(blocks)) {
-    ix_open <- blocks[row, "open"]
-    ix_close <- blocks[row, "close"]
+  for (i_row in 1:nrow(blocks)) {
+    row <- blocks[i_row,]
 
-    if (ix_write < ix_open) {
-      output <- c(output, substr(x, ix_write, ix_open - 1))
-      ix_write <- ix_open
+    if (ix_write < row$ix_open) {
+      output <- c(output, style_block(x, "", ix_write, row$ix_open - 1))
+      ix_write <- row$ix_open
     }
 
-    if (ix_write == ix_open) {
-      output <- c(output, substr(x, ix_open, ix_close))
-      ix_write <- ix_close + 1
+    if (ix_write == row$ix_open) {
+      output <- c(output, style_block(x, row$type, row$ix_open, row$ix_close))
+      ix_write <- row$ix_close + 1
     }
   }
+  if (ix_write < nchar(x)) {
+    output <- c(output, style_block(x, "", ix_write, nchar(x)))
+  }
 
-  print(output)
-
-  cat(x)
-  invisible(x)
+  # stitch blocks
+  paste0(output, collapse = "")
 }
 
 find_blocks <- function(x, type, open, close) {
@@ -117,5 +123,19 @@ find_blocks <- function(x, type, open, close) {
   ix_close <- ix_close[ix_close %in% ix_close_match]
   ix_close <- ix_close + nchar(close) - 1
 
-  data.frame(type = type, open = ix_open, close = ix_close)
+  data.frame(type, ix_open, ix_close)
+}
+
+style_block <- function(x, type, ix_open, ix_close) {
+  txt_block <- substr(x, ix_open, ix_close)
+
+  if (type == "comment") {
+    cli::col_grey(txt_block)
+  } else if (type == "block") {
+    cli::col_blue(txt_block)
+  } else if (type == "variable") {
+    cli::col_green(txt_block)
+  } else {
+    txt_block
+  }
 }
