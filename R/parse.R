@@ -59,7 +59,11 @@ parse_template.fs_path <- function(.x, .config = default_config()) {
 
 #' @export
 print.jinjar_template <- function(x, ...) {
-  cli::cli_verbatim(style_template(x))
+  if (cli::num_ansi_colors() > 1) {
+    cli::cli_verbatim(style_template(x))
+  } else {
+    cat(x)
+  }
 
   invisible(x)
 }
@@ -107,8 +111,8 @@ style_template <- function(x) {
 }
 
 find_blocks <- function(x, type, open, close) {
-  ix_open <- as.integer(gregexpr(open, x, fixed = TRUE)[[1]])
-  ix_close <- as.integer(gregexpr(close, x, fixed = TRUE)[[1]])
+  ix_open <- gregexpr(open, x, fixed = TRUE)[[1]]
+  ix_close <- gregexpr(close, x, fixed = TRUE)[[1]]
 
   # no blocks found
   if (all(ix_open == -1L)) {
