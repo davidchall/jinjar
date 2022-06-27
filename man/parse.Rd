@@ -35,6 +35,9 @@ template syntax.
 }
 \examples{
 x <- parse_template("Hello {{ name }}!")
+
+x
+
 render(x, name = "world")
 }
 \seealso{

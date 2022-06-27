@@ -16,6 +16,9 @@
 #' * `vignette("template-syntax")` describes how to write templates.
 #' @examples
 #' x <- parse_template("Hello {{ name }}!")
+#'
+#' x
+#'
 #' render(x, name = "world")
 #' @name parse
 #' @export
@@ -93,7 +96,7 @@ style_template <- function(x) {
     row <- blocks[i_row,]
 
     if (ix_write < row$ix_open) {
-      output <- c(output, style_block(x, "", ix_write, row$ix_open - 1))
+      output <- c(output, style_block(x, "text", ix_write, row$ix_open - 1))
       ix_write <- row$ix_open
     }
 
@@ -102,8 +105,8 @@ style_template <- function(x) {
       ix_write <- row$ix_close + 1
     }
   }
-  if (ix_write < nchar(x)) {
-    output <- c(output, style_block(x, "", ix_write, nchar(x)))
+  if (ix_write <= nchar(x)) {
+    output <- c(output, style_block(x, "text", ix_write, nchar(x)))
   }
 
   # stitch blocks
@@ -134,7 +137,7 @@ style_block <- function(x, type, ix_open, ix_close) {
   txt_block <- substr(x, ix_open, ix_close)
 
   if (type == "comment") {
-    cli::col_grey(txt_block)
+    cli::style_italic(cli::col_grey(txt_block))
   } else if (type == "block") {
     cli::col_blue(txt_block)
   } else if (type == "variable") {
