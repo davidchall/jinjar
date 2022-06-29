@@ -10,6 +10,13 @@ check_bool <- function(x, arg = caller_arg(x), call = caller_env()) {
   }
 }
 
+check_count <- function(x, inf = FALSE, arg = caller_arg(x), call = caller_env()) {
+  finite <- if (inf) NULL else TRUE
+  if (!is_scalar_integerish(x, finite = finite) || is.na(x) || x <= 0) {
+    cli::cli_abort("{.arg {arg}} must be a positive integer", call = call)
+  }
+}
+
 check_file_exists <- function(x, arg = caller_arg(x), call = caller_env()) {
   if (!fs::file_exists(x) || fs::dir_exists(x)) {
     cli::cli_abort("File does not exist: {.file {x}}", call = call)
