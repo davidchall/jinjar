@@ -73,7 +73,7 @@ print.jinjar_template <- function(x, ..., n = 10) {
   n_more <- 0L
 
   # truncate output
-  if (!is.infinite(n)) {
+  if (is.finite(n)) {
     lines <- strsplit(x, "\n", fixed = TRUE)[[1]]
     n_found <- length(lines)
 
