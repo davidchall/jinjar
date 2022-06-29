@@ -1,9 +1,10 @@
 # jinjar (development version)
 
-* When printing parsed template objects, output is now stylized using the cli package (#18).
+* `print.jinjar_template()` now highlights templating blocks using the cli package (#18).
     * Variables are green
     * Control blocks are blue
     * Comments are italic grey
+* `print.jinjar_template()` gains an `n` argument to control the number of lines displayed (#18).
 
 
 # jinjar 0.2.0

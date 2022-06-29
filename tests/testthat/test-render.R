@@ -29,6 +29,8 @@ cli::test_that_cli("printing parsed document works", {
   x <- parse_template(template)
   expect_snapshot(print(x, n = Inf))
   expect_snapshot(print(x, n = 5))
+
+  expect_error(print(x, n = 2.5))
 })
 
 test_that("template files work", {
