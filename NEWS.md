@@ -1,6 +1,6 @@
 # jinjar (development version)
 
-* `print.jinjar_template()` now highlights templating blocks using the cli package (#18).
+* `print.jinjar_template()` now highlights templating blocks using {cli} (#18).
     * Variables are green
     * Control blocks are blue
     * Comments are italic grey
