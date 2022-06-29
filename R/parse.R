@@ -62,7 +62,7 @@ parse_template.fs_path <- function(.x, .config = default_config()) {
   parse_template(read_utf8(.x), .config)
 }
 
-#' @param x Object to format or print.
+#' @param x Object to print.
 #' @param n Number of lines to show. If `Inf`, will print all lines. Default: `10`.
 #' @inheritParams rlang::args_dots_empty
 #' @rdname parse

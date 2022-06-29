@@ -27,7 +27,7 @@ parse_template(.x, .config)
 but you can use \code{\link[=jinjar_config]{jinjar_config()}} to customize things like syntax delimiters,
 whitespace control, and loading auxiliary templates.}
 
-\item{x}{Object to format or print.}
+\item{x}{Object to print.}
 
 \item{...}{These dots are for future extensions and must be empty.}
 
