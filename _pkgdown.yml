@@ -1,10 +1,11 @@
 url: https://davidchall.github.io/jinjar
 
 reference:
-  - title: Rendering templates
+  - title: Templates
   - contents:
-    - parse
     - render
+    - parse
+    - print.jinjar_template
   - title: Configuration
   - contents:
     - jinjar_config

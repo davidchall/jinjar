@@ -5,7 +5,7 @@
 \alias{render.character}
 \alias{render.fs_path}
 \alias{render.jinjar_template}
-\title{Render template}
+\title{Render a template}
 \usage{
 render(.x, ...)
 

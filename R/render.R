@@ -1,4 +1,4 @@
-#' Render template
+#' Render a template
 #'
 #' Data is passed to a template to render the final document.
 #'

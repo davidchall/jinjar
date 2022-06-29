@@ -5,16 +5,13 @@
 \alias{parse_template}
 \alias{parse_template.character}
 \alias{parse_template.fs_path}
-\alias{print.jinjar_template}
-\title{Parse template}
+\title{Parse a template}
 \usage{
 parse_template(.x, .config)
 
 \method{parse_template}{character}(.x, .config = default_config())
 
 \method{parse_template}{fs_path}(.x, .config = default_config())
-
-\method{print}{jinjar_template}(x, ..., n = 10)
 }
 \arguments{
 \item{.x}{The template. Choices:
@@ -26,12 +23,6 @@ parse_template(.x, .config)
 \item{.config}{The engine configuration. The default matches Jinja defaults,
 but you can use \code{\link[=jinjar_config]{jinjar_config()}} to customize things like syntax delimiters,
 whitespace control, and loading auxiliary templates.}
-
-\item{x}{Object to print.}
-
-\item{...}{These dots are for future extensions and must be empty.}
-
-\item{n}{Number of lines to show. If \code{Inf}, will print all lines. Default: \code{10}.}
 }
 \value{
 A \code{"jinjar_template"} object.
@@ -45,13 +36,12 @@ template syntax.
 \examples{
 x <- parse_template("Hello {{ name }}!")
 
-x
-
 render(x, name = "world")
 }
 \seealso{
 \itemize{
 \item \code{\link[=render]{render()}} to render the final document using data variables.
+\item \code{\link[=print.jinjar_template]{print()}} for pretty printing.
 \item \code{vignette("template-syntax")} describes how to write templates.
 }
 }
