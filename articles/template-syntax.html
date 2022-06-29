@@ -101,29 +101,29 @@
 <p>This is described in more detail in the <a href="#variables">Variables</a> section below.</p>
 <p>Before starting, let’s create a few R objects for rendering example templates.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://davidchall.github.io/jinjar/">jinjar</a></span><span class="op">)</span>
-
-<span class="co"># length-1 vector</span>
-<span class="va">title</span> <span class="op">&lt;-</span> <span class="st">"My Webpage"</span>
-
-<span class="co"># vector</span>
-<span class="va">users</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"User A"</span>, <span class="st">"User B"</span>, <span class="st">"User C"</span><span class="op">)</span>
-
-<span class="co"># list</span>
-<span class="va">godzilla</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
-  Name <span class="op">=</span> <span class="st">"Godzilla"</span>,
-  Born <span class="op">=</span> <span class="fl">1952</span>,
-  Birthplace <span class="op">=</span> <span class="st">"Japan"</span>
-<span class="op">)</span>
-
-<span class="co"># data frame</span>
-<span class="va">navigation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>
-  caption <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Home"</span>, <span class="st">"Blog"</span><span class="op">)</span>,
-  href <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"index.html"</span>, <span class="st">"blog.html"</span><span class="op">)</span>
-<span class="op">)</span>
-
-<span class="co"># HTML special characters</span>
-<span class="va">name</span> <span class="op">&lt;-</span> <span class="st">'Dwayne "The Rock" Johnson'</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://davidchall.github.io/jinjar/">jinjar</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># length-1 vector</span></span>
+<span><span class="va">title</span> <span class="op">&lt;-</span> <span class="st">"My Webpage"</span></span>
+<span></span>
+<span><span class="co"># vector</span></span>
+<span><span class="va">users</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"User A"</span>, <span class="st">"User B"</span>, <span class="st">"User C"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># list</span></span>
+<span><span class="va">godzilla</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>  Name <span class="op">=</span> <span class="st">"Godzilla"</span>,</span>
+<span>  Born <span class="op">=</span> <span class="fl">1952</span>,</span>
+<span>  Birthplace <span class="op">=</span> <span class="st">"Japan"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># data frame</span></span>
+<span><span class="va">navigation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>  caption <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Home"</span>, <span class="st">"Blog"</span><span class="op">)</span>,</span>
+<span>  href <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"index.html"</span>, <span class="st">"blog.html"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># HTML special characters</span></span>
+<span><span class="va">name</span> <span class="op">&lt;-</span> <span class="st">'Dwayne "The Rock" Johnson'</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="synopsis">Synopsis<a class="anchor" aria-label="anchor" href="#synopsis"></a>
 </h2>
@@ -436,18 +436,18 @@ Null: </code></pre>
 <h3 id="comparisons">Comparisons<a class="anchor" aria-label="anchor" href="#comparisons"></a>
 </h3>
 <p>You can perform comparisons:</p>
-<pre class="jinjar bg-info"><code><span class="fl">1</span> <span class="op">==</span> <span class="fl">1</span><span class="op">:</span> <span class="op">{</span><span class="op">{</span> <span class="fl">1</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">}</span><span class="op">}</span>
-<span class="fl">1</span> <span class="op">!=</span> <span class="fl">1</span><span class="op">:</span> <span class="op">{</span><span class="op">{</span> <span class="fl">1</span> <span class="op">!=</span> <span class="fl">1</span> <span class="op">}</span><span class="op">}</span>
-<span class="fl">2</span> <span class="op">&gt;</span>  <span class="fl">1</span><span class="op">:</span> <span class="op">{</span><span class="op">{</span> <span class="fl">2</span> <span class="op">&gt;</span> <span class="fl">1</span> <span class="op">}</span><span class="op">}</span>
-<span class="fl">2</span> <span class="op">&gt;=</span> <span class="fl">1</span><span class="op">:</span> <span class="op">{</span><span class="op">{</span> <span class="fl">2</span> <span class="op">&gt;=</span> <span class="fl">1</span> <span class="op">}</span><span class="op">}</span>
-<span class="fl">2</span> <span class="op">&lt;</span>  <span class="fl">1</span><span class="op">:</span> <span class="op">{</span><span class="op">{</span> <span class="fl">2</span> <span class="op">&lt;</span> <span class="fl">1</span> <span class="op">}</span><span class="op">}</span>
-<span class="fl">2</span> <span class="op">&lt;=</span> <span class="fl">1</span><span class="op">:</span> <span class="op">{</span><span class="op">{</span> <span class="fl">2</span> <span class="op">&lt;=</span> <span class="fl">1</span> <span class="op">}</span><span class="op">}</span></code></pre>
-<pre class="bg-success"><code><span class="fl">1</span> <span class="op">==</span> <span class="fl">1</span><span class="op">:</span> <span class="va">true</span>
-<span class="fl">1</span> <span class="op">!=</span> <span class="fl">1</span><span class="op">:</span> <span class="va">false</span>
-<span class="fl">2</span> <span class="op">&gt;</span>  <span class="fl">1</span><span class="op">:</span> <span class="va">true</span>
-<span class="fl">2</span> <span class="op">&gt;=</span> <span class="fl">1</span><span class="op">:</span> <span class="va">true</span>
-<span class="fl">2</span> <span class="op">&lt;</span>  <span class="fl">1</span><span class="op">:</span> <span class="va">false</span>
-<span class="fl">2</span> <span class="op">&lt;=</span> <span class="fl">1</span><span class="op">:</span> <span class="va">false</span></code></pre>
+<pre class="jinjar bg-info"><code><span><span class="fl">1</span> <span class="op">==</span> <span class="fl">1</span><span class="op">:</span> <span class="op">{</span><span class="op">{</span> <span class="fl">1</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">}</span><span class="op">}</span></span>
+<span><span class="fl">1</span> <span class="op">!=</span> <span class="fl">1</span><span class="op">:</span> <span class="op">{</span><span class="op">{</span> <span class="fl">1</span> <span class="op">!=</span> <span class="fl">1</span> <span class="op">}</span><span class="op">}</span></span>
+<span><span class="fl">2</span> <span class="op">&gt;</span>  <span class="fl">1</span><span class="op">:</span> <span class="op">{</span><span class="op">{</span> <span class="fl">2</span> <span class="op">&gt;</span> <span class="fl">1</span> <span class="op">}</span><span class="op">}</span></span>
+<span><span class="fl">2</span> <span class="op">&gt;=</span> <span class="fl">1</span><span class="op">:</span> <span class="op">{</span><span class="op">{</span> <span class="fl">2</span> <span class="op">&gt;=</span> <span class="fl">1</span> <span class="op">}</span><span class="op">}</span></span>
+<span><span class="fl">2</span> <span class="op">&lt;</span>  <span class="fl">1</span><span class="op">:</span> <span class="op">{</span><span class="op">{</span> <span class="fl">2</span> <span class="op">&lt;</span> <span class="fl">1</span> <span class="op">}</span><span class="op">}</span></span>
+<span><span class="fl">2</span> <span class="op">&lt;=</span> <span class="fl">1</span><span class="op">:</span> <span class="op">{</span><span class="op">{</span> <span class="fl">2</span> <span class="op">&lt;=</span> <span class="fl">1</span> <span class="op">}</span><span class="op">}</span></span></code></pre>
+<pre class="bg-success"><code><span><span class="fl">1</span> <span class="op">==</span> <span class="fl">1</span><span class="op">:</span> <span class="va">true</span></span>
+<span><span class="fl">1</span> <span class="op">!=</span> <span class="fl">1</span><span class="op">:</span> <span class="va">false</span></span>
+<span><span class="fl">2</span> <span class="op">&gt;</span>  <span class="fl">1</span><span class="op">:</span> <span class="va">true</span></span>
+<span><span class="fl">2</span> <span class="op">&gt;=</span> <span class="fl">1</span><span class="op">:</span> <span class="va">true</span></span>
+<span><span class="fl">2</span> <span class="op">&lt;</span>  <span class="fl">1</span><span class="op">:</span> <span class="va">false</span></span>
+<span><span class="fl">2</span> <span class="op">&lt;=</span> <span class="fl">1</span><span class="op">:</span> <span class="va">false</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="logic">Logic<a class="anchor" aria-label="anchor" href="#logic"></a>
@@ -461,7 +461,7 @@ true or false: true
 not false: true</code></pre>
 <p>You can also check if a value is contained within a list using <code>in</code>:</p>
 <pre class="jinjar bg-info"><code>{{ 1 in [1, 2, 3] }}</code></pre>
-<pre class="bg-success"><code><span class="va">true</span></code></pre>
+<pre class="bg-success"><code><span><span class="va">true</span></span></code></pre>
 </div>
 </div>
 <div class="section level2">
@@ -481,8 +481,8 @@ Weight doesn't exist: {{ existsIn(godzilla, "Weight") }}</code></pre>
 <pre class="bg-success"><code>Birthplace does exist: true
 Weight doesn't exist: false</code></pre>
 <p>Concisely handle missing values using the <code>default()</code> function:</p>
-<pre class="jinjar bg-info"><code><span class="op">{</span><span class="op">{</span> <span class="fu">default</span><span class="op">(</span><span class="va">godzilla.Weight</span>, <span class="fl">20000</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span></code></pre>
-<pre class="bg-success"><code><span class="fl">20000</span></code></pre>
+<pre class="jinjar bg-info"><code><span><span class="op">{</span><span class="op">{</span> <span class="fu">default</span><span class="op">(</span><span class="va">godzilla.Weight</span>, <span class="fl">20000</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span></span></code></pre>
+<pre class="bg-success"><code><span><span class="fl">20000</span></span></code></pre>
 <p>You can also check the data type of a variable or literal:</p>
 <pre class="jinjar bg-info"><code>{{ isString("a string") }}
 {{ isInteger(3) }}
@@ -503,10 +503,10 @@ true</code></pre>
 <h3 id="data-conversion">Data Conversion<a class="anchor" aria-label="anchor" href="#data-conversion"></a>
 </h3>
 <p>You can convert strings to numeric types, using the <code>int()</code> or <code>float()</code> functions:</p>
-<pre class="jinjar bg-info"><code><span class="op">{</span><span class="op">{</span> <span class="fu">int</span><span class="op">(</span><span class="st">"2"</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span>
-<span class="op">{</span><span class="op">{</span> <span class="fu">float</span><span class="op">(</span><span class="st">"2.5"</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span></code></pre>
-<pre class="bg-success"><code><span class="fl">2</span>
-<span class="fl">2.5</span></code></pre>
+<pre class="jinjar bg-info"><code><span><span class="op">{</span><span class="op">{</span> <span class="fu">int</span><span class="op">(</span><span class="st">"2"</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span></span>
+<span><span class="op">{</span><span class="op">{</span> <span class="fu">float</span><span class="op">(</span><span class="st">"2.5"</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span></span></code></pre>
+<pre class="bg-success"><code><span><span class="fl">2</span></span>
+<span><span class="fl">2.5</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="html-escaping">HTML Escaping<a class="anchor" aria-label="anchor" href="#html-escaping"></a>
@@ -531,26 +531,26 @@ true</code></pre>
 <h3 id="numeric-data">Numeric Data<a class="anchor" aria-label="anchor" href="#numeric-data"></a>
 </h3>
 <p>You can check if an integer is even or odd, or divisible by some other integer. This could be used to make alternating row colors.</p>
-<pre class="jinjar bg-info"><code><span class="op">{</span><span class="op">{</span> <span class="fu">even</span><span class="op">(</span><span class="fl">42</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span>
-<span class="op">{</span><span class="op">{</span> <span class="fu">odd</span><span class="op">(</span><span class="fl">42</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span>
-<span class="op">{</span><span class="op">{</span> <span class="fu">divisibleBy</span><span class="op">(</span><span class="fl">42</span>, <span class="fl">7</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span></code></pre>
-<pre class="bg-success"><code><span class="va">true</span>
-<span class="va">false</span>
-<span class="va">true</span></code></pre>
+<pre class="jinjar bg-info"><code><span><span class="op">{</span><span class="op">{</span> <span class="fu">even</span><span class="op">(</span><span class="fl">42</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span></span>
+<span><span class="op">{</span><span class="op">{</span> <span class="fu">odd</span><span class="op">(</span><span class="fl">42</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span></span>
+<span><span class="op">{</span><span class="op">{</span> <span class="fu">divisibleBy</span><span class="op">(</span><span class="fl">42</span>, <span class="fl">7</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span></span></code></pre>
+<pre class="bg-success"><code><span><span class="va">true</span></span>
+<span><span class="va">false</span></span>
+<span><span class="va">true</span></span></code></pre>
 <p>You can round floating point numbers to a specific precision:</p>
-<pre class="jinjar bg-info"><code><span class="op">{</span><span class="op">{</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">3.1415</span>, <span class="fl">0</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span>
-<span class="op">{</span><span class="op">{</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">3.1415</span>, <span class="fl">3</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span></code></pre>
-<pre class="bg-success"><code><span class="fl">3</span>
-<span class="fl">3.142</span></code></pre>
+<pre class="jinjar bg-info"><code><span><span class="op">{</span><span class="op">{</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">3.1415</span>, <span class="fl">0</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span></span>
+<span><span class="op">{</span><span class="op">{</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">3.1415</span>, <span class="fl">3</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span></span></code></pre>
+<pre class="bg-success"><code><span><span class="fl">3</span></span>
+<span><span class="fl">3.142</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="string-data">String Data<a class="anchor" aria-label="anchor" href="#string-data"></a>
 </h3>
 <p>Translate a string to lower case or upper case:</p>
-<pre class="jinjar bg-info"><code><span class="op">{</span><span class="op">{</span> <span class="fu">lower</span><span class="op">(</span><span class="st">"Hello"</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span>
-<span class="op">{</span><span class="op">{</span> <span class="fu">upper</span><span class="op">(</span><span class="st">"Hello"</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span></code></pre>
-<pre class="bg-success"><code><span class="va">hello</span>
-<span class="va">HELLO</span></code></pre>
+<pre class="jinjar bg-info"><code><span><span class="op">{</span><span class="op">{</span> <span class="fu">lower</span><span class="op">(</span><span class="st">"Hello"</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span></span>
+<span><span class="op">{</span><span class="op">{</span> <span class="fu">upper</span><span class="op">(</span><span class="st">"Hello"</span><span class="op">)</span> <span class="op">}</span><span class="op">}</span></span></code></pre>
+<pre class="bg-success"><code><span><span class="va">hello</span></span>
+<span><span class="va">HELLO</span></span></code></pre>
 <p>Escape special characters for use in HTML content (see <a href="#html-escaping">HTML Escaping</a>):</p>
 <pre class="jinjar bg-info"><code>&lt;input type="text" value="{{ escape_html(name) }}"&gt;</code></pre>
 <pre class="bg-success"><code>&lt;input type="text" value="Dwayne &amp;quot;The Rock&amp;quot; Johnson"&gt;</code></pre>
@@ -560,17 +560,17 @@ true</code></pre>
 </h3>
 <p>Get the number of list elements:</p>
 <pre class="jinjar bg-info"><code>length(): {{ length([3,1,2]) }}</code></pre>
-<pre class="bg-success"><code><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="op">)</span><span class="op">:</span> <span class="fl">3</span></code></pre>
+<pre class="bg-success"><code><span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="op">)</span><span class="op">:</span> <span class="fl">3</span></span></code></pre>
 <p>Get the first or last elements:</p>
 <pre class="jinjar bg-info"><code>first(): {{ first([3,1,2]) }}
 last():  {{ last([3,1,2]) }}</code></pre>
-<pre class="bg-success"><code><span class="fu">first</span><span class="op">(</span><span class="op">)</span><span class="op">:</span> <span class="fl">3</span>
-<span class="fu">last</span><span class="op">(</span><span class="op">)</span><span class="op">:</span>  <span class="fl">2</span></code></pre>
+<pre class="bg-success"><code><span><span class="fu">first</span><span class="op">(</span><span class="op">)</span><span class="op">:</span> <span class="fl">3</span></span>
+<span><span class="fu">last</span><span class="op">(</span><span class="op">)</span><span class="op">:</span>  <span class="fl">2</span></span></code></pre>
 <p>Get the minimum or maximum elements:</p>
 <pre class="jinjar bg-info"><code>min(): {{ min([3,1,2]) }}
 max(): {{ max([3,1,2]) }}</code></pre>
-<pre class="bg-success"><code><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="op">)</span><span class="op">:</span> <span class="fl">1</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="op">)</span><span class="op">:</span> <span class="fl">3</span></code></pre>
+<pre class="bg-success"><code><span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="op">)</span><span class="op">:</span> <span class="fl">1</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="op">)</span><span class="op">:</span> <span class="fl">3</span></span></code></pre>
 <p>Sort the list into ascending order:</p>
 <pre class="jinjar bg-info"><code>sort(): {{ sort([3,1,2]) }}</code></pre>
 <pre class="bg-success"><code>sort(): [1,2,3]</code></pre>
@@ -581,14 +581,14 @@ max(): {{ max([3,1,2]) }}</code></pre>
 User A, User B, User C</code></pre>
 <p>Generate a list as a range of integers:</p>
 <pre class="jinjar bg-info"><code>{% for i in range(4) %}{{ loop.index1 }}{% endfor %}</code></pre>
-<pre class="bg-success"><code><span class="fl">1234</span></code></pre>
+<pre class="bg-success"><code><span><span class="fl">1234</span></span></code></pre>
 <p>Access elements using a dynamic index with <code>at()</code>. Note that the index is <strong>zero-based</strong>.</p>
 <pre class="jinjar bg-info"><code>{% set x = [1,2,3] -%}
 {% set i = 2 -%}
 {{ x.2 }}
 {{ at(x, i) }}</code></pre>
-<pre class="bg-success"><code><span class="fl">3</span>
-<span class="fl">3</span></code></pre>
+<pre class="bg-success"><code><span><span class="fl">3</span></span>
+<span><span class="fl">3</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="json-objects">JSON Objects<a class="anchor" aria-label="anchor" href="#json-objects"></a>
@@ -598,8 +598,8 @@ User A, User B, User C</code></pre>
 {% set key = "b" -%}
 {{ x.b }}
 {{ at(x, key) }}</code></pre>
-<pre class="bg-success"><code><span class="fl">2</span>
-<span class="fl">2</span></code></pre>
+<pre class="bg-success"><code><span><span class="fl">2</span></span>
+<span><span class="fl">2</span></span></code></pre>
 </div>
 </div>
   </div>

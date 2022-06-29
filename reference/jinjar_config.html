@@ -68,21 +68,21 @@ the syntax). The default values have been chosen to match the Jinja defaults.</p
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">jinjar_config</span><span class="op">(</span>
-  loader <span class="op">=</span> <span class="cn">NULL</span>,
-  block_open <span class="op">=</span> <span class="st">"{%"</span>,
-  block_close <span class="op">=</span> <span class="st">"%}"</span>,
-  variable_open <span class="op">=</span> <span class="st">"{{"</span>,
-  variable_close <span class="op">=</span> <span class="st">"}}"</span>,
-  comment_open <span class="op">=</span> <span class="st">"{#"</span>,
-  comment_close <span class="op">=</span> <span class="st">"#}"</span>,
-  line_statement <span class="op">=</span> <span class="cn">NULL</span>,
-  trim_blocks <span class="op">=</span> <span class="cn">FALSE</span>,
-  lstrip_blocks <span class="op">=</span> <span class="cn">FALSE</span>,
-  ignore_missing_files <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span>
-
-<span class="fu">default_config</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">jinjar_config</span><span class="op">(</span></span>
+<span>  loader <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  block_open <span class="op">=</span> <span class="st">"{%"</span>,</span>
+<span>  block_close <span class="op">=</span> <span class="st">"%}"</span>,</span>
+<span>  variable_open <span class="op">=</span> <span class="st">"{{"</span>,</span>
+<span>  variable_close <span class="op">=</span> <span class="st">"}}"</span>,</span>
+<span>  comment_open <span class="op">=</span> <span class="st">"{#"</span>,</span>
+<span>  comment_close <span class="op">=</span> <span class="st">"#}"</span>,</span>
+<span>  line_statement <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  trim_blocks <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  lstrip_blocks <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  ignore_missing_files <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">default_config</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -142,7 +142,7 @@ significance in R (see <code><a href="https://rdrr.io/r/base/environment.html" c
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">jinjar_config</span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">jinjar_config</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Loader: disabled</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Syntax: {% block %} {{ variable }} {# comment #}</span>
 </code></pre></div>

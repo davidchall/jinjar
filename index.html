@@ -94,47 +94,47 @@
 </h2>
 <p>You can install the released version of bignum from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"jinjar"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"jinjar"</span><span class="op">)</span></span></code></pre></div>
 <p>Or you can install the development version from GitHub:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"davidchall/jinjar"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"davidchall/jinjar"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://davidchall.github.io/jinjar/">jinjar</a></span><span class="op">)</span>
-
-<span class="fu"><a href="reference/render.html">render</a></span><span class="op">(</span><span class="st">"Hello {{ name }}!"</span>, name <span class="op">=</span> <span class="st">"world"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "Hello world!"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://davidchall.github.io/jinjar/">jinjar</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/render.html">render</a></span><span class="op">(</span><span class="st">"Hello {{ name }}!"</span>, name <span class="op">=</span> <span class="st">"world"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Hello world!"</span></span></code></pre></div>
 <p>Here’s a more advanced example, using loops and conditional statements:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">template</span> <span class="op">&lt;-</span> <span class="st">'Humans of A New Hope
-
-{% for person in people -%}
-{% if "A New Hope" in person.films and default(person.species, "Unknown") == "Human" -%}
-* {{ person.name }} ({{ person.homeworld }})
-{% endif -%}
-{% endfor -%}
-'</span>
-
-<span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/render.html">render</a></span><span class="op">(</span><span class="va">template</span>, people <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="va">starwars</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span>
-<span class="co">#&gt; Humans of A New Hope</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; * Luke Skywalker (Tatooine)</span>
-<span class="co">#&gt; * Darth Vader (Tatooine)</span>
-<span class="co">#&gt; * Leia Organa (Alderaan)</span>
-<span class="co">#&gt; * Owen Lars (Tatooine)</span>
-<span class="co">#&gt; * Beru Whitesun lars (Tatooine)</span>
-<span class="co">#&gt; * Biggs Darklighter (Tatooine)</span>
-<span class="co">#&gt; * Obi-Wan Kenobi (Stewjon)</span>
-<span class="co">#&gt; * Wilhuff Tarkin (Eriadu)</span>
-<span class="co">#&gt; * Han Solo (Corellia)</span>
-<span class="co">#&gt; * Wedge Antilles (Corellia)</span>
-<span class="co">#&gt; * Jek Tono Porkins (Bestine IV)</span>
-<span class="co">#&gt; * Raymus Antilles (Alderaan)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">template</span> <span class="op">&lt;-</span> <span class="st">'Humans of A New Hope</span></span>
+<span><span class="st"></span></span>
+<span><span class="st">{% for person in people -%}</span></span>
+<span><span class="st">{% if "A New Hope" in person.films and default(person.species, "Unknown") == "Human" -%}</span></span>
+<span><span class="st">* {{ person.name }} ({{ person.homeworld }})</span></span>
+<span><span class="st">{% endif -%}</span></span>
+<span><span class="st">{% endfor -%}</span></span>
+<span><span class="st">'</span></span>
+<span></span>
+<span><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/render.html">render</a></span><span class="op">(</span><span class="va">template</span>, people <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="va">starwars</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Humans of A New Hope</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; * Luke Skywalker (Tatooine)</span></span>
+<span><span class="co">#&gt; * Darth Vader (Tatooine)</span></span>
+<span><span class="co">#&gt; * Leia Organa (Alderaan)</span></span>
+<span><span class="co">#&gt; * Owen Lars (Tatooine)</span></span>
+<span><span class="co">#&gt; * Beru Whitesun lars (Tatooine)</span></span>
+<span><span class="co">#&gt; * Biggs Darklighter (Tatooine)</span></span>
+<span><span class="co">#&gt; * Obi-Wan Kenobi (Stewjon)</span></span>
+<span><span class="co">#&gt; * Wilhuff Tarkin (Eriadu)</span></span>
+<span><span class="co">#&gt; * Han Solo (Corellia)</span></span>
+<span><span class="co">#&gt; * Wedge Antilles (Corellia)</span></span>
+<span><span class="co">#&gt; * Jek Tono Porkins (Bestine IV)</span></span>
+<span><span class="co">#&gt; * Raymus Antilles (Alderaan)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="related-work">Related work<a class="anchor" aria-label="anchor" href="#related-work"></a>

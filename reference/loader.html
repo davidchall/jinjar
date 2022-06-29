@@ -72,11 +72,11 @@ list_loader() loads templates from a named list."><!-- mathjax --><script src="h
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">path_loader</span><span class="op">(</span><span class="va">...</span><span class="op">)</span>
-
-<span class="fu">package_loader</span><span class="op">(</span><span class="va">package</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="fu">list_loader</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">path_loader</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">package_loader</span><span class="op">(</span><span class="va">package</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">list_loader</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -106,16 +106,16 @@ list_loader() loads templates from a named list."><!-- mathjax --><script src="h
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">path_loader</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">path_loader</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Path loader: <span style="color: #0000BB; font-weight: bold;">/home/runner/work/jinjar/jinjar/docs/reference</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">package_loader</span><span class="op">(</span><span class="st">"base"</span>, <span class="st">"demo"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">package_loader</span><span class="op">(</span><span class="st">"base"</span>, <span class="st">"demo"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Path loader: <span style="color: #0000BB; font-weight: bold;">/opt/R/4.2.0/lib/R/library/base/demo</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">list_loader</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span class="r-in">  header <span class="op">=</span> <span class="st">"Title: {{ title }}"</span>,</span>
-<span class="r-in">  content <span class="op">=</span> <span class="st">"Hello {{ person }}!"</span></span>
-<span class="r-in"><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">list_loader</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  header <span class="op">=</span> <span class="st">"Title: {{ title }}"</span>,</span></span>
+<span class="r-in"><span>  content <span class="op">=</span> <span class="st">"Hello {{ person }}!"</span></span></span>
+<span class="r-in"><span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> List loader: `header`, `content`</span>
 </code></pre></div>
     </div>
