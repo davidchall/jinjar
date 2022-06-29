@@ -7,9 +7,7 @@
 #' * A path to a template file (use [fs::path()]).
 #' * A parsed template (use [parse_template()]).
 #' @param ... <[`dynamic-dots`][rlang::dyn-dots]> Data passed to the template.
-#' @param .config The engine configuration. The default matches Jinja defaults,
-#'   but you can use [jinjar_config()] to customize things like syntax delimiters,
-#'   whitespace control, and loading auxiliary templates.
+#' @inheritParams parse
 #' @return String containing rendered template.
 #'
 #' @seealso

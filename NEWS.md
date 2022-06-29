@@ -1,6 +1,6 @@
 # jinjar (development version)
 
-* When printing parsed template objects, output is now stylized using the cli package.
+* When printing parsed template objects, output is now stylized using the cli package (#18).
     * Variables are green
     * Control blocks are blue
     * Comments are italic grey

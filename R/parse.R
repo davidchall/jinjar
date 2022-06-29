@@ -8,7 +8,9 @@
 #' @param .x The template. Choices:
 #' * A template string.
 #' * A path to a template file (use [fs::path()]).
-#' @inheritParams render
+#' @param .config The engine configuration. The default matches Jinja defaults,
+#'   but you can use [jinjar_config()] to customize things like syntax delimiters,
+#'   whitespace control, and loading auxiliary templates.
 #' @return A `"jinjar_template"` object.
 #'
 #' @seealso
@@ -60,18 +62,45 @@ parse_template.fs_path <- function(.x, .config = default_config()) {
   parse_template(read_utf8(.x), .config)
 }
 
+#' @param x Object to format or print.
+#' @param n Number of lines to show. If `Inf`, will print all lines. Default: `10`.
+#' @inheritParams rlang::args_dots_empty
+#' @rdname parse
 #' @export
-print.jinjar_template <- function(x, ...) {
-  if (cli::num_ansi_colors() > 1) {
-    cli::cli_verbatim(style_template(x))
-  } else {
-    cat(x)
+print.jinjar_template <- function(x, ..., n = 10) {
+  check_dots_empty()
+  check_count(n, inf = TRUE)
+  n_more <- 0L
+
+  # truncate output
+  if (!is.infinite(n)) {
+    lines <- strsplit(x, "\n", fixed = TRUE)[[1]]
+    n_found <- length(lines)
+
+    if (n_found > n) {
+      attrs <- attributes(x)
+      x <- paste0(lines[1:n], collapse = "\n")
+      attributes(x) <- attrs
+
+      n_more <- n_found - n
+    }
+  }
+
+  cli::cli_verbatim(style_template(x))
+  if (n_more > 0) {
+    dots <- cli::symbol$ellipsis
+    subtle <- cli::make_ansi_style("grey60")
+    cli::cli_alert_info(subtle("{dots} with {n_more} more line{?s}"))
   }
 
   invisible(x)
 }
 
 style_template <- function(x) {
+  if (cli::num_ansi_colors() == 1) {
+    return(x)
+  }
+
   config <- attr(x, "config")
 
   # find blocks
