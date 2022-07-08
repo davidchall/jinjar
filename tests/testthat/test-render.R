@@ -9,30 +9,6 @@ test_that("templating features work", {
   )
 })
 
-test_that("storing parsed document works", {
-  x <- parse_template("Hello {{ name }}!")
-
-  expect_equal(render(x, name = "world"), "Hello world!")
-  expect_equal(render(x, name = "David"), "Hello David!")
-})
-
-cli::test_that_cli("printing parsed document works", {
-  template <- 'Humans of A New Hope
-{# put a comment here #}
-{% for person in people -%}
-{% if "A New Hope" in person.films and default(person.species, "Unknown") == "Human" -%}
-* {{ person.name }} ({{ person.homeworld }})
-{% endif -%}
-{% endfor -%}
-'
-
-  x <- parse_template(template)
-  expect_snapshot(print(x, n = Inf))
-  expect_snapshot(print(x, n = 5))
-
-  expect_error(print(x, n = 2.5))
-})
-
 test_that("template files work", {
   with_dir_tree(list("foo" = "Hello {{ name }}!"), {
     path_config <- jinjar_config(fs::path_wd())
@@ -154,4 +130,8 @@ test_that("quote_sql() works", {
     render("WHERE x IN ({{ quote_sql(col) }})", col = c(1, 4, 6)),
     "WHERE x IN (1, 4, 6)"
   )
+})
+
+cli::test_that_cli("render error", {
+  expect_snapshot_error(render('{% include "missing.html" %}'))
 })
