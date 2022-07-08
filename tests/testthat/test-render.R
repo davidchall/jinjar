@@ -133,5 +133,14 @@ test_that("quote_sql() works", {
 })
 
 cli::test_that_cli("render error", {
+  expect_snapshot_error(render("Hello {{ name }}!"))
   expect_snapshot_error(render('{% include "missing.html" %}'))
+})
+
+cli::test_that_cli("JSON encoding error", {
+  x <- parse_template("Hello {{ name }}!")
+
+  expect_snapshot_error(jinjar:::with_catch_cpp_errors({
+    jinjar:::render_(attr(x, "parsed"), '{"name": "world"]}')
+  }))
 })
