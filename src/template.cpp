@@ -14,15 +14,15 @@ jinjar::Template::Template(const cpp11::strings& x, const cpp11::list& config): 
 }
 
 const cpp11::strings jinjar::Template::render(const cpp11::strings& data_json) {
+  auto data_json_str = cpp11::as_cpp<std::string>(data_json);
   cpp11::writable::strings output;
 
   try {
-    auto data_json_str = cpp11::as_cpp<std::string>(data_json);
     auto data = nlohmann::json::parse(data_json_str);
     auto result = env.render(templ, data);
     output.push_back(result);
   } catch (const nlohmann::json::parse_error& e) {
-    stop_json(e.what());
+    stop_json(e.what(), data_json_str);
   } catch (const inja::InjaError& e) {
     stop_inja(e.type, e.message, e.location.line, e.location.column);
   }

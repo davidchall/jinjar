@@ -7,7 +7,7 @@ void stop_inja(const std::string& type, const std::string& message, const size_t
   stop_inja(type, message, line, column);
 }
 
-void stop_json(const std::string& message) {
+void stop_json(const std::string& message, const std::string& data_json) {
   auto stop_json = cpp11::package("jinjar")["stop_json"];
-  stop_json(message);
+  stop_json(message, data_json);
 }

@@ -17,8 +17,13 @@ stop_inja <- function(type, message, line, column) {
   cli::cli_abort(msg, class = cls, call = NULL)
 }
 
-stop_json <- function(msg) {
+stop_json <- function(message, data) {
   cls <- c("jinjar_json_error", "jinjar_error")
+
+  msg <- c(
+    message,
+    "i" = "JSON object: {.val {data}}"
+  )
 
   cli::cli_abort(msg, class = cls, call = NULL)
 }
