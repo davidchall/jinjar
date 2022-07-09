@@ -1,23 +1,32 @@
 #include <cpp11.hpp>
 #include "template.h"
 #include "loader.h"
+#include "condition.h"
 
 
 jinjar::Template::Template(const cpp11::strings& x, const cpp11::list& config): env(setup_environment(config)) {
-  templ = env.parse(
-    cpp11::as_cpp<std::string>(x)
-  );
+  try {
+    auto txt = cpp11::as_cpp<std::string>(x);
+    templ = env.parse(txt);
+  } catch (const inja::InjaError& e) {
+    stop_inja(e.type, e.message, e.location.line, e.location.column);
+  }
 }
 
 const cpp11::strings jinjar::Template::render(const cpp11::strings& data_json) {
-  auto data = nlohmann::json::parse(
-    cpp11::as_cpp<std::string>(data_json)
-  );
-
-  std::string result = env.render(templ, data);
-
+  auto data_json_str = cpp11::as_cpp<std::string>(data_json);
   cpp11::writable::strings output;
-  output.push_back(result);
+
+  try {
+    auto data = nlohmann::json::parse(data_json_str);
+    auto result = env.render(templ, data);
+    output.push_back(result);
+  } catch (const nlohmann::json::parse_error& e) {
+    stop_json(e.what(), data_json_str);
+  } catch (const inja::InjaError& e) {
+    stop_inja(e.type, e.message, e.location.line, e.location.column);
+  }
+
   return output;
 }
 

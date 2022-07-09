@@ -35,10 +35,14 @@ parse_template.character <- function(.x, .config = default_config()) {
     cli::cli_abort("{.arg .config} must be a {.cls jinjar_config} object.")
   }
 
+  with_catch_cpp_errors({
+    parsed <- parse_(.x, .config)
+  })
+
   structure(
     .x,
     config = .config,
-    parsed = parse_(.x, .config),
+    parsed = parsed,
     class = "jinjar_template"
   )
 }

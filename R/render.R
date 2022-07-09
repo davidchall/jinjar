@@ -46,5 +46,7 @@ render.fs_path <- function(.x, ..., .config = default_config()) {
 #' @rdname render
 #' @export
 render.jinjar_template <- function(.x, ...) {
-  render_(attr(.x, "parsed"), encode(...))
+  with_catch_cpp_errors({
+    render_(attr(.x, "parsed"), encode(...))
+  })
 }
