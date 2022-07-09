@@ -5,6 +5,7 @@
     * Control blocks are blue
     * Comments are italic grey
 * `print.jinjar_template()` gains an `n` argument to control the number of lines displayed (#18).
+* Exceptions raised by C++ code are now converted to R errors (#20).
 
 
 # jinjar 0.2.0

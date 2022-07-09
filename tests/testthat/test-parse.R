@@ -25,5 +25,5 @@ cli::test_that_cli("printing parsed document works", {
 })
 
 cli::test_that_cli("parse error", {
-  expect_snapshot_error(parse_template("Hello {{ name }!"))
+  expect_snapshot_error(parse_template("Hello {{ name }!"), class = "jinjar_parser_error")
 })
