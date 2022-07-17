@@ -71,8 +71,6 @@ style_template <- function(x) {
     find_spans(x, "variable", config$variable_open, config$variable_close),
     find_spans(x, "comment", config$comment_open, config$comment_close)
   )
-
-  # handle line statements
   if (nchar(config$line_statement) > 0) {
     spans <- rbind(spans, find_spans(x, "block", config$line_statement, "\n"))
   }
@@ -80,25 +78,20 @@ style_template <- function(x) {
   # sort spans in order of appearance
   spans <- spans[order(spans$ix_open),]
 
+  # gaps are text spans
+  text_spans <- data.frame(
+    type = "text",
+    ix_open = c(0, spans$ix_close + 1),
+    ix_close = c(spans$ix_open - 1, nchar(x))
+  )
+  text_spans <- text_spans[text_spans$ix_open <= text_spans$ix_close,]
+
+  # add text spans and sort again
+  spans <- rbind(spans, text_spans)
+  spans <- spans[order(spans$ix_open),]
+
   # style spans
-  ix_write <- 0
-  output <- character()
-  for (i_row in 1:nrow(spans)) {
-    span <- spans[i_row,]
-
-    if (ix_write < span$ix_open) {
-      output <- c(output, style_span(x, "text", ix_write, span$ix_open - 1))
-      ix_write <- span$ix_open
-    }
-
-    if (ix_write == span$ix_open) {
-      output <- c(output, style_span(x, span$type, span$ix_open, span$ix_close))
-      ix_write <- span$ix_close + 1
-    }
-  }
-  if (ix_write <= nchar(x)) {
-    output <- c(output, style_span(x, "text", ix_write, nchar(x)))
-  }
+  output <- mapply(style_span, x, spans$type, spans$ix_open, spans$ix_close)
 
   # stitch spans
   paste0(output, collapse = "")
