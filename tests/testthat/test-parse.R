@@ -24,6 +24,12 @@ cli::test_that_cli("printing parsed document works", {
   expect_error(print(x, n = 2.5))
 })
 
+cli::test_that_cli("print spans with overlap works", {
+  tmpl <- "{# {{ this }} is a {{ comment }} #}"
+  x <- parse_template(tmpl)
+  expect_snapshot(print(x))
+})
+
 cli::test_that_cli("parse error", {
   expect_snapshot_error(parse_template("Hello {{ name }!"), class = "jinjar_parser_error")
 })

@@ -65,50 +65,47 @@ style_template <- function(x) {
 
   config <- attr(x, "config")
 
-  # find blocks
-  blocks <- rbind(
-    find_blocks(x, "block", config$block_open, config$block_close),
-    find_blocks(x, "variable", config$variable_open, config$variable_close),
-    find_blocks(x, "comment", config$comment_open, config$comment_close)
+  # find spans
+  spans <- rbind(
+    find_spans(x, "block", config$block_open, config$block_close),
+    find_spans(x, "variable", config$variable_open, config$variable_close),
+    find_spans(x, "comment", config$comment_open, config$comment_close)
   )
-
-  # handle line statements
   if (nchar(config$line_statement) > 0) {
-    blocks <- rbind(blocks, find_blocks(x, "block", config$line_statement, "\n"))
+    spans <- rbind(spans, find_spans(x, "block", config$line_statement, "\n"))
   }
 
-  # sort blocks in order of appearance
-  blocks <- blocks[order(blocks$ix_open),]
+  # sort spans in order of appearance
+  spans <- spans[order(spans$ix_open),]
 
-  # style blocks
-  ix_write <- 0
-  output <- character()
-  for (i_row in 1:nrow(blocks)) {
-    row <- blocks[i_row,]
+  # remove span overlaps
+  latest_ix_close <- c(0, head(cummax(spans$ix_close), -1))
+  spans <- spans[spans$ix_close > latest_ix_close,]
 
-    if (ix_write < row$ix_open) {
-      output <- c(output, style_block(x, "text", ix_write, row$ix_open - 1))
-      ix_write <- row$ix_open
-    }
+  # gaps are text spans
+  text_spans <- data.frame(
+    type = "text",
+    ix_open = c(1, spans$ix_close + 1),
+    ix_close = c(spans$ix_open - 1, nchar(x))
+  )
+  text_spans <- text_spans[text_spans$ix_open <= text_spans$ix_close,]
 
-    if (ix_write == row$ix_open) {
-      output <- c(output, style_block(x, row$type, row$ix_open, row$ix_close))
-      ix_write <- row$ix_close + 1
-    }
-  }
-  if (ix_write <= nchar(x)) {
-    output <- c(output, style_block(x, "text", ix_write, nchar(x)))
-  }
+  # add text spans and sort again
+  spans <- rbind(spans, text_spans)
+  spans <- spans[order(spans$ix_open),]
 
-  # stitch blocks
+  # style spans
+  output <- mapply(style_span, x, spans$type, spans$ix_open, spans$ix_close)
+
+  # stitch spans
   paste0(output, collapse = "")
 }
 
-find_blocks <- function(x, type, open, close) {
+find_spans <- function(x, type, open, close) {
   ix_open <- gregexpr(open, x, fixed = TRUE)[[1]]
   ix_close <- gregexpr(close, x, fixed = TRUE)[[1]]
 
-  # no blocks found
+  # no spans found
   if (all(ix_open == -1L)) {
     return(data.frame(type = character(), open = integer(), close = integer()))
   }
@@ -124,16 +121,16 @@ find_blocks <- function(x, type, open, close) {
   data.frame(type, ix_open, ix_close)
 }
 
-style_block <- function(x, type, ix_open, ix_close) {
-  txt_block <- substr(x, ix_open, ix_close)
+style_span <- function(x, type, ix_open, ix_close) {
+  txt_span <- substr(x, ix_open, ix_close)
 
   if (type == "comment") {
-    cli::style_italic(cli::col_grey(txt_block))
+    cli::style_italic(cli::col_grey(txt_span))
   } else if (type == "block") {
-    cli::col_blue(txt_block)
+    cli::col_blue(txt_span)
   } else if (type == "variable") {
-    cli::col_green(txt_block)
+    cli::col_green(txt_span)
   } else {
-    txt_block
+    txt_span
   }
 }

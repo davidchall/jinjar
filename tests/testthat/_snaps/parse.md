@@ -98,6 +98,34 @@
       * [32m{{ person.name }}[39m ([32m{{ person.homeworld }}[39m)
       [36mℹ[39m [90m… with 2 more lines[39m
 
+# print spans with overlap works [plain]
+
+    Code
+      print(x)
+    Message
+      {# {{ this }} is a {{ comment }} #}
+
+# print spans with overlap works [ansi]
+
+    Code
+      print(x)
+    Message
+      [3m[90m{# {{ this }} is a {{ comment }} #}[39m[23m
+
+# print spans with overlap works [unicode]
+
+    Code
+      print(x)
+    Message
+      {# {{ this }} is a {{ comment }} #}
+
+# print spans with overlap works [fancy]
+
+    Code
+      print(x)
+    Message
+      [3m[90m{# {{ this }} is a {{ comment }} #}[39m[23m
+
 # parse error [plain]
 
     Problem encountered while parsing template.
