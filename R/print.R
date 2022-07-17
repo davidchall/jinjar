@@ -79,8 +79,8 @@ style_template <- function(x) {
   spans <- spans[order(spans$ix_open),]
 
   # remove span overlaps
-  latest_span_close <- c(0, head(cummax(spans$ix_close), -1))
-  spans <- spans[spans$ix_close > latest_span_close,]
+  latest_ix_close <- c(0, head(cummax(spans$ix_close), -1))
+  spans <- spans[spans$ix_close > latest_ix_close,]
 
   # gaps are text spans
   text_spans <- data.frame(
