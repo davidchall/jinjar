@@ -125,12 +125,16 @@ style_span <- function(x, type, ix_open, ix_close) {
   txt_span <- substr(x, ix_open, ix_close)
 
   if (type == "comment") {
-    cli::style_italic(cli::col_grey(txt_span))
+    style_comment(txt_span)
   } else if (type == "block") {
-    cli::col_blue(txt_span)
+    style_block(txt_span)
   } else if (type == "variable") {
-    cli::col_green(txt_span)
+    style_variable(txt_span)
   } else {
     txt_span
   }
 }
+
+style_comment <- cli::combine_ansi_styles("italic", "grey60")
+style_block <- cli::col_blue
+style_variable <- cli::col_green

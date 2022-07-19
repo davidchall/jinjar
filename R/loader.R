@@ -44,8 +44,9 @@ package_loader <- function(package, ...) {
 
 #' @export
 print.path_loader <- function(x, ...) {
-  cat("Path loader: ")
-  print(x$path)
+  cli::cli_h2("Loader")
+  cli::cli_text("Search path: {.path {x$path}}")
+
   invisible(x)
 }
 
@@ -63,6 +64,14 @@ list_loader <- function(x) {
 
 #' @export
 print.list_loader <- function(x, ...) {
-  cat("List loader:", paste0("`", names(x), "`", collapse = ", "))
+  cli::cli_h2("Loader")
+
+  if (length(x) >= 4) {
+    cli::cli_text("Available templates:")
+    cli::cli_ul(names(x))
+  } else {
+    cli::cli_text("Available templates: {.val {names(x)}}")
+  }
+
   invisible(x)
 }
