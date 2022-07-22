@@ -56,7 +56,7 @@ print.path_loader <- function(x, ...) {
 #' @export
 list_loader <- function(x) {
   if (!(is_bare_list(x) && is_named(x))) {
-    cli::cli_abort("{.arg x} must be a named list")
+    cli::cli_abort("{.arg x} must be a named list", arg = "x")
   }
 
   do.call(new_loader, c(x, .class = "list_loader"))
