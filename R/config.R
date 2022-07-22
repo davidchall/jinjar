@@ -41,7 +41,7 @@ jinjar_config <- function(loader = NULL,
                           ignore_missing_files = FALSE) {
 
   if (!(is_null(loader) || is_string(loader) || inherits(loader, "jinjar_loader"))) {
-    cli::cli_abort("{.arg loader} must be NULL, a path, or a loader object.")
+    cli::cli_abort("{.arg loader} must be NULL, a path, or a loader object", arg = "loader")
   }
   if (is.character(loader)) {
     loader <- path_loader(loader)

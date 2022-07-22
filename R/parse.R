@@ -31,9 +31,7 @@ parse_template <- function(.x, .config) {
 #' @export
 parse_template.character <- function(.x, .config = default_config()) {
   check_string(.x)
-  if (!inherits(.config, "jinjar_config")) {
-    cli::cli_abort("{.arg .config} must be a {.cls jinjar_config} object.")
-  }
+  check_inherits(.config, "jinjar_config")
 
   with_catch_cpp_errors({
     parsed <- parse_(.x, .config)
