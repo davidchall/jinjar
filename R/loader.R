@@ -39,13 +39,26 @@ path_loader <- function(...) {
 #' @rdname loader
 #' @export
 package_loader <- function(package, ...) {
-  path_loader(fs::path_package(package, ...))
+  path <- fs::path_package(package, ...)
+  check_dir_exists(path)
+
+  new_loader(
+    path = path,
+    pkg = package,
+    rel_path = fs::path(...),
+    .class = c("package_loader", "path_loader")
+  )
 }
 
 #' @export
 print.path_loader <- function(x, ...) {
-  cat("Path loader: ")
-  print(x$path)
+  cli::cli_text("{.strong Loader:} {.path {x$path}}")
+  invisible(x)
+}
+
+#' @export
+print.package_loader <- function(x, ...) {
+  cli::cli_text("{.strong Loader:} {.pkg {{{x$pkg}}}}/{.path {x$rel_path}}")
   invisible(x)
 }
 
@@ -63,6 +76,18 @@ list_loader <- function(x) {
 
 #' @export
 print.list_loader <- function(x, ...) {
-  cat("List loader:", paste0("`", names(x), "`", collapse = ", "))
+  csv_width <- sum(nchar(names(x)))
+
+  if (csv_width <= 50) {
+    cli::cli_text("{.strong Loader:} {.val {names(x)}}")
+  } else {
+    cli::cli_text("{.strong Loader:}")
+    cli::cli_ul()
+    for (name in names(x)) {
+      cli::cli_li("{.val {name}}")
+    }
+    cli::cli_end()
+  }
+
   invisible(x)
 }

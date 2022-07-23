@@ -82,18 +82,22 @@ jinjar_config <- function(loader = NULL,
 
 #' @export
 print.jinjar_config <- function(x, ...) {
-  if (is.null(x$loader)) {
-    cat("Loader: disabled\n")
-  } else {
-    print(x$loader)
-  }
+  cli::cli({
+    cli::cli_h1("Template configuration")
 
-  cat(
-    "Syntax:",
-    x$block_open, "block", x$block_close,
-    x$variable_open, "variable", x$variable_close,
-    x$comment_open, "comment", x$comment_close
-  )
+    if (is.null(x$loader)) {
+      cli::cli_text("{.strong Loader:} disabled")
+    } else {
+      print(x$loader)
+    }
+
+    cli::cli_text(
+      "{.strong Syntax:} ",
+      style_block("{x$block_open} block {x$block_close}"), " ",
+      style_variable("{x$variable_open} variable {x$variable_close}"), " ",
+      style_comment("{x$comment_open} comment {x$comment_close}")
+    )
+  })
 
   invisible(x)
 }

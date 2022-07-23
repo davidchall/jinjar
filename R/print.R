@@ -58,6 +58,7 @@ print.jinjar_template <- function(x, ..., n = 10) {
   invisible(x)
 }
 
+#' @importFrom utils head
 style_template <- function(x) {
   if (cli::num_ansi_colors() == 1) {
     return(x)
@@ -125,12 +126,16 @@ style_span <- function(x, type, ix_open, ix_close) {
   txt_span <- substr(x, ix_open, ix_close)
 
   if (type == "comment") {
-    cli::style_italic(cli::col_grey(txt_span))
+    style_comment(txt_span)
   } else if (type == "block") {
-    cli::col_blue(txt_span)
+    style_block(txt_span)
   } else if (type == "variable") {
-    cli::col_green(txt_span)
+    style_variable(txt_span)
   } else {
     txt_span
   }
 }
+
+style_comment <- function(x) cli::style_italic(cli::col_grey(x))
+style_block <- cli::col_blue
+style_variable <- cli::col_green
