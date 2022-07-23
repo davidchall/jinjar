@@ -20,7 +20,7 @@
       
       [36m--[39m [1mTemplate configuration[22m [36m------------------------------------------------------[39m
       [1mLoader:[22m disabled
-      [1mSyntax:[22m [34m{% block %}[39m [32m{{ variable }}[39m [3m[38;5;246m{# comment #}[39m[23m
+      [1mSyntax:[22m [34m{% block %}[39m [32m{{ variable }}[39m [3m[90m{# comment #}[39m[23m
 
 # default works [unicode]
 
@@ -40,7 +40,7 @@
       
       [36m──[39m [1mTemplate configuration[22m [36m──────────────────────────────────────────────────────[39m
       [1mLoader:[22m disabled
-      [1mSyntax:[22m [34m{% block %}[39m [32m{{ variable }}[39m [3m[38;5;246m{# comment #}[39m[23m
+      [1mSyntax:[22m [34m{% block %}[39m [32m{{ variable }}[39m [3m[90m{# comment #}[39m[23m
 
 # string loader works [plain]
 
@@ -60,7 +60,7 @@
       
       [36m--[39m [1mTemplate configuration[22m [36m------------------------------------------------------[39m
       [1mLoader:[22m [34m/Users/davidhall[39m
-      [1mSyntax:[22m [34m{% block %}[39m [32m{{ variable }}[39m [3m[38;5;246m{# comment #}[39m[23m
+      [1mSyntax:[22m [34m{% block %}[39m [32m{{ variable }}[39m [3m[90m{# comment #}[39m[23m
 
 # string loader works [unicode]
 
@@ -80,5 +80,5 @@
       
       [36m──[39m [1mTemplate configuration[22m [36m──────────────────────────────────────────────────────[39m
       [1mLoader:[22m [34m/Users/davidhall[39m
-      [1mSyntax:[22m [34m{% block %}[39m [32m{{ variable }}[39m [3m[38;5;246m{# comment #}[39m[23m
+      [1mSyntax:[22m [34m{% block %}[39m [32m{{ variable }}[39m [3m[90m{# comment #}[39m[23m
 

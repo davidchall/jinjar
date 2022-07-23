@@ -135,6 +135,6 @@ style_span <- function(x, type, ix_open, ix_close) {
   }
 }
 
-style_comment <- cli::combine_ansi_styles("italic", "grey60")
+style_comment <- function(x) cli::style_italic(cli::col_grey(x))
 style_block <- cli::col_blue
 style_variable <- cli::col_green

@@ -29,7 +29,7 @@
       print(x, n = Inf)
     Message
       Humans of A New Hope
-      [3m[38;5;246m{# put a comment here #}[39m[23m
+      [3m[90m{# put a comment here #}[39m[23m
       [34m{% for person in people -%}[39m
       [34m{% if "A New Hope" in person.films and default(person.species, "Unknown") == "Human" -%}[39m
       * [32m{{ person.name }}[39m ([32m{{ person.homeworld }}[39m)
@@ -42,7 +42,7 @@
       print(x, n = 5)
     Message
       Humans of A New Hope
-      [3m[38;5;246m{# put a comment here #}[39m[23m
+      [3m[90m{# put a comment here #}[39m[23m
       [34m{% for person in people -%}[39m
       [34m{% if "A New Hope" in person.films and default(person.species, "Unknown") == "Human" -%}[39m
       * [32m{{ person.name }}[39m ([32m{{ person.homeworld }}[39m)
@@ -79,7 +79,7 @@
       print(x, n = Inf)
     Message
       Humans of A New Hope
-      [3m[38;5;246m{# put a comment here #}[39m[23m
+      [3m[90m{# put a comment here #}[39m[23m
       [34m{% for person in people -%}[39m
       [34m{% if "A New Hope" in person.films and default(person.species, "Unknown") == "Human" -%}[39m
       * [32m{{ person.name }}[39m ([32m{{ person.homeworld }}[39m)
@@ -92,7 +92,7 @@
       print(x, n = 5)
     Message
       Humans of A New Hope
-      [3m[38;5;246m{# put a comment here #}[39m[23m
+      [3m[90m{# put a comment here #}[39m[23m
       [34m{% for person in people -%}[39m
       [34m{% if "A New Hope" in person.films and default(person.species, "Unknown") == "Human" -%}[39m
       * [32m{{ person.name }}[39m ([32m{{ person.homeworld }}[39m)
@@ -110,7 +110,7 @@
     Code
       print(x)
     Message
-      [3m[38;5;246m{# {{ this }} is a {{ comment }} #}[39m[23m
+      [3m[90m{# {{ this }} is a {{ comment }} #}[39m[23m
 
 # print spans with overlap works [unicode]
 
@@ -124,7 +124,7 @@
     Code
       print(x)
     Message
-      [3m[38;5;246m{# {{ this }} is a {{ comment }} #}[39m[23m
+      [3m[90m{# {{ this }} is a {{ comment }} #}[39m[23m
 
 # parse error [plain]
 
