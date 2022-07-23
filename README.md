@@ -41,8 +41,9 @@ render("Hello {{ name }}!", name = "world")
 #> [1] "Hello world!"
 ```
 
-Here’s a more advanced example using loops and conditional statements. A
-full list of supported syntax is found in `vignette("template-syntax")`.
+Here’s a more advanced example using loops and conditional statements.
+The full list of supported syntax is described in
+`vignette("template-syntax")`.
 
 ``` r
 template <- 'Humans of A New Hope
@@ -54,8 +55,9 @@ template <- 'Humans of A New Hope
 {% endfor -%}
 '
 
-text <- render(template, people = dplyr::starwars)
-writeLines(text)
+template |>
+  render(people = dplyr::starwars) |>
+  writeLines()
 #> Humans of A New Hope
 #> 
 #> * Luke Skywalker (Tatooine)
