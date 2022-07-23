@@ -13,7 +13,7 @@ knit_jinjar <- function(options) {
   engine_output <- get("engine_output", envir = asNamespace("knitr"))
 
   if (identical(.Platform$GUI, "RStudio") && is.character(options$data)) {
-    options$data <- get(options$data, envir = globalenv())
+    options$data <- get(options$data, envir = globalenv()) # nocov
   }
 
   code <- paste(options$code, collapse = "\n")

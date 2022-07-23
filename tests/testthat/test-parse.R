@@ -1,3 +1,7 @@
+test_that("input validation works", {
+  expect_error(parse_template("Hey", .config = TRUE))
+})
+
 test_that("storing parsed document works", {
   x <- parse_template("Hello {{ name }}!")
 
