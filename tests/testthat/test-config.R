@@ -13,9 +13,8 @@ cli::test_that_cli("default works", {
   expect_snapshot(print(x))
 })
 
-cli::test_that_cli("string loader works", {
+test_that("string loader works", {
   x <- jinjar_config(fs::path_home_r())
   expect_s3_class(x, "jinjar_config")
   expect_equal(x$loader, path_loader(fs::path_home_r()))
-  expect_snapshot(print(x))
 })

@@ -3,28 +3,28 @@
     Code
       print(x)
     Message
-      Loader: '/Users/davidhall'
+      Loader: '/path/to/templates'
 
 # path_loader works [ansi]
 
     Code
       print(x)
     Message
-      [1mLoader:[22m [34m/Users/davidhall[39m
+      [1mLoader:[22m [34m/path/to/templates[39m
 
 # path_loader works [unicode]
 
     Code
       print(x)
     Message
-      Loader: '/Users/davidhall'
+      Loader: '/path/to/templates'
 
 # path_loader works [fancy]
 
     Code
       print(x)
     Message
-      [1mLoader:[22m [34m/Users/davidhall[39m
+      [1mLoader:[22m [34m/path/to/templates[39m
 
 # package_loader works [plain]
 

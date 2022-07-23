@@ -1,10 +1,15 @@
 cli::test_that_cli("path_loader works", {
   expect_error(path_loader("unknown"))
 
-  x <- path_loader(fs::path_home_r())
+  test_path <- fs::path_home_r()
+
+  x <- path_loader(test_path)
   expect_s3_class(x, c("path_loader", "jinjar_loader"))
-  expect_equal(x$path, fs::path_home_r())
-  expect_snapshot(print(x))
+  expect_equal(x$path, test_path)
+  expect_snapshot(
+    print(x),
+    transform = function(x) gsub(test_path, "/path/to/templates", x, fixed = TRUE)
+  )
 })
 
 cli::test_that_cli("package_loader works", {
