@@ -92,7 +92,7 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the released version of bignum from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> with:</p>
+<p>You can install the released version of jinjar from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"jinjar"</span><span class="op">)</span></span></code></pre></div>
 <p>Or you can install the development version from GitHub:</p>
@@ -108,7 +108,7 @@
 <span></span>
 <span><span class="fu"><a href="reference/render.html">render</a></span><span class="op">(</span><span class="st">"Hello {{ name }}!"</span>, name <span class="op">=</span> <span class="st">"world"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Hello world!"</span></span></code></pre></div>
-<p>Here’s a more advanced example, using loops and conditional statements:</p>
+<p>Here’s a more advanced example using loops and conditional statements. A full list of supported syntax is found in <code><a href="articles/template-syntax.html">vignette("template-syntax")</a></code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">template</span> <span class="op">&lt;-</span> <span class="st">'Humans of A New Hope</span></span>
 <span><span class="st"></span></span>
@@ -147,7 +147,7 @@
 <li>
 <a href="https://yihui.org/knitr/" class="external-link"><strong>knitr</strong></a> and <a href="https://github.com/rstudio/rmarkdown" class="external-link"><strong>rmarkdown</strong></a> – Allows <strong>arbitrary code execution</strong> to be knitted together with Markdown text content. It even supports <a href="https://bookdown.org/yihui/rmarkdown/language-engines.html" class="external-link">multiple language engines</a> (e.g. R, Python, C++, SQL).</li>
 </ul>
-<p>In contrast, jinjar strikes a balance inspired by the <a href="https://jinja.palletsprojects.com/" class="external-link">Jinja</a> Python package. It supports more complex logic than whisker, but without the arbitrary code execution of knitr. You can learn about the supported logic in <code><a href="articles/template-syntax.html">vignette("template-syntax")</a></code>.</p>
+<p>In contrast, jinjar strikes a balance inspired by the <a href="https://jinja.palletsprojects.com/" class="external-link">Jinja</a> Python package. It supports more complex logic than whisker, but without the arbitrary code execution of knitr.</p>
 </div>
 </div>
   </div>
@@ -189,7 +189,6 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
 <li><a href="https://CRAN.R-project.org/package=jinjar" class="external-link"><img src="https://www.r-pkg.org/badges/version/jinjar" alt="CRAN status"></a></li>
 <li><a href="https://app.codecov.io/gh/davidchall/jinjar?branch=master" class="external-link"><img src="https://codecov.io/gh/davidchall/jinjar/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
 <li><a href="https://github.com/davidchall/jinjar/actions" class="external-link"><img src="https://github.com/davidchall/jinjar/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
