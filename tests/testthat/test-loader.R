@@ -7,12 +7,13 @@ cli::test_that_cli("path_loader works", {
   expect_snapshot(print(x))
 })
 
-test_that("package_loader works", {
+cli::test_that_cli("package_loader works", {
   expect_error(package_loader("unknown"))
 
-  x <- package_loader("base")
-  expect_s3_class(x, c("path_loader", "jinjar_loader"))
-  expect_equal(x, path_loader(fs::path_package("base")))
+  x <- package_loader("jinjar", "R")
+  expect_s3_class(x, c("package_loader", "path_loader", "jinjar_loader"))
+  expect_equal(x$path, fs::path_package("jinjar", "R"))
+  expect_snapshot(print(x))
 })
 
 cli::test_that_cli("list_loader works", {
@@ -21,5 +22,14 @@ cli::test_that_cli("list_loader works", {
   x <- list_loader(list("a" = "b"))
   expect_s3_class(x, c("list_loader", "jinjar_loader"))
   expect_equal(x$a, "b")
-  expect_snapshot(print(x))
+
+  short_names <- list(x = "a", y = "b", z = "c")
+  long_names <- list(
+    "here_is_a_very_long_template_name" = "a",
+    "and_one_more_just_for_good_luck" = "b"
+  )
+  expect_snapshot({
+    print(list_loader(short_names))
+    print(list_loader(long_names))
+  })
 })
