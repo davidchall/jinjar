@@ -5,8 +5,6 @@
 
 <!-- badges: start -->
 
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/jinjar)](https://CRAN.R-project.org/package=jinjar)
 [![Codecov test
@@ -20,7 +18,7 @@ by the [inja](https://github.com/pantor/inja) C++ library.
 
 ## Installation
 
-You can install the released version of bignum from
+You can install the released version of jinjar from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
@@ -43,7 +41,8 @@ render("Hello {{ name }}!", name = "world")
 #> [1] "Hello world!"
 ```
 
-Here’s a more advanced example, using loops and conditional statements:
+Here’s a more advanced example using loops and conditional statements. A
+full list of supported syntax is found in `vignette("template-syntax")`.
 
 ``` r
 template <- 'Humans of A New Hope
@@ -101,5 +100,4 @@ opposite ends of this spectrum:
 In contrast, jinjar strikes a balance inspired by the
 [Jinja](https://jinja.palletsprojects.com/) Python package. It supports
 more complex logic than whisker, but without the arbitrary code
-execution of knitr. You can learn about the supported logic in
-`vignette("template-syntax")`.
+execution of knitr.
