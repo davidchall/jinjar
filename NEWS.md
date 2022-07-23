@@ -1,4 +1,4 @@
-# jinjar (development version)
+# jinjar 0.3.0
 
 This release provides several quality-of-life improvements.
 

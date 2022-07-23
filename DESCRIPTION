@@ -1,6 +1,6 @@
 Package: jinjar
 Title: Template Engine Inspired by 'Jinja'
-Version: 0.2.0.9000
+Version: 0.3.0
 Authors@R: c(
     person("David", "Hall", , "david.hall.physics@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0002-2193-0480")),
