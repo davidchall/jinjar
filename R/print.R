@@ -58,6 +58,7 @@ print.jinjar_template <- function(x, ..., n = 10) {
   invisible(x)
 }
 
+#' @importFrom utils head
 style_template <- function(x) {
   if (cli::num_ansi_colors() == 1) {
     return(x)
