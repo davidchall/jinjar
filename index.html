@@ -108,7 +108,7 @@
 <span></span>
 <span><span class="fu"><a href="reference/render.html">render</a></span><span class="op">(</span><span class="st">"Hello {{ name }}!"</span>, name <span class="op">=</span> <span class="st">"world"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Hello world!"</span></span></code></pre></div>
-<p>Here’s a more advanced example using loops and conditional statements. A full list of supported syntax is found in <code><a href="articles/template-syntax.html">vignette("template-syntax")</a></code>.</p>
+<p>Here’s a more advanced example using loops and conditional statements. The full list of supported syntax is described in <code><a href="articles/template-syntax.html">vignette("template-syntax")</a></code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">template</span> <span class="op">&lt;-</span> <span class="st">'Humans of A New Hope</span></span>
 <span><span class="st"></span></span>
@@ -119,8 +119,9 @@
 <span><span class="st">{% endfor -%}</span></span>
 <span><span class="st">'</span></span>
 <span></span>
-<span><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/render.html">render</a></span><span class="op">(</span><span class="va">template</span>, people <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="va">starwars</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span></span>
+<span><span class="va">template</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="reference/render.html">render</a></span><span class="op">(</span>people <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="va">starwars</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Humans of A New Hope</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; * Luke Skywalker (Tatooine)</span></span>
