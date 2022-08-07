@@ -11,3 +11,4 @@
 ^CRAN-RELEASE$
 ^revdep$
 ^CRAN-SUBMISSION$
+^man/figures/logo\.svg$

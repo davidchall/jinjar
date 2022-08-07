@@ -6,6 +6,8 @@
 \alias{jinjar-package}
 \title{jinjar: Template Engine Inspired by 'Jinja'}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 Template engine powered by the 'inja' C++ library. Users write a template document, using syntax inspired by the 'Jinja' Python package, and then render the final document by passing data from R. The template syntax supports features such as variables, loops, conditions and inheritance.
 }
 \seealso{
