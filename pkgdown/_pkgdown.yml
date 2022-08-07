@@ -1,5 +1,11 @@
 url: https://davidchall.github.io/jinjar
 
+template:
+  bootstrap: 5
+  bslib:
+    info: "#DDEAF4"
+    success: "#E2EFDA"
+
 reference:
   - title: Templates
   - contents:
