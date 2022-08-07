@@ -510,19 +510,19 @@ true</code></pre>
 </h3>
 <p>When generating HTML from templates, there’s always a risk that a variable will include characters that affect the resulting HTML. The special characters are: <code>&lt;</code>, <code>&gt;</code>, <code>&amp;</code> and <code>"</code>.</p>
 <p>In jinjar, it’s <strong>your</strong> responsibility to manually escape variables, using the <code>escape_html()</code> function. You should escape variables that <em>might</em> contain any of the special characters. But if a variable is trusted to contain well-formed HTML, then it should not be escaped (otherwise you could accidentally double-escape the content).</p>
-<pre class="jinjar bg-info"><code>&lt;input type="text" value="{{ escape_html(name) }}"&gt;</code></pre>
-<pre class="bg-success"><code>&lt;input type="text" value="Dwayne &amp;quot;The Rock&amp;quot; Johnson"&gt;</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;input</span> <span class="er">type</span><span class="ot">=</span><span class="st">"text"</span> <span class="er">value</span><span class="ot">=</span><span class="st">"{{ escape_html(name) }}"</span><span class="kw">&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode html bg-success"><code class="sourceCode html"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;input</span> <span class="er">type</span><span class="ot">=</span><span class="st">"text"</span> <span class="er">value</span><span class="ot">=</span><span class="st">"Dwayne </span><span class="dv">&amp;quot;</span><span class="st">The Rock</span><span class="dv">&amp;quot;</span><span class="st"> Johnson"</span><span class="kw">&gt;</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="sql-quoting">SQL Quoting<a class="anchor" aria-label="anchor" href="#sql-quoting"></a>
 </h3>
 <p>SQL databases expect string literals to be wrapped in single-quotes, while other types of literals (e.g., numbers) are not quoted. This is cumbersome to achieve when writing a template, so the <code>quote_sql()</code> function provides this functionality.</p>
 <p><strong>Important:</strong> <code>quote_sql()</code> does not provide any protection against SQL injection attacks.</p>
-<pre class="jinjar bg-info"><code>WHERE title = {{ quote_sql(title) }} AND year = {{ quote_sql(godzilla.Born) }}</code></pre>
-<pre class="bg-success"><code>WHERE title = 'My Webpage' AND year = 1952</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode jinjar sql bg-info"><code class="sourceCode sql"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> title <span class="op">=</span> {{ quote_sql(title) }} <span class="kw">AND</span> <span class="dt">year</span> <span class="op">=</span> {{ quote_sql(godzilla.Born) }}</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode sql bg-success"><code class="sourceCode sql"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> title <span class="op">=</span> <span class="st">'My Webpage'</span> <span class="kw">AND</span> <span class="dt">year</span> <span class="op">=</span> <span class="dv">1952</span></span></code></pre></div>
 <p>When passed an array, <code>quote_sql()</code> will quote each element and return a comma-separated list. This is particularly helpful when using the SQL <code>IN</code> operator.</p>
-<pre class="jinjar bg-info"><code>WHERE user IN ({{ quote_sql(users) }})</code></pre>
-<pre class="bg-success"><code>WHERE user IN ('User A', 'User B', 'User C')</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode jinjar sql bg-info"><code class="sourceCode sql"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> <span class="fu">user</span> <span class="kw">IN</span> ({{ quote_sql(users) }})</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode sql bg-success"><code class="sourceCode sql"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> <span class="fu">user</span> <span class="kw">IN</span> (<span class="st">'User A'</span>, <span class="st">'User B'</span>, <span class="st">'User C'</span>)</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="numeric-data">Numeric Data<a class="anchor" aria-label="anchor" href="#numeric-data"></a>
@@ -549,8 +549,11 @@ true</code></pre>
 <pre class="bg-success"><code><span><span class="va">hello</span></span>
 <span><span class="va">HELLO</span></span></code></pre>
 <p>Escape special characters for use in HTML content (see <a href="#html-escaping">HTML Escaping</a>):</p>
-<pre class="jinjar bg-info"><code>&lt;input type="text" value="{{ escape_html(name) }}"&gt;</code></pre>
-<pre class="bg-success"><code>&lt;input type="text" value="Dwayne &amp;quot;The Rock&amp;quot; Johnson"&gt;</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode jinjar html bg-info"><code class="sourceCode html"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;input</span> <span class="er">type</span><span class="ot">=</span><span class="st">"text"</span> <span class="er">value</span><span class="ot">=</span><span class="st">"{{ escape_html(name) }}"</span><span class="kw">&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode html bg-success"><code class="sourceCode html"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;input</span> <span class="er">type</span><span class="ot">=</span><span class="st">"text"</span> <span class="er">value</span><span class="ot">=</span><span class="st">"Dwayne </span><span class="dv">&amp;quot;</span><span class="st">The Rock</span><span class="dv">&amp;quot;</span><span class="st"> Johnson"</span><span class="kw">&gt;</span></span></code></pre></div>
+<p>Quote string data for use as string literals in a SQL query (see <a href="#sql-quoting">SQL Quoting</a>):</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode jinjar sql bg-info"><code class="sourceCode sql"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> <span class="fu">user</span> <span class="kw">IN</span> ({{ quote_sql(users) }})</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode sql bg-success"><code class="sourceCode sql"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> <span class="fu">user</span> <span class="kw">IN</span> (<span class="st">'User A'</span>, <span class="st">'User B'</span>, <span class="st">'User C'</span>)</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="json-lists">JSON Lists<a class="anchor" aria-label="anchor" href="#json-lists"></a>
