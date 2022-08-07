@@ -421,7 +421,7 @@ In jinjar, it's **your** responsibility to manually escape variables, using the 
 You should escape variables that _might_ contain any of the special characters.
 But if a variable is trusted to contain well-formed HTML, then it should not be escaped (otherwise you could accidentally double-escape the content).
 
-```{jinjar, data=params}
+```{jinjar, data=params, engine.opts=list(lang="html")}
 <input type="text" value="{{ escape_html(name) }}">
 ```
 
@@ -433,14 +433,14 @@ This is cumbersome to achieve when writing a template, so the `quote_sql()` func
 
 **Important:** `quote_sql()` does not provide any protection against SQL injection attacks.
 
-```{jinjar, data=params}
+```{jinjar, data=params, engine.opts=list(lang="sql")}
 WHERE title = {{ quote_sql(title) }} AND year = {{ quote_sql(godzilla.Born) }}
 ```
 
 When passed an array, `quote_sql()` will quote each element and return a comma-separated list.
 This is particularly helpful when using the SQL `IN` operator.
 
-```{jinjar, data=params}
+```{jinjar, data=params, engine.opts=list(lang="sql")}
 WHERE user IN ({{ quote_sql(users) }})
 ```
 
@@ -475,8 +475,14 @@ Translate a string to lower case or upper case:
 
 Escape special characters for use in HTML content (see [HTML Escaping](#html-escaping)):
 
-```{jinjar, data=params}
+```{jinjar, data=params, engine.opts=list(lang="html")}
 <input type="text" value="{{ escape_html(name) }}">
+```
+
+Quote string data for use as string literals in a SQL query (see [SQL Quoting](#sql-quoting)):
+
+```{jinjar, data=params, engine.opts=list(lang="sql")}
+WHERE user IN ({{ quote_sql(users) }})
 ```
 
 
