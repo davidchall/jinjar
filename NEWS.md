@@ -1,5 +1,7 @@
 # jinjar (development version)
 
+* `quote_sql()` now escapes single-quotes using an additional single-quote (#30).
+
 # jinjar 0.3.0
 
 This release provides several quality-of-life improvements.
