@@ -453,24 +453,40 @@ auxiliary template. See <em>Template Inclusion</em> in
 values.</p>
 <p>As described in <a href="#variables">Variables</a>, the template is
 rendered using data stored in JSON format. For this reason, literals
-must also be specified in JSON format. The following types of literals
-are supported:</p>
+must also be specified in <a href="https://www.w3schools.com/js/js_json_datatypes.asp" class="external-link">JSON
+format</a>. The following types of literals are supported:</p>
 <ul>
 <li>
-<strong>String:</strong> characters between two double quotes.</li>
+<strong>String:</strong> characters between double quotation marks.
+<ul>
+<li>Double quotation marks in the string value must be escaped using a
+backslash.</li>
+</ul>
+</li>
 <li>
 <strong>Integer:</strong> whole numbers without decimal part.</li>
 <li>
-<strong>Numeric:</strong> floating point numbers written in decimal
-or scientific format.</li>
+<strong>Numeric:</strong> floating point numbers.
+<ul>
+<li>Specify in decimal or scientific format.</li>
+</ul>
+</li>
 <li>
 <strong>Boolean:</strong> either <code>true</code> or
-<code>false</code> (lowercase).</li>
+<code>false</code>.
+<ul>
+<li>Specify using lowercase characters.</li>
+</ul>
+</li>
 <li>
-<strong>List:</strong> data between square brackets.</li>
+<strong>List:</strong> array of values between square brackets.</li>
 <li>
 <strong>Object:</strong> key-value data pairs between curly brackets
-(each key must be a string).</li>
+<ul>
+<li>Keys must be string literals, but values can be any literal
+type.</li>
+</ul>
+</li>
 <li>
 <strong>NULL:</strong> missing data is represented by
 <code>null</code>.</li>
