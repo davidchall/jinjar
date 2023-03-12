@@ -296,15 +296,19 @@ Basic expressions are supported in templates.
 The simplest form of expressions are literals, which represent fixed values.
 
 As described in [Variables](#variables), the template is rendered using data stored in JSON format.
-For this reason, literals must also be specified in JSON format.
+For this reason, literals must also be specified in [JSON format](https://www.w3schools.com/js/js_json_datatypes.asp).
 The following types of literals are supported:
 
-* **String:** characters between two double quotes.
+* **String:** characters between double quotation marks.
+  * Double quotation marks in the string value must be escaped using a backslash.
 * **Integer:** whole numbers without decimal part.
-* **Numeric:** floating point numbers written in decimal or scientific format.
-* **Boolean:** either `true` or `false` (lowercase).
-* **List:** data between square brackets.
-* **Object:** key-value data pairs between curly brackets (each key must be a string).
+* **Numeric:** floating point numbers.
+  * Specify in decimal or scientific format.
+* **Boolean:** either `true` or `false`.
+  * Specify using lowercase characters.
+* **List:** array of values between square brackets.
+* **Object:** key-value data pairs between curly brackets
+  * Keys must be string literals, but values can be any literal type.
 * **NULL:** missing data is represented by `null`.
 
 Here is example usage for each type:
