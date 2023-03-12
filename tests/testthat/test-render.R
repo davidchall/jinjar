@@ -103,6 +103,10 @@ test_that("quote_sql() works", {
     "WHERE x = 'world'"
   )
   expect_equal(
+    render("WHERE x = {{ quote_sql(col) }}", col = "Wayne's World"),
+    "WHERE x = 'Wayne''s World'"
+  )
+  expect_equal(
     render("WHERE x = {{ quote_sql(col) }}", col = 1L),
     "WHERE x = 1"
   )

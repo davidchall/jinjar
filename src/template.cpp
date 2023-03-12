@@ -77,7 +77,15 @@ inja::Environment jinjar::Template::setup_environment(const cpp11::list& config)
     auto quote_sql = [](const nlohmann::json& x) {
       std::string out;
       if (x.is_string()) {
-        out = "'" + x.get<std::string>() + "'";
+        out.push_back('\'');
+        for (char c : x.get<std::string>()) {
+          if (c == '\'') {
+            // escape single-quote with additional single-quote
+            out.push_back('\'');
+          }
+          out.push_back(c);
+        }
+        out.push_back('\'');
       } else if (x.is_null()) {
         out = "NULL";
       } else if (x.is_number()) {
