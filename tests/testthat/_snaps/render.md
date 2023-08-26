@@ -103,7 +103,7 @@
 
     Problem encountered while decoding JSON data.
     i This is an internal error that was detected in the jinjar package.
-      Please report it at <https://github.com/davidchall/jinjar/issues> with a reprex (<https://https://tidyverse.org/help/>) and the full backtrace.
+      Please report it at <https://github.com/davidchall/jinjar/issues> with a reprex (<https://tidyverse.org/help/>) and the full backtrace.
     Caused by error:
     ! [json.exception.parse_error.101] parse error at line 1, column 17: syntax error while parsing object - unexpected ']'; expected '}'
     i JSON object: "{\"name\": \"world\"]}"
@@ -112,7 +112,7 @@
 
     Problem encountered while decoding JSON data.
     [34mi[39m This is an internal error that was detected in the [34mjinjar[39m package.
-      Please report it at [3m[34m<https://github.com/davidchall/jinjar/issues>[39m[23m with a reprex ([3m[34m<https://https://tidyverse.org/help/>[39m[23m) and the full backtrace.
+      Please report it at [3m[34m<https://github.com/davidchall/jinjar/issues>[39m[23m with a reprex ([3m[34m<https://tidyverse.org/help/>[39m[23m) and the full backtrace.
     [1mCaused by error:[22m
     [1m[22m[33m![39m [json.exception.parse_error.101] parse error at line 1, column 17: syntax error while parsing object - unexpected ']'; expected '}'
     [36mi[39m JSON object: [34m"{\"name\": \"world\"]}"[39m
@@ -121,7 +121,7 @@
 
     Problem encountered while decoding JSON data.
     ℹ This is an internal error that was detected in the jinjar package.
-      Please report it at <https://github.com/davidchall/jinjar/issues> with a reprex (<https://https://tidyverse.org/help/>) and the full backtrace.
+      Please report it at <https://github.com/davidchall/jinjar/issues> with a reprex (<https://tidyverse.org/help/>) and the full backtrace.
     Caused by error:
     ! [json.exception.parse_error.101] parse error at line 1, column 17: syntax error while parsing object - unexpected ']'; expected '}'
     ℹ JSON object: "{\"name\": \"world\"]}"
@@ -130,7 +130,7 @@
 
     Problem encountered while decoding JSON data.
     [34mℹ[39m This is an internal error that was detected in the [34mjinjar[39m package.
-      Please report it at [3m[34m<https://github.com/davidchall/jinjar/issues>[39m[23m with a reprex ([3m[34m<https://https://tidyverse.org/help/>[39m[23m) and the full backtrace.
+      Please report it at [3m[34m<https://github.com/davidchall/jinjar/issues>[39m[23m with a reprex ([3m[34m<https://tidyverse.org/help/>[39m[23m) and the full backtrace.
     [1mCaused by error:[22m
     [1m[22m[33m![39m [json.exception.parse_error.101] parse error at line 1, column 17: syntax error while parsing object - unexpected ']'; expected '}'
     [36mℹ[39m JSON object: [34m"{\"name\": \"world\"]}"[39m
