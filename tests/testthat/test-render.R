@@ -7,6 +7,11 @@ test_that("templating features work", {
     render("Hello {{ name }}!", name = "world"),
     "Hello world!"
   )
+
+  expect_equal(
+    render("{Hello {{ name }}!}", name = "world"),
+    "{Hello world!}"
+  )
 })
 
 test_that("template files work", {

@@ -2255,7 +2255,7 @@ public:
           state = State::CommentStart;
           must_lstrip = config.lstrip_blocks;
         }
-      } else if ((pos == 0 || m_in[pos - 1] == '\n') && inja::string_view::starts_with(open_str, config.line_statement)) {
+      } else if ((pos == 0 || m_in[pos - 1] == '\n') && config.line_statement.length() > 0 && inja::string_view::starts_with(open_str, config.line_statement)) {
         state = State::LineStart;
       } else {
         pos += 1; // wasn't actually an opening sequence
