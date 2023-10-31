@@ -1,6 +1,8 @@
 # jinjar (development version)
 
 * `quote_sql()` now escapes single-quotes using an additional single-quote (#30).
+* Fixed edge case in how error messages are formatted (#31).
+
 
 # jinjar 0.3.0
 

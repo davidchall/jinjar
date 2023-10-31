@@ -8,24 +8,17 @@ to_sentence_case <- function(x) {
 
 stop_inja <- function(type, message, line, column) {
   cls <- c(paste0("jinjar_", type), "jinjar_error")
+  message <- to_sentence_case(message)
+  context <- "Error occurred on {.field line {line}} and {.field column {column}}."
 
-  msg <- c(
-    to_sentence_case(message),
-    "i" = "Error occurred on {.field line {line}} and {.field column {column}}."
-  )
-
-  cli::cli_abort(msg, class = cls, call = NULL)
+  cli::cli_abort(c("{message}", "i" = context), class = cls, call = NULL)
 }
 
 stop_json <- function(message, data) {
   cls <- c("jinjar_json_error", "jinjar_error")
+  context <- "JSON object: {.val {data}}"
 
-  msg <- c(
-    message,
-    "i" = "JSON object: {.val {data}}"
-  )
-
-  cli::cli_abort(msg, class = cls, call = NULL)
+  cli::cli_abort(c("{message}", "i" = context), class = cls, call = NULL)
 }
 
 with_catch_cpp_errors <- function(expr, call = caller_env()) {
