@@ -14,5 +14,5 @@
     Condition
       Error in `encode()`:
       ! All data variables must be named.
-      x We found unnamed variables: `b`, `mtcars`
+      x Unnamed variables: `b` and `mtcars`
 

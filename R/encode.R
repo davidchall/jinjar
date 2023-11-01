@@ -3,11 +3,11 @@ encode <- function(...) {
 
   if (!is_named(data)) {
     vars <- enexprs(...)
-    unnamed <- paste0("`", vars[!have_name(vars)], "`", collapse = ", ")
+    unnamed <- vars[!have_name(vars)]
 
-    abort(c(
+    cli::cli_abort(c(
       "All data variables must be named.",
-      "x" = sprintf("We found unnamed variables: %s", unnamed)
+      "x" = "Unnamed variables: {.var {unnamed}}"
     ))
   }
 
