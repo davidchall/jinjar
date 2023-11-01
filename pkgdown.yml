@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   auxiliary-templates: auxiliary-templates.html
   template-syntax: template-syntax.html
-last_built: 2023-10-31T05:41Z
+last_built: 2023-11-01T05:16Z
 urls:
   reference: https://davidchall.github.io/jinjar/reference
   article: https://davidchall.github.io/jinjar/articles

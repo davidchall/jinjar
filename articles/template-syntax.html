@@ -229,14 +229,19 @@ rendered.</p>
 </tbody>
 </table>
 <p>You can use dot (<code>.</code>) notation to access data nested
-within a variable. An array element is accessed by its numeric index
-(e.g. <code>foo.1</code>) and an object value is accessed by its key
-(e.g. <code>foo.bar</code>).</p>
+within a variable. An array element is accessed by its numeric
+<strong>zero-based</strong> index (e.g. <code>foo.1</code>) and an
+object value is accessed by its key (e.g. <code>foo.bar</code>).</p>
 <p><strong>Note:</strong> In R, the dot is a valid character in an
 object name (e.g. <code>my.data</code>). However, this causes ambiguity
 when accessing nested data values. For this reason, each dot is replaced
 with an underscore when the data is encoded as JSON
 (e.g. <code>my.data</code> becomes <code>my_data</code>).</p>
+<p><strong>Note:</strong> In R, a scalar is indistinguishable from a
+length-1 vector. This creates an ambiguity when passing R data to the
+template, because template variables support both scalars and arrays.
+You can explicitly pass a length-1 vector as an array using the
+<code><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I()</a></code> operator (see <code><a href="../reference/render.html">help("render")</a></code>).</p>
 <p>The double-brace syntax is used to print the value of the variable
 (e.g. <code>{{ foo }}</code>). To use the variable in other contexts
 (e.g. control structures), then these braces are omitted
