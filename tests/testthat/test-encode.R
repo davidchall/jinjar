@@ -6,3 +6,7 @@ test_that("dynamic dots work", {
   expect_equal(encode(a = 1), res)
   expect_equal(encode(!!!list(a = 1)), res)
 })
+
+test_that("data validation works", {
+  expect_snapshot(encode(a = mean), error = TRUE)
+})
