@@ -65,6 +65,18 @@
       ! Include 'missing.html' not found.
       i Error occurred on line 1 and column 12.
 
+---
+
+    Code
+      render("{% for x in vec %}{{ x }}{% endfor %}", vec = "world")
+    Condition
+      Error in `render()`:
+      ! Problem encountered while rendering template.
+      Caused by error:
+      ! Object must be an array.
+      i Have you forgotten to wrap a length-1 vector with I()?
+      i Error occurred on line 1 and column 10.
+
 # render error [ansi]
 
     Code
@@ -86,6 +98,18 @@
       [1mCaused by error:[22m
       [1m[22m[33m![39m Include 'missing.html' not found.
       [36mi[39m Error occurred on [32mline 1[39m and [32mcolumn 12[39m.
+
+---
+
+    Code
+      render("{% for x in vec %}{{ x }}{% endfor %}", vec = "world")
+    Condition
+      [1m[33mError[39m in `render()`:[22m
+      [33m![39m Problem encountered while rendering template.
+      [1mCaused by error:[22m
+      [1m[22m[33m![39m Object must be an array.
+      [36mi[39m Have you forgotten to wrap a length-1 vector with I()?
+      [36mi[39m Error occurred on [32mline 1[39m and [32mcolumn 10[39m.
 
 # render error [unicode]
 
@@ -109,6 +133,18 @@
       ! Include 'missing.html' not found.
       ℹ Error occurred on line 1 and column 12.
 
+---
+
+    Code
+      render("{% for x in vec %}{{ x }}{% endfor %}", vec = "world")
+    Condition
+      Error in `render()`:
+      ! Problem encountered while rendering template.
+      Caused by error:
+      ! Object must be an array.
+      ℹ Have you forgotten to wrap a length-1 vector with I()?
+      ℹ Error occurred on line 1 and column 10.
+
 # render error [fancy]
 
     Code
@@ -130,6 +166,18 @@
       [1mCaused by error:[22m
       [1m[22m[33m![39m Include 'missing.html' not found.
       [36mℹ[39m Error occurred on [32mline 1[39m and [32mcolumn 12[39m.
+
+---
+
+    Code
+      render("{% for x in vec %}{{ x }}{% endfor %}", vec = "world")
+    Condition
+      [1m[33mError[39m in `render()`:[22m
+      [33m![39m Problem encountered while rendering template.
+      [1mCaused by error:[22m
+      [1m[22m[33m![39m Object must be an array.
+      [36mℹ[39m Have you forgotten to wrap a length-1 vector with I()?
+      [36mℹ[39m Error occurred on [32mline 1[39m and [32mcolumn 10[39m.
 
 # JSON encoding error [plain]
 

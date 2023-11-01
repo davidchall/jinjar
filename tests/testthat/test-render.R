@@ -144,6 +144,11 @@ test_that("quote_sql() works", {
 cli::test_that_cli("render error", {
   expect_snapshot(render("Hello {{ name }}!"), error = TRUE)
   expect_snapshot(render('{% include "missing.html" %}'), error = TRUE)
+
+  expect_snapshot(
+    render("{% for x in vec %}{{ x }}{% endfor %}", vec = "world"),
+    error = TRUE
+  )
 })
 
 cli::test_that_cli("JSON encoding error", {

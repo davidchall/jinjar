@@ -11,7 +11,13 @@ stop_inja <- function(type, message, line, column) {
   message <- to_sentence_case(message)
   context <- "Error occurred on {.field line {line}} and {.field column {column}}."
 
-  cli::cli_abort(c("{message}", "i" = context), class = cls, call = NULL)
+  hypothesis <- if (message == "Object must be an array.") {
+    "Have you forgotten to wrap a length-1 vector with I()?"
+  } else {
+    NULL
+  }
+
+  cli::cli_abort(c("{message}", "i" = hypothesis, "i" = context), class = cls, call = NULL)
 }
 
 stop_json <- function(message, data) {
