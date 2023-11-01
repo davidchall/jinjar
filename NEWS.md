@@ -1,4 +1,4 @@
-# jinjar (development version)
+# jinjar 0.3.1
 
 * Fixed a bug where disabling line statements could raise an error during template parsing. Since line statements are disabled by default, this error could be encountered quite easily (#31).
 * `quote_sql()` now escapes single-quotes using an additional single-quote (#30).
