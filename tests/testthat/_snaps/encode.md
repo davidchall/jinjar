@@ -16,3 +16,13 @@
       ! All data variables must be named.
       x Unnamed variables: `b` and `mtcars`
 
+# data validation works
+
+    Code
+      encode(a = mean)
+    Condition
+      Error in `encode()`:
+      ! Data variable `a` is unsupported.
+      x `a` is a function.
+      i Choices: NULL, logical, integer, double, character, list, dataframe.
+
