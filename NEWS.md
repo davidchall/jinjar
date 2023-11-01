@@ -3,6 +3,8 @@
 * Fixed an issue where disabling line statement could raise an error during template parsing. Since line statements are disabled by default, this error could be encountered quite easily (#31).
 * `quote_sql()` now escapes single-quotes using an additional single-quote (#30).
 * Fixed edge case in how error messages are formatted (#32).
+* `render()` now validates data variables are supported (#25).
+* Documented how `render()` can preserve length-1 vectors (#27).
 
 
 # jinjar 0.3.0
