@@ -3,7 +3,7 @@ test_that("input validation works", {
   expect_error(jinjar_config(block_open = ""))
   expect_error(jinjar_config(block_open = NA_character_))
   expect_error(jinjar_config(trim_blocks = NA))
-  expect_snapshot_error(jinjar_config(block_open = "{{", variable_open = "{{"))
+  expect_snapshot(jinjar_config(block_open = "{{", variable_open = "{{"), error = TRUE)
 })
 
 cli::test_that_cli("default works", {

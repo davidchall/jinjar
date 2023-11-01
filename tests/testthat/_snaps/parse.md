@@ -128,29 +128,45 @@
 
 # parse error [plain]
 
-    Problem encountered while parsing template.
-    Caused by error:
-    ! Unexpected '}'.
-    i Error occurred on line 1 and column 15.
+    Code
+      parse_template("Hello {{ name }!")
+    Condition
+      Error in `parse_template()`:
+      ! Problem encountered while parsing template.
+      Caused by error:
+      ! Unexpected '}'.
+      i Error occurred on line 1 and column 15.
 
 # parse error [ansi]
 
-    Problem encountered while parsing template.
-    [1mCaused by error:[22m
-    [1m[22m[33m![39m Unexpected '}'.
-    [36mi[39m Error occurred on [32mline 1[39m and [32mcolumn 15[39m.
+    Code
+      parse_template("Hello {{ name }!")
+    Condition
+      [1m[33mError[39m in `parse_template()`:[22m
+      [33m![39m Problem encountered while parsing template.
+      [1mCaused by error:[22m
+      [1m[22m[33m![39m Unexpected '}'.
+      [36mi[39m Error occurred on [32mline 1[39m and [32mcolumn 15[39m.
 
 # parse error [unicode]
 
-    Problem encountered while parsing template.
-    Caused by error:
-    ! Unexpected '}'.
-    ℹ Error occurred on line 1 and column 15.
+    Code
+      parse_template("Hello {{ name }!")
+    Condition
+      Error in `parse_template()`:
+      ! Problem encountered while parsing template.
+      Caused by error:
+      ! Unexpected '}'.
+      ℹ Error occurred on line 1 and column 15.
 
 # parse error [fancy]
 
-    Problem encountered while parsing template.
-    [1mCaused by error:[22m
-    [1m[22m[33m![39m Unexpected '}'.
-    [36mℹ[39m Error occurred on [32mline 1[39m and [32mcolumn 15[39m.
+    Code
+      parse_template("Hello {{ name }!")
+    Condition
+      [1m[33mError[39m in `parse_template()`:[22m
+      [33m![39m Problem encountered while parsing template.
+      [1mCaused by error:[22m
+      [1m[22m[33m![39m Unexpected '}'.
+      [36mℹ[39m Error occurred on [32mline 1[39m and [32mcolumn 15[39m.
 

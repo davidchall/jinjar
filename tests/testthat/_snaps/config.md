@@ -1,6 +1,10 @@
 # input validation works
 
-    Conflicting delimiters: `variable_open` and `block_open`
+    Code
+      jinjar_config(block_open = "{{", variable_open = "{{")
+    Condition
+      Error in `jinjar_config()`:
+      ! Conflicting delimiters: `variable_open` and `block_open`
 
 # default works [plain]
 

@@ -35,5 +35,5 @@ cli::test_that_cli("print spans with overlap works", {
 })
 
 cli::test_that_cli("parse error", {
-  expect_snapshot_error(parse_template("Hello {{ name }!"), class = "jinjar_parser_error")
+  expect_snapshot(parse_template("Hello {{ name }!"), error = TRUE)
 })

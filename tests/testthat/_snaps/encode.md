@@ -1,5 +1,18 @@
 # dynamic dots work
 
-    All data variables must be named.
-    x We found unnamed variables: `b`, `mtcars`
+    Code
+      encode(a = 1, a = "b")
+    Condition
+      Error in `encode()`:
+      ! Arguments in `...` must have unique names.
+      x Multiple arguments named `a` at positions 1 and 2.
+
+---
+
+    Code
+      encode(a = 1, "b", mtcars)
+    Condition
+      Error in `encode()`:
+      ! All data variables must be named.
+      x We found unnamed variables: `b`, `mtcars`
 
