@@ -7,6 +7,10 @@
 #' * A path to a template file (use [fs::path()]).
 #' * A parsed template (use [parse_template()]).
 #' @param ... <[`dynamic-dots`][rlang::dyn-dots]> Data passed to the template.
+#'
+#' By default, a length-1 vector is passed as a scalar variable. Use [I()] to
+#' declare that a vector should be passed as an array variable. This preserves
+#' a length-1 vector as an array.
 #' @inheritParams parse
 #' @return String containing rendered template.
 #'
@@ -18,7 +22,10 @@
 #' # pass data as arguments
 #' render("Hello {{ name }}!", name = "world")
 #'
-#' # pass data as list
+#' # pass length-1 vector as array
+#' render("Hello {{ name.0 }}!", name = I("world"))
+#'
+#' # pass data programmatically
 #' params <- list(name = "world")
 #' render("Hello {{ name }}!", !!!params)
 #'

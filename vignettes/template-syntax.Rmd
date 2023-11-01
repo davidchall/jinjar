@@ -120,11 +120,15 @@ Although we pass R objects to `render()`, it is helpful to understand that these
 | Data frame      | Array of objects | `{{ foo.1.bar }}` |
 
 You can use dot (`.`) notation to access data nested within a variable.
-An array element is accessed by its numeric index (e.g. `foo.1`) and an object value is accessed by its key (e.g. `foo.bar`).
+An array element is accessed by its numeric **zero-based** index (e.g. `foo.1`) and an object value is accessed by its key (e.g. `foo.bar`).
 
 **Note:** In R, the dot is a valid character in an object name (e.g. `my.data`).
 However, this causes ambiguity when accessing nested data values.
 For this reason, each dot is replaced with an underscore when the data is encoded as JSON (e.g. `my.data` becomes `my_data`).
+
+**Note:** In R, a scalar is indistinguishable from a length-1 vector.
+This creates an ambiguity when passing R data to the template, because template variables support both scalars and arrays.
+You can explicitly pass a length-1 vector as an array using the `I()` operator (see `help("render")`).
 
 The double-brace syntax is used to print the value of the variable (e.g. `{{ foo }}`).
 To use the variable in other contexts (e.g. control structures), then these braces are omitted (e.g. `{% for bar in foo %}`).

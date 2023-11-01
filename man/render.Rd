@@ -23,7 +23,11 @@ render(.x, ...)
 \item A parsed template (use \code{\link[=parse_template]{parse_template()}}).
 }}
 
-\item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> Data passed to the template.}
+\item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> Data passed to the template.
+
+By default, a length-1 vector is passed as a scalar variable. Use \code{\link[=I]{I()}} to
+declare that a vector should be passed as an array variable. This preserves
+a length-1 vector as an array.}
 
 \item{.config}{The engine configuration. The default matches Jinja defaults,
 but you can use \code{\link[=jinjar_config]{jinjar_config()}} to customize things like syntax delimiters,
@@ -39,7 +43,10 @@ Data is passed to a template to render the final document.
 # pass data as arguments
 render("Hello {{ name }}!", name = "world")
 
-# pass data as list
+# pass length-1 vector as array
+render("Hello {{ name.0 }}!", name = I("world"))
+
+# pass data programmatically
 params <- list(name = "world")
 render("Hello {{ name }}!", !!!params)
 
