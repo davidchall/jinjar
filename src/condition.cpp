@@ -7,7 +7,18 @@ void stop_inja(const std::string& type, const std::string& message, const size_t
   stop_inja(type, message, line, column);
 }
 
-void stop_json(const std::string& message, const std::string& data_json) {
+void stop_json(const std::string& type, int id, const std::string& message) {
+  // example message value:
+  // [json.exception.type_error.302] (/x) type must be string, but is number
+  std::string what = message.substr(message.find("]") + 2);
+  std::string variable = "";
+
+  if (what.substr(0, 2) == "(/") {
+    what = what.substr(2);
+    variable = what.substr(0, what.find_first_of("/)"));
+    what = what.substr(what.find(")") + 2);
+  }
+
   auto stop_json = cpp11::package("jinjar")["stop_json"];
-  stop_json(message, data_json);
+  stop_json(type, id, what, variable);
 }

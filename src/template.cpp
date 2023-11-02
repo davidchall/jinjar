@@ -22,7 +22,9 @@ const cpp11::strings jinjar::Template::render(const cpp11::strings& data_json) {
     auto result = env.render(templ, data);
     output.push_back(result);
   } catch (const nlohmann::json::parse_error& e) {
-    stop_json(e.what(), data_json_str);
+    stop_json("parse_error", e.id, e.what());
+  } catch (const nlohmann::json::type_error& e) {
+    stop_json("type_error", e.id, e.what());
   } catch (const inja::InjaError& e) {
     stop_inja(e.type, e.message, e.location.line, e.location.column);
   }
