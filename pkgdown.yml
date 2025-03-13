@@ -1,11 +1,10 @@
-pandoc: 2.19.2
-pkgdown: 2.0.7
+pandoc: 3.1.11
+pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   auxiliary-templates: auxiliary-templates.html
   template-syntax: template-syntax.html
-last_built: 2023-11-02T00:53Z
+last_built: 2025-03-13T01:44Z
 urls:
   reference: https://davidchall.github.io/jinjar/reference
   article: https://davidchall.github.io/jinjar/articles
-

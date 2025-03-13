@@ -1,51 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://davidchall.github.io/jinjar/404.html</loc>
-  </url>
-  <url>
-    <loc>https://davidchall.github.io/jinjar/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://davidchall.github.io/jinjar/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://davidchall.github.io/jinjar/articles/auxiliary-templates.html</loc>
-  </url>
-  <url>
-    <loc>https://davidchall.github.io/jinjar/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://davidchall.github.io/jinjar/articles/template-syntax.html</loc>
-  </url>
-  <url>
-    <loc>https://davidchall.github.io/jinjar/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://davidchall.github.io/jinjar/index.html</loc>
-  </url>
-  <url>
-    <loc>https://davidchall.github.io/jinjar/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://davidchall.github.io/jinjar/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://davidchall.github.io/jinjar/reference/jinjar-package.html</loc>
-  </url>
-  <url>
-    <loc>https://davidchall.github.io/jinjar/reference/jinjar_config.html</loc>
-  </url>
-  <url>
-    <loc>https://davidchall.github.io/jinjar/reference/loader.html</loc>
-  </url>
-  <url>
-    <loc>https://davidchall.github.io/jinjar/reference/parse.html</loc>
-  </url>
-  <url>
-    <loc>https://davidchall.github.io/jinjar/reference/print.html</loc>
-  </url>
-  <url>
-    <loc>https://davidchall.github.io/jinjar/reference/render.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://davidchall.github.io/jinjar/404.html</loc></url>
+<url><loc>https://davidchall.github.io/jinjar/LICENSE-text.html</loc></url>
+<url><loc>https://davidchall.github.io/jinjar/LICENSE.html</loc></url>
+<url><loc>https://davidchall.github.io/jinjar/articles/auxiliary-templates.html</loc></url>
+<url><loc>https://davidchall.github.io/jinjar/articles/index.html</loc></url>
+<url><loc>https://davidchall.github.io/jinjar/articles/template-syntax.html</loc></url>
+<url><loc>https://davidchall.github.io/jinjar/authors.html</loc></url>
+<url><loc>https://davidchall.github.io/jinjar/index.html</loc></url>
+<url><loc>https://davidchall.github.io/jinjar/news/index.html</loc></url>
+<url><loc>https://davidchall.github.io/jinjar/reference/index.html</loc></url>
+<url><loc>https://davidchall.github.io/jinjar/reference/jinjar-package.html</loc></url>
+<url><loc>https://davidchall.github.io/jinjar/reference/jinjar_config.html</loc></url>
+<url><loc>https://davidchall.github.io/jinjar/reference/loader.html</loc></url>
+<url><loc>https://davidchall.github.io/jinjar/reference/parse.html</loc></url>
+<url><loc>https://davidchall.github.io/jinjar/reference/print.html</loc></url>
+<url><loc>https://davidchall.github.io/jinjar/reference/render.html</loc></url>
 </urlset>
+
