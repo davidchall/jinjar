@@ -64,13 +64,12 @@ template |>
 #> * Darth Vader (Tatooine)
 #> * Leia Organa (Alderaan)
 #> * Owen Lars (Tatooine)
-#> * Beru Whitesun lars (Tatooine)
+#> * Beru Whitesun Lars (Tatooine)
 #> * Biggs Darklighter (Tatooine)
 #> * Obi-Wan Kenobi (Stewjon)
 #> * Wilhuff Tarkin (Eriadu)
 #> * Han Solo (Corellia)
 #> * Wedge Antilles (Corellia)
-#> * Jek Tono Porkins (Bestine IV)
 #> * Raymus Antilles (Alderaan)
 ```
 
